@@ -570,7 +570,7 @@
     <header>
         <div class="header-content">
             <h1>SQL Interview Prep</h1>
-            <p class="header-meta">Comprehensive Guide · 12 Modules · 48 Quiz Questions · 50 Flashcards</p>
+            <p class="header-meta">Comprehensive Guide · 12 Modules · 60 Interactive Flashcards</p>
             <nav>
                 <a href="#domains">Domains</a>
                 <a href="#flashcards">Flashcards</a>
@@ -589,12 +589,8 @@
                     <div class="stat-number">12</div>
                     <div class="stat-label">Modules</div>
                 </div>
-                <div class="stat-item" onclick="scrollToSection('domains')">
-                    <div class="stat-number">48</div>
-                    <div class="stat-label">Questions</div>
-                </div>
                 <div class="stat-item" onclick="scrollToSection('flashcards')">
-                    <div class="stat-number">50</div>
+                    <div class="stat-number">60</div>
                     <div class="stat-label">Flashcards</div>
                 </div>
                 <div class="stat-item" onclick="scrollToSection('data-types')">
@@ -795,9 +791,10 @@
 
         <!-- FLASHCARDS SECTION -->
         <section id="flashcards">
-            <h2>▸ Flashcards (Spaced Repetition)</h2>
-            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Click any card to flip and test yourself on key concepts.</p>
+            <h2>▸ Flashcards - Key Concepts & Practice Q&A (60)</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Click any card to flip and test yourself on key concepts and interview questions. Total: 60 flashcards (12 concepts + 48 practice Q&A).</p>
 
+            <h3>Key Concepts (12)</h3>
             <div class="flashcards-container">
                 <div class="flashcard" onclick="this.classList.toggle('flipped')">
                     <div class="flashcard-front">INNER JOIN</div>
@@ -846,6 +843,179 @@
                 <div class="flashcard" onclick="this.classList.toggle('flipped')">
                     <div class="flashcard-front">Correlated Subquery</div>
                     <div class="flashcard-back">References outer query. Executes once per row (slower).</div>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 3rem;">Practice Q&A (48 Interview Questions)</h3>
+            <div class="flashcards-container">
+                <!-- Fundamentals Q&A -->
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-front">Q: Difference between INNER JOIN and LEFT JOIN?</div>
+                    <div class="flashcard-back">INNER JOIN returns only matching rows. LEFT JOIN returns all rows from left table + matches from right (NULLs for non-matches).</div>
+                </div>
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-front">Q: GROUP BY and HAVING clauses?</div>
+                    <div class="flashcard-back">GROUP BY aggregates rows by columns. HAVING filters aggregated results (like WHERE for aggregates).</div>
+                </div>
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-front">Q: Purpose of LIMIT clause?</div>
+                    <div class="flashcard-back">LIMIT restricts the number of rows returned, useful for pagination and preventing large result sets.</div>
+                </div>
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-front">Q: How DISTINCT works?</div>
+                    <div class="flashcard-back">DISTINCT removes duplicate rows from results, keeping only unique values.</div>
+                </div>
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-front">Q: Purpose of ORDER BY?</div>
+                    <div class="flashcard-back">ORDER BY sorts results by specified columns in ASC (ascending) or DESC (descending) order.</div>
+                </div>
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-front">Q: Explain self-join?</div>
+                    <div class="flashcard-back">Self-join joins a table to itself using table aliases to find relationships within the same table (e.g., employee-manager).</div>
+                </div>
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-front">Q: Five aggregate functions?</div>
+                    <div class="flashcard-back">COUNT(), SUM(), AVG(), MIN(), MAX() - compute single values from multiple rows.</div>
+                </div>
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-front">Q: WHERE vs HAVING?</div>
+                    <div class="flashcard-back">WHERE filters individual rows before grouping. HAVING filters aggregated results after grouping.</div>
+                </div>
+
+                <!-- Advanced Patterns Q&A -->
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-front">Q: CTEs and when to use?</div>
+                    <div class="flashcard-back">CTEs (WITH clause) are named subqueries. Use for readability, recursion, and reusability within a single statement.</div>
+                </div>
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-front">Q: Correlated subqueries example?</div>
+                    <div class="flashcard-back">Subquery that references outer query: SELECT * FROM employees e WHERE salary > (SELECT AVG(salary) FROM employees WHERE dept_id = e.dept_id)</div>
+                </div>
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-front">Q: IN vs EXISTS?</div>
+                    <div class="flashcard-back">IN checks membership in a list. EXISTS checks if subquery returns rows (EXISTS is faster for large sets).</div>
+                </div>
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-front">Q: Window functions explained?</div>
+                    <div class="flashcard-back">Functions that compute over a window (partition) of rows without collapsing them. Syntax: FUNC() OVER (PARTITION BY ... ORDER BY ...)</div>
+                </div>
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-front">Q: ROW_NUMBER() vs RANK()?</div>
+                    <div class="flashcard-back">ROW_NUMBER() gives unique sequential numbers. RANK() gives ranks with gaps on ties (1,2,2,4).</div>
+                </div>
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-front">Q: When to use scalar subquery?</div>
+                    <div class="flashcard-back">Use scalar subquery in SELECT clause to return single value per row, like (SELECT MAX(salary) FROM salaries).</div>
+                </div>
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-front">Q: PARTITION BY explained?</div>
+                    <div class="flashcard-back">PARTITION BY divides rows into groups for window function calculation. Each partition is calculated independently.</div>
+                </div>
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-front">Q: RANK() vs DENSE_RANK()?</div>
+                    <div class="flashcard-back">RANK() has gaps on ties (1,2,2,4). DENSE_RANK() no gaps (1,2,2,3). Use DENSE_RANK for continuous rankings.</div>
+                </div>
+
+                <!-- Performance & Optimization Q&A -->
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-front">Q: What is an index?</div>
+                    <div class="flashcard-back">Index is a database object that improves query performance by creating a sorted lookup structure on columns.</div>
+                </div>
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-front">Q: How to read EXPLAIN PLAN?</div>
+                    <div class="flashcard-back">EXPLAIN PLAN shows query execution steps, costs, and row estimates. Lower cost is better. Look for full table scans.</div>
+                </div>
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-front">Q: Avoid full table scans?</div>
+                    <div class="flashcard-back">Add indexes on WHERE clause columns, filter early, avoid SELECT *, use proper data types for joining.</div>
+                </div>
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-front">Q: UPDATE vs DELETE?</div>
+                    <div class="flashcard-back">UPDATE modifies existing rows. DELETE removes rows. Use soft deletes (status flag) for important data.</div>
+                </div>
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-front">Q: Why transactions matter?</div>
+                    <div class="flashcard-back">Transactions ensure ACID properties: Atomicity, Consistency, Isolation, Durability. Critical for data integrity.</div>
+                </div>
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-front">Q: Clustered vs non-clustered index?</div>
+                    <div class="flashcard-back">Clustered: sorts/stores table data (one per table). Non-clustered: separate lookup structure (many per table).</div>
+                </div>
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-front">Q: Query optimization techniques?</div>
+                    <div class="flashcard-back">Add indexes, early filtering, avoid subqueries in WHERE, use EXPLAIN, denormalize if needed, partition large tables.</div>
+                </div>
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-front">Q: Prevent N+1 queries?</div>
+                    <div class="flashcard-back">Use JOIN instead of loops, batch load related data, use subqueries wisely, consider caching strategies.</div>
+                </div>
+
+                <!-- Best Practices Q&A -->
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-front">Q: What is NULL?</div>
+                    <div class="flashcard-back">NULL represents unknown/missing value. Comparisons with NULL return NULL (not TRUE/FALSE). Use IS NULL, IS NOT NULL.</div>
+                </div>
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-front">Q: COALESCE vs IFNULL?</div>
+                    <div class="flashcard-back">Both replace NULL: COALESCE(col1, col2, default) returns first non-NULL. IFNULL(col, default) checks single column.</div>
+                </div>
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-front">Q: Handle NULL in JOINs?</div>
+                    <div class="flashcard-back">NULL never matches NULL (even in JOINs). Use COALESCE in join condition or filter NULLs in WHERE clause.</div>
+                </div>
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-front">Q: Best practices for dates?</div>
+                    <div class="flashcard-back">Use DATE data type, avoid string comparisons, use DATE_TRUNC/DATEPART for comparisons, store UTC timezone.</div>
+                </div>
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-front">Q: DATEADD, DATEDIFF, DATE_TRUNC?</div>
+                    <div class="flashcard-back">DATEADD: add interval to date. DATEDIFF: difference between dates. DATE_TRUNC: round down to start of period.</div>
+                </div>
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-front">Q: Calculate rolling windows?</div>
+                    <div class="flashcard-back">Use DATEADD for offset: BETWEEN DATEADD(day, -30, CURRENT_DATE()) AND CURRENT_DATE() for last 30 days.</div>
+                </div>
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-front">Q: Common data quality issues?</div>
+                    <div class="flashcard-back">Duplicates, NULLs, whitespace, type mismatches, invalid dates, referential integrity violations. Detect with GROUP BY COUNT(*) > 1.</div>
+                </div>
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-front">Q: Duplicate removal strategy?</div>
+                    <div class="flashcard-back">Use ROW_NUMBER() OVER (PARTITION BY unique_cols ORDER BY id) = 1 or DELETE WHERE id NOT IN (SELECT MIN(id) GROUP BY cols).</div>
+                </div>
+
+                <!-- Database Objects Q&A -->
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-front">Q: Stored procedures and advantages?</div>
+                    <div class="flashcard-back">Pre-compiled SQL code stored in DB. Advantages: reusable, better performance, security, reduced network traffic.</div>
+                </div>
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-front">Q: Procedure input/output parameters?</div>
+                    <div class="flashcard-back">Input: pass data in (@param INT). Output: return data out (@result INT OUTPUT). Use OUTPUT keyword to modify caller variables.</div>
+                </div>
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-front">Q: Triggers and when to use?</div>
+                    <div class="flashcard-back">Triggers automatically execute on data changes. Use for: audit logs, validation, enforcing business rules. Use sparingly (debugging hard).</div>
+                </div>
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-front">Q: BEFORE vs AFTER triggers?</div>
+                    <div class="flashcard-back">BEFORE: execute before INSERT/UPDATE/DELETE (validate/modify data). AFTER: execute after (audit/cascade updates).</div>
+                </div>
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-front">Q: Scheduled events/tasks?</div>
+                    <div class="flashcard-back">Scheduled jobs that run SQL automatically (e.g., CRON tasks). Use for: backups, archiving, reporting, ETL jobs.</div>
+                </div>
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-front">Q: Debug stored procedures?</div>
+                    <div class="flashcard-back">Use PRINT statements, SELECT for debugging, TRY-CATCH blocks, check RAISERROR, test with sample data first.</div>
+                </div>
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-front">Q: Views and use cases?</div>
+                    <div class="flashcard-back">Views: saved SELECT queries. Use for: abstraction, security (restrict columns), simplifying complex queries, data consistency.</div>
+                </div>
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-front">Q: Transactions and ROLLBACK?</div>
+                    <div class="flashcard-back">BEGIN TRANSACTION; ... COMMIT (save) or ROLLBACK (undo). Critical for multi-step operations to ensure all-or-nothing execution.</div>
                 </div>
             </div>
         </section>
@@ -924,33 +1094,6 @@
                     <p><strong>Real-world example:</strong> Fetching top 10 customers by revenue with filters and sorting.</p>
                     <div class="code-block">SELECT customer_id, SUM(amount) as total<br>FROM orders<br>WHERE amount > 100<br>GROUP BY customer_id<br>ORDER BY total DESC<br>LIMIT 10;</div>
                     <div class="hint">Always use LIMIT in early query development to avoid returning millions of rows.</div>
-                    <h4>📊 SQL vs. Pandas Quick Reference</h4>
-                    <table>
-                        <tr>
-                            <th>#</th>
-                            <th>Task</th>
-                            <th>SQL</th>
-                            <th>Pandas</th>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Select columns</td>
-                            <td><code>SELECT col1, col2 FROM table</code></td>
-                            <td><code>df[['col1', 'col2']]</code></td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Filter rows</td>
-                            <td><code>SELECT * FROM table WHERE col > 5</code></td>
-                            <td><code>df[df['col'] > 5]</code></td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Sort</td>
-                            <td><code>ORDER BY col DESC</code></td>
-                            <td><code>df.sort_values(by='col', ascending=False)</code></td>
-                        </tr>
-                    </table>
                 `
             },
             'joins': {
@@ -960,29 +1103,6 @@
                     <p><strong>Concepts:</strong> INNER JOIN, LEFT/RIGHT/FULL OUTER JOIN, CROSS JOIN, Self-joins</p>
                     <div class="code-block">SELECT o.order_id, c.customer_name, p.product_name<br>FROM orders o<br>INNER JOIN customers c ON o.customer_id = c.customer_id<br>LEFT JOIN products p ON o.product_id = p.product_id;</div>
                     <div class="hint">LEFT JOIN preserves all rows from the left table, filling NULLs for missing matches.</div>
-                    <h4>📋 JOIN Decision Table</h4>
-                    <table>
-                        <tr>
-                            <th>Scenario</th>
-                            <th>Use This Join</th>
-                            <th>Why</th>
-                        </tr>
-                        <tr>
-                            <td>Only matching rows</td>
-                            <td>INNER JOIN</td>
-                            <td>Removes non-matches (fastest)</td>
-                        </tr>
-                        <tr>
-                            <td>All from left table</td>
-                            <td>LEFT JOIN</td>
-                            <td>Keep incomplete records</td>
-                        </tr>
-                        <tr>
-                            <td>All from both tables</td>
-                            <td>FULL OUTER JOIN</td>
-                            <td>Union of both sides</td>
-                        </tr>
-                    </table>
                 `
             },
             'aggregation': {
@@ -992,29 +1112,6 @@
                     <p><strong>Concepts:</strong> GROUP BY, HAVING, aggregate functions (COUNT, SUM, AVG, MIN, MAX)</p>
                     <div class="code-block">SELECT category, COUNT(*) as count, AVG(price) as avg_price<br>FROM products<br>GROUP BY category<br>HAVING COUNT(*) > 5<br>ORDER BY avg_price DESC;</div>
                     <div class="hint">HAVING filters on aggregated results; WHERE filters on individual rows.</div>
-                    <h4>📊 Aggregate Function Reference</h4>
-                    <table>
-                        <tr>
-                            <th>Function</th>
-                            <th>Purpose</th>
-                            <th>Example</th>
-                        </tr>
-                        <tr>
-                            <td><code>COUNT(*)</code></td>
-                            <td>Count all rows</td>
-                            <td>COUNT(*) = 150</td>
-                        </tr>
-                        <tr>
-                            <td><code>SUM(col)</code></td>
-                            <td>Total of numeric column</td>
-                            <td>SUM(amount) = 10000</td>
-                        </tr>
-                        <tr>
-                            <td><code>AVG(col)</code></td>
-                            <td>Average value</td>
-                            <td>AVG(price) = 29.99</td>
-                        </tr>
-                    </table>
                 `
             },
             'subqueries': {
@@ -1024,29 +1121,6 @@
                     <p><strong>Concepts:</strong> Scalar subqueries, correlated subqueries, IN/EXISTS, Common Table Expressions (CTEs)</p>
                     <div class="code-block">WITH high_value_orders AS (<br>&nbsp;&nbsp;SELECT customer_id, COUNT(*) as order_count<br>&nbsp;&nbsp;FROM orders<br>&nbsp;&nbsp;WHERE amount > 500<br>)<br>SELECT c.customer_name, hv.order_count<br>FROM customers c<br>JOIN high_value_orders hv ON c.customer_id = hv.customer_id;</div>
                     <div class="hint">Use CTEs for readability; use subqueries in SELECT for single-value lookups.</div>
-                    <h4>🔄 CTE vs Subquery Comparison</h4>
-                    <table>
-                        <tr>
-                            <th>Aspect</th>
-                            <th>CTE</th>
-                            <th>Subquery</th>
-                        </tr>
-                        <tr>
-                            <td><strong>Readability</strong></td>
-                            <td>Very high ✅</td>
-                            <td>Low for complex</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Performance</strong></td>
-                            <td>Medium</td>
-                            <td>Can be slow</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Reusable</strong></td>
-                            <td>Yes ✅</td>
-                            <td>No ❌</td>
-                        </tr>
-                    </table>
                 `
             },
             'window-functions': {
@@ -1056,29 +1130,6 @@
                     <p><strong>Concepts:</strong> ROW_NUMBER, RANK, DENSE_RANK, LAG/LEAD, SUM/AVG OVER, PARTITION BY</p>
                     <div class="code-block">SELECT order_id, customer_id, amount,<br>&nbsp;&nbsp;ROW_NUMBER() OVER (PARTITION BY customer_id ORDER BY amount DESC) as rank<br>FROM orders;</div>
                     <div class="hint">Window functions compute without collapsing rows (unlike GROUP BY).</div>
-                    <h4>📊 Window Function Reference</h4>
-                    <table>
-                        <tr>
-                            <th>Function</th>
-                            <th>Purpose</th>
-                            <th>Example Result</th>
-                        </tr>
-                        <tr>
-                            <td><code>ROW_NUMBER()</code></td>
-                            <td>Unique sequential integers</td>
-                            <td>1,2,3,4,5</td>
-                        </tr>
-                        <tr>
-                            <td><code>RANK()</code></td>
-                            <td>Ranks with gaps on ties</td>
-                            <td>1,2,2,4,5</td>
-                        </tr>
-                        <tr>
-                            <td><code>DENSE_RANK()</code></td>
-                            <td>Ranks without gaps</td>
-                            <td>1,2,2,3,4</td>
-                        </tr>
-                    </table>
                 `
             },
             'optimization': {
@@ -1087,29 +1138,6 @@
                 content: `
                     <p><strong>Concepts:</strong> EXPLAIN PLAN, indexes, query cost, full table scans</p>
                     <div class="hint">A 10x faster query often comes from better indexes or earlier filtering, not complex logic.</div>
-                    <h4>📋 Query Optimization Techniques</h4>
-                    <table>
-                        <tr>
-                            <th>Technique</th>
-                            <th>Problem Solved</th>
-                            <th>Impact</th>
-                        </tr>
-                        <tr>
-                            <td><strong>Add Indexes</strong></td>
-                            <td>Full table scans</td>
-                            <td>⚡⚡⚡ High</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Early Filtering</strong></td>
-                            <td>Large datasets</td>
-                            <td>⚡⚡⚡ High</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Use EXPLAIN</strong></td>
-                            <td>Unknown bottlenecks</td>
-                            <td>⚡⚡ Medium</td>
-                        </tr>
-                    </table>
                 `
             },
             'dml': {
@@ -1119,29 +1147,6 @@
                     <p><strong>Concepts:</strong> INSERT, UPDATE, DELETE, transactions, safety</p>
                     <div class="code-block">-- Test first:<br>SELECT * FROM users WHERE status = 'inactive';<br>-- Then update:<br>UPDATE users SET status = 'archived' WHERE status = 'inactive';</div>
                     <div class="hint">Always wrap destructive operations in transactions so you can ROLLBACK.</div>
-                    <h4>📝 DML Operations</h4>
-                    <table>
-                        <tr>
-                            <th>Operation</th>
-                            <th>Risk Level</th>
-                            <th>Best Practice</th>
-                        </tr>
-                        <tr>
-                            <td><strong>INSERT</strong></td>
-                            <td>Low</td>
-                            <td>Add new rows</td>
-                        </tr>
-                        <tr>
-                            <td><strong>UPDATE</strong></td>
-                            <td>High ⚠️</td>
-                            <td>Verify WHERE clause first</td>
-                        </tr>
-                        <tr>
-                            <td><strong>DELETE</strong></td>
-                            <td>Critical ⚠️⚠️</td>
-                            <td>Use ROLLBACK capability</td>
-                        </tr>
-                    </table>
                 `
             },
             'null-handling': {
@@ -1150,29 +1155,6 @@
                 content: `
                     <p><strong>Key principle:</strong> NULL is contagious: ANY comparison with NULL returns NULL, not FALSE.</p>
                     <div class="hint">Show you think about data quality: always ask "What about NULLs?" when designing queries.</div>
-                    <h4>🛡️ Common NULL Pitfalls</h4>
-                    <table>
-                        <tr>
-                            <th>Problem</th>
-                            <th>Wrong ❌</th>
-                            <th>Correct ✓</th>
-                        </tr>
-                        <tr>
-                            <td>NULL comparison</td>
-                            <td>WHERE col = NULL</td>
-                            <td>WHERE col IS NULL</td>
-                        </tr>
-                        <tr>
-                            <td>NOT IN with NULL</td>
-                            <td>WHERE col NOT IN (1, 2, NULL)</td>
-                            <td>WHERE col NOT IN (1, 2) OR col IS NULL</td>
-                        </tr>
-                        <tr>
-                            <td>Handling missing values</td>
-                            <td>Ignore NULLs</td>
-                            <td>Use COALESCE()</td>
-                        </tr>
-                    </table>
                 `
             },
             'date-functions': {
@@ -1181,62 +1163,6 @@
                 content: `
                     <p><strong>Critical for reporting:</strong> Dynamic date ranges and scheduled tasks.</p>
                     <div class="hint">Always use DATE_TRUNC or DATEPART for comparisons; avoid string-based date logic.</div>
-                    <h4>📋 Date & Time Functions Reference</h4>
-                    <table>
-                        <tr>
-                            <th>Type</th>
-                            <th>Purpose</th>
-                            <th>SQL Query</th>
-                            <th>Example</th>
-                        </tr>
-                        <tr>
-                            <td><code>NOW()</code></td>
-                            <td>Current date/time</td>
-                            <td><code>SELECT NOW()</code></td>
-                            <td>2024-01-01</td>
-                        </tr>
-                        <tr>
-                            <td><code>CURRENT_DATE()</code></td>
-                            <td>Returns current date</td>
-                            <td><code>SELECT CURRENT_DATE()</code></td>
-                            <td>2024-01-01</td>
-                        </tr>
-                        <tr>
-                            <td><code>DATEPART()</code></td>
-                            <td>Returns specific datepart</td>
-                            <td><code>DATEPART(year, date)</code></td>
-                            <td>2024</td>
-                        </tr>
-                        <tr>
-                            <td><code>DATEADD()</code></td>
-                            <td>Add time interval</td>
-                            <td><code>DATEADD(day, 10, proc_dt)</code></td>
-                            <td>+10 days</td>
-                        </tr>
-                    </table>
-                    <h4>🗓️ Dynamic Date Ranges (Most Important)</h4>
-                    <table>
-                        <tr>
-                            <th>Description</th>
-                            <th>Query</th>
-                        </tr>
-                        <tr>
-                            <td><strong>Last 7 days</strong></td>
-                            <td><code>WHERE proc_dt BETWEEN DATEADD(day, -7, CURRENT_DATE()) AND CURRENT_DATE()</code></td>
-                        </tr>
-                        <tr>
-                            <td><strong>Current month</strong></td>
-                            <td><code>WHERE proc_dt BETWEEN DATE_TRUNC('month', CURRENT_DATE()) AND LAST_DAY(CURRENT_DATE())</code></td>
-                        </tr>
-                        <tr>
-                            <td><strong>Year-to-date</strong></td>
-                            <td><code>WHERE proc_dt BETWEEN DATE_TRUNC('year', CURRENT_DATE()) AND CURRENT_DATE()</code></td>
-                        </tr>
-                        <tr>
-                            <td><strong>Rolling 30 days</strong></td>
-                            <td><code>WHERE proc_dt BETWEEN DATEADD(day, -30, CURRENT_DATE()) AND CURRENT_DATE()</code></td>
-                        </tr>
-                    </table>
                 `
             },
             'data-cleaning': {
@@ -1245,29 +1171,6 @@
                 content: `
                     <p><strong>Why it matters:</strong> Data cleaning is 80% of data work.</p>
                     <div class="hint">Approach: identify issues → test fix → apply → verify. Always test on subset first.</div>
-                    <h4>🧹 Data Cleaning Techniques</h4>
-                    <table>
-                        <tr>
-                            <th>Issue</th>
-                            <th>Detection</th>
-                            <th>Solution</th>
-                        </tr>
-                        <tr>
-                            <td><strong>Duplicates</strong></td>
-                            <td>GROUP BY with HAVING COUNT > 1</td>
-                            <td>DELETE WHERE id NOT IN (SELECT MIN(id) GROUP BY unique_col)</td>
-                        </tr>
-                        <tr>
-                            <td><strong>NULL Values</strong></td>
-                            <td>WHERE col IS NULL</td>
-                            <td>UPDATE SET col = COALESCE(col, default)</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Whitespace</strong></td>
-                            <td>WHERE col LIKE ' %'</td>
-                            <td>UPDATE SET col = TRIM(col)</td>
-                        </tr>
-                    </table>
                 `
             },
             'procedures': {
@@ -1277,29 +1180,6 @@
                     <p><strong>What:</strong> Precompiled SQL statements stored in database, executed as single unit.</p>
                     <div class="code-block">CREATE PROCEDURE GetCustomerOrders @CustomerID INT<br>AS<br>BEGIN<br>&nbsp;&nbsp;SELECT order_id, order_date, amount<br>&nbsp;&nbsp;FROM orders<br>&nbsp;&nbsp;WHERE customer_id = @CustomerID;<br>END;</div>
                     <div class="hint">Useful for complex logic, but keep them simple for maintainability.</div>
-                    <h4>⚙️ Procedure Components</h4>
-                    <table>
-                        <tr>
-                            <th>Component</th>
-                            <th>Purpose</th>
-                            <th>Example</th>
-                        </tr>
-                        <tr>
-                            <td>Input Parameter</td>
-                            <td>Pass data in</td>
-                            <td>@CustomerID INT</td>
-                        </tr>
-                        <tr>
-                            <td>Output Parameter</td>
-                            <td>Return data</td>
-                            <td>@Result INT OUTPUT</td>
-                        </tr>
-                        <tr>
-                            <td>Error Handling</td>
-                            <td>Catch exceptions</td>
-                            <td>BEGIN TRY...CATCH</td>
-                        </tr>
-                    </table>
                 `
             },
             'triggers': {
@@ -1309,29 +1189,6 @@
                     <p><strong>Key idea:</strong> Triggers run on data changes; Events run on schedules. Both automate database tasks.</p>
                     <div class="code-block">CREATE TRIGGER log_price_change<br>AFTER UPDATE ON products<br>FOR EACH ROW<br>BEGIN<br>&nbsp;&nbsp;INSERT INTO audit_log (product_id, old_price, new_price)<br>&nbsp;&nbsp;VALUES (NEW.product_id, OLD.price, NEW.price);<br>END;</div>
                     <div class="hint">Use triggers sparingly — they can make debugging harder. Document well.</div>
-                    <h4>🔔 Trigger Types & Use Cases</h4>
-                    <table>
-                        <tr>
-                            <th>Type</th>
-                            <th>Timing</th>
-                            <th>Use Case</th>
-                        </tr>
-                        <tr>
-                            <td>BEFORE INSERT</td>
-                            <td>Before insert</td>
-                            <td>Validate data</td>
-                        </tr>
-                        <tr>
-                            <td>AFTER UPDATE</td>
-                            <td>After update</td>
-                            <td>Audit log</td>
-                        </tr>
-                        <tr>
-                            <td>AFTER DELETE</td>
-                            <td>After delete</td>
-                            <td>Archive data</td>
-                        </tr>
-                    </table>
                 `
             }
         };
