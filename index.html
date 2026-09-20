@@ -123,6 +123,18 @@
             border: 1px solid rgba(179, 217, 255, 0.5);
             text-align: center;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
+            border-color: rgba(179, 217, 255, 0.8);
+        }
+
+        .stat-item[data-link] {
+            cursor: pointer;
         }
 
         .stat-number {
@@ -289,12 +301,20 @@
             transition: all 0.3s ease;
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
             text-align: center;
+            user-select: none;
         }
 
         .sub-module-box:hover {
             transform: translateY(-3px);
             box-shadow: 0 6px 12px rgba(59, 130, 246, 0.15);
             border-color: rgba(59, 130, 246, 0.5);
+            background: linear-gradient(135deg, rgba(179, 217, 255, 0.6) 0%, rgba(179, 217, 255, 0.2) 100%);
+        }
+
+        .sub-module-box.active {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.3) 0%, rgba(59, 130, 246, 0.1) 100%);
+            border-color: rgba(59, 130, 246, 0.8);
+            box-shadow: 0 6px 12px rgba(59, 130, 246, 0.25);
         }
 
         .sub-module-icon {
@@ -565,19 +585,19 @@
                 Master SQL fundamentals, advanced patterns, and optimization techniques. This comprehensive guide covers 12 core modules organized by complexity level. Click any domain to explore detailed concepts, examples, and interview tips.
             </p>
             <div class="stats">
-                <div class="stat-item">
+                <div class="stat-item" onclick="scrollToSection('domains')">
                     <div class="stat-number">12</div>
                     <div class="stat-label">Modules</div>
                 </div>
-                <div class="stat-item">
+                <div class="stat-item" onclick="scrollToSection('domains')">
                     <div class="stat-number">48</div>
                     <div class="stat-label">Questions</div>
                 </div>
-                <div class="stat-item">
+                <div class="stat-item" onclick="scrollToSection('flashcards')">
                     <div class="stat-number">50</div>
                     <div class="stat-label">Flashcards</div>
                 </div>
-                <div class="stat-item">
+                <div class="stat-item" onclick="scrollToSection('data-types')">
                     <div class="stat-number">100%</div>
                     <div class="stat-label">Coverage</div>
                 </div>
@@ -1317,6 +1337,7 @@
         };
 
         let currentDomain = null;
+        let currentModule = null;
 
         function selectDomain(domain, element) {
             // Hide other sub-module sections
@@ -1327,23 +1348,58 @@
             // Hide content area
             document.getElementById('content-area').classList.remove('active');
 
+            // Remove active state from all sub-module boxes
+            document.querySelectorAll('.sub-module-box').forEach(box => {
+                box.classList.remove('active');
+            });
+
             // Show the selected domain's sub-modules
             const moduleSection = document.getElementById(domain + '-modules');
             if (moduleSection) {
                 moduleSection.classList.add('active');
+
+                // Scroll to the sub-modules section
+                setTimeout(() => {
+                    moduleSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 100);
             }
 
             currentDomain = domain;
+            currentModule = null;
         }
 
         function selectModule(moduleId, element) {
+            event.preventDefault();
+            event.stopPropagation();
+
+            // Remove active state from all sub-module boxes
+            document.querySelectorAll('.sub-module-box').forEach(box => {
+                box.classList.remove('active');
+            });
+
+            // Add active state to clicked box
+            element.classList.add('active');
+
             const moduleData = moduleContent[moduleId];
             if (moduleData) {
                 document.getElementById('content-title').innerHTML = moduleData.title;
                 document.getElementById('content-subtitle').innerHTML = moduleData.subtitle;
                 document.getElementById('content-body').innerHTML = moduleData.content;
                 document.getElementById('content-area').classList.add('active');
-                document.getElementById('content-area').scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+                // Smooth scroll to content
+                setTimeout(() => {
+                    document.getElementById('content-area').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 100);
+            }
+
+            currentModule = moduleId;
+        }
+
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
         }
     </script>
