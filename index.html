@@ -12,19 +12,22 @@
         }
 
         :root {
-            --bg-primary: #0f172a;
-            --bg-secondary: #1e293b;
-            --text-primary: #f1f5f9;
-            --text-secondary: #cbd5e1;
-            --border-color: #334155;
-            --accent: #06b6d4;
+            /* Light, pastel color palette */
+            --bg-primary: #f5f5f5;
+            --bg-secondary: #ffffff;
+            --text-primary: #2c3e50;
+            --text-secondary: #555555;
 
-            /* Color palette for categories */
+            /* Pastel colors for domains */
             --color-fundamentals: #b3d9ff;
             --color-advanced: #b8f5c2;
             --color-performance: #fff4b3;
             --color-practices: #ffd6cc;
-            --color-database: #d9b3ff;
+            --color-database: #e6d9f5;
+
+            /* Accent for borders and highlights */
+            --border-light: #e0e0e0;
+            --accent: #06b6d4;
         }
 
         body {
@@ -36,96 +39,105 @@
         }
 
         header {
-            border-bottom: 2px solid var(--border-color);
+            background: var(--bg-secondary);
+            border-bottom: 2px solid var(--border-light);
             padding: 2rem 0;
             position: sticky;
             top: 0;
-            background: var(--bg-primary);
             z-index: 100;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
         }
 
         .header-content {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 1.5rem;
+            padding: 0 2rem;
         }
 
         h1 {
-            font-size: 2rem;
+            font-size: 2.2rem;
             margin-bottom: 0.5rem;
             font-weight: 700;
+            color: var(--text-primary);
         }
 
         .header-meta {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: var(--text-secondary);
             margin-bottom: 1.5rem;
         }
 
         nav {
             display: flex;
-            gap: 1.5rem;
+            gap: 2rem;
             flex-wrap: wrap;
         }
 
         nav a {
-            color: var(--accent);
+            color: var(--text-primary);
             text-decoration: none;
             font-weight: 500;
             font-size: 0.95rem;
-            transition: opacity 0.3s;
+            transition: color 0.3s;
+            border-bottom: 2px solid transparent;
+            padding-bottom: 0.25rem;
         }
 
         nav a:hover {
-            opacity: 0.7;
+            color: var(--accent);
+            border-bottom-color: var(--accent);
         }
 
         main {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 2rem 1.5rem;
+            padding: 2.5rem 2rem;
         }
 
         .intro-section {
+            background: var(--bg-secondary);
             margin-bottom: 3rem;
-            padding-bottom: 2rem;
-            border-bottom: 1px solid var(--border-color);
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-light);
         }
 
         .intro-text {
             color: var(--text-secondary);
-            font-size: 1rem;
+            font-size: 1.05rem;
             line-height: 1.8;
             margin-bottom: 1.5rem;
         }
 
         .stats {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
             margin: 2rem 0;
         }
 
         .stat-item {
-            background: var(--bg-secondary);
-            padding: 1rem;
-            border-radius: 6px;
-            border: 1px solid var(--border-color);
+            background: linear-gradient(135deg, var(--color-fundamentals) 0%, rgba(179, 217, 255, 0.5) 100%);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid rgba(179, 217, 255, 0.5);
             text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
         }
 
         .stat-number {
-            font-size: 1.8rem;
+            font-size: 2.2rem;
             font-weight: 700;
-            color: var(--accent);
+            color: var(--text-primary);
         }
 
         .stat-label {
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             color: var(--text-secondary);
             text-transform: uppercase;
             margin-top: 0.5rem;
             letter-spacing: 0.05em;
+            font-weight: 600;
         }
 
         section {
@@ -133,40 +145,42 @@
         }
 
         h2 {
-            font-size: 1.3rem;
+            font-size: 1.5rem;
             margin-bottom: 2rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid var(--accent);
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--border-light);
             font-weight: 700;
+            color: var(--text-primary);
         }
 
-        /* Domain/Category Cards */
+        /* Domain Cards - Main Level */
         .domain-card {
             background: var(--bg-secondary);
-            border-left: 5px solid var(--accent);
             border-radius: 8px;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
             overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            border-left: 6px solid var(--accent);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
             transition: all 0.3s ease;
         }
 
         .domain-card:hover {
-            box-shadow: 0 4px 12px rgba(6, 182, 212, 0.2);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
         }
 
         .domain-header {
-            padding: 1.5rem;
+            padding: 1.8rem;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
             user-select: none;
-            background: linear-gradient(135deg, rgba(6, 182, 212, 0.1) 0%, rgba(6, 182, 212, 0.05) 100%);
+            background: linear-gradient(135deg, rgba(179, 217, 255, 0.3) 0%, rgba(179, 217, 255, 0.1) 100%);
+            transition: background 0.3s;
         }
 
         .domain-header:hover {
-            background: linear-gradient(135deg, rgba(6, 182, 212, 0.15) 0%, rgba(6, 182, 212, 0.1) 100%);
+            background: linear-gradient(135deg, rgba(179, 217, 255, 0.4) 0%, rgba(179, 217, 255, 0.15) 100%);
         }
 
         .domain-title-section {
@@ -174,52 +188,52 @@
         }
 
         .domain-title {
-            font-size: 1.2rem;
+            font-size: 1.35rem;
             font-weight: 700;
             color: var(--text-primary);
             margin-bottom: 0.5rem;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.8rem;
         }
 
         .domain-icon {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
         }
 
         .domain-meta {
             display: flex;
-            gap: 1.5rem;
+            gap: 2rem;
             font-size: 0.9rem;
             color: var(--text-secondary);
+            margin-top: 0.5rem;
         }
 
         .domain-weight {
             display: flex;
             align-items: center;
             gap: 0.3rem;
-        }
-
-        .domain-concepts {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-            margin-top: 0.5rem;
+            font-weight: 600;
         }
 
         .concept-tag {
-            background: rgba(6, 182, 212, 0.2);
-            color: var(--accent);
-            padding: 0.2rem 0.6rem;
-            border-radius: 4px;
+            display: inline-block;
+            background: rgba(6, 182, 212, 0.15);
+            color: var(--text-primary);
+            padding: 0.35rem 0.8rem;
+            border-radius: 20px;
             font-size: 0.8rem;
             font-weight: 500;
+            margin-top: 0.5rem;
+            margin-right: 0.5rem;
+            border: 1px solid rgba(6, 182, 212, 0.3);
         }
 
         .toggle-icon {
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             transition: transform 0.3s ease;
-            color: var(--accent);
+            color: var(--text-primary);
+            margin-left: 1rem;
         }
 
         .domain-card.collapsed .toggle-icon {
@@ -227,10 +241,10 @@
         }
 
         .domain-content {
-            max-height: 2000px;
+            max-height: 5000px;
             overflow: hidden;
-            transition: max-height 0.3s ease;
-            border-top: 1px solid var(--border-color);
+            transition: max-height 0.4s ease;
+            border-top: 1px solid var(--border-light);
         }
 
         .domain-card.collapsed .domain-content {
@@ -238,31 +252,72 @@
         }
 
         .domain-body {
-            padding: 1.5rem;
+            padding: 0;
         }
 
-        .module-subsection {
-            margin-bottom: 2rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid var(--border-color);
+        /* Sub-modules - Second Level */
+        .sub-module {
+            border-bottom: 1px solid var(--border-light);
         }
 
-        .module-subsection:last-child {
+        .sub-module:last-child {
             border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
         }
 
-        .module-title {
+        .sub-module-header {
+            padding: 1.5rem 1.8rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.5) 0%, rgba(245, 245, 245, 0.3) 100%);
+            transition: background 0.3s;
+        }
+
+        .sub-module-header:hover {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(245, 245, 245, 0.6) 100%);
+        }
+
+        .sub-module-title {
             font-size: 1.1rem;
-            font-weight: 700;
+            font-weight: 600;
             color: var(--text-primary);
-            margin-bottom: 0.8rem;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.6rem;
         }
 
+        .sub-module-icon {
+            font-size: 1.3rem;
+        }
+
+        .sub-toggle-icon {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+            color: var(--text-secondary);
+        }
+
+        .sub-module.collapsed .sub-toggle-icon {
+            transform: rotate(-90deg);
+        }
+
+        .sub-module-content {
+            max-height: 2000px;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .sub-module.collapsed .sub-module-content {
+            max-height: 0;
+        }
+
+        .sub-module-body {
+            padding: 1.5rem 1.8rem;
+        }
+
+        /* Content styling */
         h3 {
             font-size: 1rem;
             font-weight: 700;
@@ -289,8 +344,9 @@
         }
 
         .code-block {
-            background: var(--bg-primary);
-            border: 1px solid var(--border-color);
+            background: #f9f9f9;
+            border: 1px solid var(--border-light);
+            border-left: 4px solid var(--accent);
             border-radius: 4px;
             padding: 1rem;
             font-family: 'Courier New', 'Monaco', monospace;
@@ -298,21 +354,23 @@
             overflow-x: auto;
             margin: 1rem 0;
             line-height: 1.5;
-            color: var(--accent);
+            color: #333;
         }
 
         .hint {
-            background: rgba(6, 182, 212, 0.1);
-            border-left: 4px solid var(--accent);
+            background: linear-gradient(135deg, rgba(184, 245, 194, 0.3) 0%, rgba(184, 245, 194, 0.1) 100%);
+            border-left: 4px solid #10b981;
             padding: 1rem;
             margin: 1rem 0;
             border-radius: 4px;
             font-size: 0.95rem;
+            color: var(--text-secondary);
         }
 
         .hint::before {
             content: "💡 ";
             font-weight: 600;
+            margin-right: 0.5rem;
         }
 
         table {
@@ -323,64 +381,66 @@
             background: var(--bg-secondary);
             border-radius: 4px;
             overflow: hidden;
+            border: 1px solid var(--border-light);
         }
 
         th {
-            background: var(--accent);
-            color: white;
-            padding: 0.75rem;
+            background: linear-gradient(135deg, var(--color-fundamentals) 0%, rgba(179, 217, 255, 0.6) 100%);
+            color: var(--text-primary);
+            padding: 0.9rem;
             text-align: left;
             font-weight: 600;
+            border-bottom: 2px solid var(--border-light);
         }
 
         td {
-            padding: 0.75rem;
-            border-bottom: 1px solid var(--border-color);
+            padding: 0.9rem;
+            border-bottom: 1px solid var(--border-light);
         }
 
         tr:hover {
-            background: rgba(6, 182, 212, 0.05);
+            background: rgba(179, 217, 255, 0.1);
         }
 
         /* Color variants for different domains */
+        .domain-card.fundamentals .domain-header {
+            background: linear-gradient(135deg, var(--color-fundamentals) 0.2, rgba(179, 217, 255, 0.1) 100%);
+        }
+
         .domain-card.fundamentals {
             border-left-color: #3b82f6;
         }
 
-        .domain-card.fundamentals .domain-header {
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(59, 130, 246, 0.05) 100%);
+        .domain-card.advanced .domain-header {
+            background: linear-gradient(135deg, var(--color-advanced) 0.2, rgba(184, 245, 194, 0.1) 100%);
         }
 
         .domain-card.advanced {
             border-left-color: #10b981;
         }
 
-        .domain-card.advanced .domain-header {
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(16, 185, 129, 0.05) 100%);
+        .domain-card.performance .domain-header {
+            background: linear-gradient(135deg, var(--color-performance) 0.2, rgba(255, 244, 179, 0.1) 100%);
         }
 
         .domain-card.performance {
             border-left-color: #f59e0b;
         }
 
-        .domain-card.performance .domain-header {
-            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(245, 158, 11, 0.05) 100%);
+        .domain-card.practices .domain-header {
+            background: linear-gradient(135deg, var(--color-practices) 0.2, rgba(255, 214, 204, 0.1) 100%);
         }
 
         .domain-card.practices {
             border-left-color: #ef4444;
         }
 
-        .domain-card.practices .domain-header {
-            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(239, 68, 68, 0.05) 100%);
+        .domain-card.database .domain-header {
+            background: linear-gradient(135deg, var(--color-database) 0.2, rgba(230, 217, 245, 0.1) 100%);
         }
 
         .domain-card.database {
             border-left-color: #8b5cf6;
-        }
-
-        .domain-card.database .domain-header {
-            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(139, 92, 246, 0.05) 100%);
         }
 
         .flashcards-container {
@@ -391,8 +451,8 @@
         }
 
         .flashcard {
-            background: var(--bg-secondary);
-            border: 2px solid var(--accent);
+            background: linear-gradient(135deg, var(--color-fundamentals) 0%, rgba(179, 217, 255, 0.3) 100%);
+            border: 2px solid rgba(179, 217, 255, 0.5);
             border-radius: 8px;
             padding: 2rem;
             min-height: 200px;
@@ -403,20 +463,22 @@
             transition: all 0.3s;
             text-align: center;
             font-weight: 600;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
         }
 
         .flashcard:hover {
-            transform: scale(1.02);
-            box-shadow: 0 8px 16px rgba(6, 182, 212, 0.2);
+            transform: translateY(-4px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
         }
 
         .flashcard.flipped {
-            background: rgba(6, 182, 212, 0.1);
-            border-color: #10b981;
+            background: linear-gradient(135deg, var(--color-advanced) 0%, rgba(184, 245, 194, 0.3) 100%);
+            border-color: rgba(16, 185, 129, 0.5);
         }
 
         .flashcard-front {
             display: block;
+            font-size: 1.1rem;
         }
 
         .flashcard.flipped .flashcard-front {
@@ -425,46 +487,28 @@
 
         .flashcard-back {
             display: none;
+            font-size: 0.95rem;
+            line-height: 1.6;
         }
 
         .flashcard.flipped .flashcard-back {
             display: block;
         }
 
-        .btn {
-            padding: 0.75rem 1.5rem;
-            border: none;
-            border-radius: 6px;
-            font-weight: 600;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-            transition: all 0.3s;
-            font-size: 0.95rem;
-        }
-
-        .btn-primary {
-            background: var(--accent);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            opacity: 0.9;
-        }
-
         footer {
-            border-top: 1px solid var(--border-color);
+            border-top: 1px solid var(--border-light);
             margin-top: 3rem;
             padding: 2rem 0;
             text-align: center;
             color: var(--text-secondary);
             font-size: 0.85rem;
+            background: var(--bg-secondary);
         }
 
         .footer-content {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 1.5rem;
+            padding: 0 2rem;
         }
 
         @media (max-width: 768px) {
@@ -473,11 +517,11 @@
             }
 
             h1 {
-                font-size: 1.5rem;
+                font-size: 1.6rem;
             }
 
             h2 {
-                font-size: 1.1rem;
+                font-size: 1.2rem;
             }
 
             nav {
@@ -486,7 +530,7 @@
             }
 
             main {
-                padding: 1rem 1rem;
+                padding: 1.5rem;
             }
 
             .domain-meta {
@@ -496,6 +540,14 @@
 
             .flashcards-container {
                 grid-template-columns: 1fr;
+            }
+
+            .domain-header {
+                padding: 1.2rem;
+            }
+
+            .sub-module-header {
+                padding: 1rem 1.2rem;
             }
         }
     </style>
@@ -507,8 +559,6 @@
             <p class="header-meta">Comprehensive Guide · 12 Modules · 48 Quiz Questions · 50 Flashcards</p>
             <nav>
                 <a href="#domains">Domains</a>
-                <a href="#quiz">Quiz</a>
-                <a href="#cheatsheet">Cheat Sheet</a>
                 <a href="#flashcards">Flashcards</a>
                 <a href="#data-types">Data Types</a>
             </nav>
@@ -527,11 +577,15 @@
                 </div>
                 <div class="stat-item">
                     <div class="stat-number">48</div>
-                    <div class="stat-label">Practice Questions</div>
+                    <div class="stat-label">Questions</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-number">50</div>
                     <div class="stat-label">Flashcards</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Coverage</div>
                 </div>
             </div>
         </section>
@@ -551,7 +605,7 @@
                             <div class="domain-weight">⚖ 25%</div>
                             <div>3 Modules</div>
                         </div>
-                        <div class="domain-concepts">
+                        <div>
                             <span class="concept-tag">SELECT</span>
                             <span class="concept-tag">JOINs</span>
                             <span class="concept-tag">Aggregation</span>
@@ -562,105 +616,135 @@
 
                 <div class="domain-content">
                     <div class="domain-body">
-                        <!-- Module 1: SELECT -->
-                        <div class="module-subsection">
-                            <div class="module-title">📋 Module 1: SELECT Fundamentals</div>
-                            <p><strong>Concepts:</strong> SELECT, FROM, WHERE, ORDER BY, LIMIT, DISTINCT</p>
-                            <p><strong>Real-world example:</strong> Fetching top 10 customers by revenue with filters and sorting.</p>
-                            <div class="code-block">SELECT customer_id, SUM(amount) as total<br>FROM orders<br>WHERE amount > 100<br>GROUP BY customer_id<br>ORDER BY total DESC<br>LIMIT 10;</div>
-                            <div class="hint">Always use LIMIT in early query development to avoid returning millions of rows.</div>
+                        <!-- Module 1 -->
+                        <div class="sub-module" onclick="toggleSubModule(event)">
+                            <div class="sub-module-header">
+                                <div class="sub-module-title">
+                                    <span class="sub-module-icon">📋</span>
+                                    SELECT Fundamentals
+                                </div>
+                                <span class="sub-toggle-icon">▸</span>
+                            </div>
+                            <div class="sub-module-content">
+                                <div class="sub-module-body">
+                                    <p><strong>Concepts:</strong> SELECT, FROM, WHERE, ORDER BY, LIMIT, DISTINCT</p>
+                                    <p><strong>Real-world example:</strong> Fetching top 10 customers by revenue with filters and sorting.</p>
+                                    <div class="code-block">SELECT customer_id, SUM(amount) as total<br>FROM orders<br>WHERE amount > 100<br>GROUP BY customer_id<br>ORDER BY total DESC<br>LIMIT 10;</div>
+                                    <div class="hint">Always use LIMIT in early query development to avoid returning millions of rows.</div>
 
-                            <h4>🐍 SQL vs. Pandas Quick Reference</h4>
-                            <table>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Task</th>
-                                    <th>SQL</th>
-                                    <th>Pandas</th>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Select columns</td>
-                                    <td><code>SELECT col1, col2 FROM table</code></td>
-                                    <td><code>df[['col1', 'col2']]</code></td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Filter rows</td>
-                                    <td><code>SELECT * FROM table WHERE col > 5</code></td>
-                                    <td><code>df[df['col'] > 5]</code></td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Sort</td>
-                                    <td><code>ORDER BY col DESC</code></td>
-                                    <td><code>df.sort_values(by='col', ascending=False)</code></td>
-                                </tr>
-                            </table>
+                                    <h4>📊 SQL vs. Pandas Quick Reference</h4>
+                                    <table>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Task</th>
+                                            <th>SQL</th>
+                                            <th>Pandas</th>
+                                        </tr>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Select columns</td>
+                                            <td><code>SELECT col1, col2 FROM table</code></td>
+                                            <td><code>df[['col1', 'col2']]</code></td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>Filter rows</td>
+                                            <td><code>SELECT * FROM table WHERE col > 5</code></td>
+                                            <td><code>df[df['col'] > 5]</code></td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td>Sort</td>
+                                            <td><code>ORDER BY col DESC</code></td>
+                                            <td><code>df.sort_values(by='col', ascending=False)</code></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
 
-                        <!-- Module 2: JOINs -->
-                        <div class="module-subsection">
-                            <div class="module-title">🔗 Module 2: JOINs & Table Relationships</div>
-                            <p><strong>Concepts:</strong> INNER JOIN, LEFT/RIGHT/FULL OUTER JOIN, CROSS JOIN, Self-joins</p>
-                            <div class="code-block">SELECT o.order_id, c.customer_name, p.product_name<br>FROM orders o<br>INNER JOIN customers c ON o.customer_id = c.customer_id<br>LEFT JOIN products p ON o.product_id = p.product_id;</div>
-                            <div class="hint">LEFT JOIN preserves all rows from the left table, filling NULLs for missing matches.</div>
+                        <!-- Module 2 -->
+                        <div class="sub-module" onclick="toggleSubModule(event)">
+                            <div class="sub-module-header">
+                                <div class="sub-module-title">
+                                    <span class="sub-module-icon">🔗</span>
+                                    JOINs & Table Relationships
+                                </div>
+                                <span class="sub-toggle-icon">▸</span>
+                            </div>
+                            <div class="sub-module-content">
+                                <div class="sub-module-body">
+                                    <p><strong>Concepts:</strong> INNER JOIN, LEFT/RIGHT/FULL OUTER JOIN, CROSS JOIN, Self-joins</p>
+                                    <div class="code-block">SELECT o.order_id, c.customer_name, p.product_name<br>FROM orders o<br>INNER JOIN customers c ON o.customer_id = c.customer_id<br>LEFT JOIN products p ON o.product_id = p.product_id;</div>
+                                    <div class="hint">LEFT JOIN preserves all rows from the left table, filling NULLs for missing matches.</div>
 
-                            <h4>📋 JOIN Decision Table</h4>
-                            <table>
-                                <tr>
-                                    <th>Scenario</th>
-                                    <th>Use This Join</th>
-                                    <th>Why</th>
-                                </tr>
-                                <tr>
-                                    <td>Only matching rows</td>
-                                    <td>INNER JOIN</td>
-                                    <td>Removes non-matches (fastest)</td>
-                                </tr>
-                                <tr>
-                                    <td>All from left table</td>
-                                    <td>LEFT JOIN</td>
-                                    <td>Keep incomplete records</td>
-                                </tr>
-                                <tr>
-                                    <td>All from both tables</td>
-                                    <td>FULL OUTER JOIN</td>
-                                    <td>Union of both sides</td>
-                                </tr>
-                            </table>
+                                    <h4>📋 JOIN Decision Table</h4>
+                                    <table>
+                                        <tr>
+                                            <th>Scenario</th>
+                                            <th>Use This Join</th>
+                                            <th>Why</th>
+                                        </tr>
+                                        <tr>
+                                            <td>Only matching rows</td>
+                                            <td>INNER JOIN</td>
+                                            <td>Removes non-matches (fastest)</td>
+                                        </tr>
+                                        <tr>
+                                            <td>All from left table</td>
+                                            <td>LEFT JOIN</td>
+                                            <td>Keep incomplete records</td>
+                                        </tr>
+                                        <tr>
+                                            <td>All from both tables</td>
+                                            <td>FULL OUTER JOIN</td>
+                                            <td>Union of both sides</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
 
-                        <!-- Module 3: Aggregation -->
-                        <div class="module-subsection">
-                            <div class="module-title">📊 Module 3: Aggregation & GROUP BY</div>
-                            <p><strong>Concepts:</strong> GROUP BY, HAVING, aggregate functions (COUNT, SUM, AVG, MIN, MAX)</p>
-                            <div class="code-block">SELECT category, COUNT(*) as count, AVG(price) as avg_price<br>FROM products<br>GROUP BY category<br>HAVING COUNT(*) > 5<br>ORDER BY avg_price DESC;</div>
-                            <div class="hint">HAVING filters on aggregated results; WHERE filters on individual rows.</div>
+                        <!-- Module 3 -->
+                        <div class="sub-module" onclick="toggleSubModule(event)">
+                            <div class="sub-module-header">
+                                <div class="sub-module-title">
+                                    <span class="sub-module-icon">📊</span>
+                                    Aggregation & GROUP BY
+                                </div>
+                                <span class="sub-toggle-icon">▸</span>
+                            </div>
+                            <div class="sub-module-content">
+                                <div class="sub-module-body">
+                                    <p><strong>Concepts:</strong> GROUP BY, HAVING, aggregate functions (COUNT, SUM, AVG, MIN, MAX)</p>
+                                    <div class="code-block">SELECT category, COUNT(*) as count, AVG(price) as avg_price<br>FROM products<br>GROUP BY category<br>HAVING COUNT(*) > 5<br>ORDER BY avg_price DESC;</div>
+                                    <div class="hint">HAVING filters on aggregated results; WHERE filters on individual rows.</div>
 
-                            <h4>📊 Aggregate Function Reference</h4>
-                            <table>
-                                <tr>
-                                    <th>Function</th>
-                                    <th>Purpose</th>
-                                    <th>Example</th>
-                                </tr>
-                                <tr>
-                                    <td><code>COUNT(*)</code></td>
-                                    <td>Count all rows</td>
-                                    <td>COUNT(*) = 150</td>
-                                </tr>
-                                <tr>
-                                    <td><code>SUM(col)</code></td>
-                                    <td>Total of numeric column</td>
-                                    <td>SUM(amount) = 10000</td>
-                                </tr>
-                                <tr>
-                                    <td><code>AVG(col)</code></td>
-                                    <td>Average value</td>
-                                    <td>AVG(price) = 29.99</td>
-                                </tr>
-                            </table>
+                                    <h4>📊 Aggregate Function Reference</h4>
+                                    <table>
+                                        <tr>
+                                            <th>Function</th>
+                                            <th>Purpose</th>
+                                            <th>Example</th>
+                                        </tr>
+                                        <tr>
+                                            <td><code>COUNT(*)</code></td>
+                                            <td>Count all rows</td>
+                                            <td>COUNT(*) = 150</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>SUM(col)</code></td>
+                                            <td>Total of numeric column</td>
+                                            <td>SUM(amount) = 10000</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>AVG(col)</code></td>
+                                            <td>Average value</td>
+                                            <td>AVG(price) = 29.99</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -678,7 +762,7 @@
                             <div class="domain-weight">⚖ 25%</div>
                             <div>2 Modules</div>
                         </div>
-                        <div class="domain-concepts">
+                        <div>
                             <span class="concept-tag">Subqueries</span>
                             <span class="concept-tag">CTEs</span>
                             <span class="concept-tag">Window Functions</span>
@@ -689,74 +773,94 @@
 
                 <div class="domain-content">
                     <div class="domain-body">
-                        <!-- Module 4: Subqueries -->
-                        <div class="module-subsection">
-                            <div class="module-title">🔍 Module 4: Subqueries & CTEs</div>
-                            <p><strong>Concepts:</strong> Scalar subqueries, correlated subqueries, IN/EXISTS, Common Table Expressions (CTEs)</p>
-                            <div class="code-block">WITH high_value_orders AS (<br>&nbsp;&nbsp;SELECT customer_id, COUNT(*) as order_count<br>&nbsp;&nbsp;FROM orders<br>&nbsp;&nbsp;WHERE amount > 500<br>)<br>SELECT c.customer_name, hv.order_count<br>FROM customers c<br>JOIN high_value_orders hv ON c.customer_id = hv.customer_id;</div>
-                            <div class="hint">Use CTEs for readability; use subqueries in SELECT for single-value lookups.</div>
+                        <!-- Module 4 -->
+                        <div class="sub-module" onclick="toggleSubModule(event)">
+                            <div class="sub-module-header">
+                                <div class="sub-module-title">
+                                    <span class="sub-module-icon">🔍</span>
+                                    Subqueries & CTEs
+                                </div>
+                                <span class="sub-toggle-icon">▸</span>
+                            </div>
+                            <div class="sub-module-content">
+                                <div class="sub-module-body">
+                                    <p><strong>Concepts:</strong> Scalar subqueries, correlated subqueries, IN/EXISTS, Common Table Expressions (CTEs)</p>
+                                    <div class="code-block">WITH high_value_orders AS (<br>&nbsp;&nbsp;SELECT customer_id, COUNT(*) as order_count<br>&nbsp;&nbsp;FROM orders<br>&nbsp;&nbsp;WHERE amount > 500<br>)<br>SELECT c.customer_name, hv.order_count<br>FROM customers c<br>JOIN high_value_orders hv ON c.customer_id = hv.customer_id;</div>
+                                    <div class="hint">Use CTEs for readability; use subqueries in SELECT for single-value lookups.</div>
 
-                            <h4>🔄 CTE vs Subquery Comparison</h4>
-                            <table>
-                                <tr>
-                                    <th>Aspect</th>
-                                    <th>CTE</th>
-                                    <th>Subquery</th>
-                                </tr>
-                                <tr>
-                                    <td><strong>Readability</strong></td>
-                                    <td>Very high ✅</td>
-                                    <td>Low for complex</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Performance</strong></td>
-                                    <td>Medium</td>
-                                    <td>Can be slow</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Reusable</strong></td>
-                                    <td>Yes ✅</td>
-                                    <td>No ❌</td>
-                                </tr>
-                            </table>
+                                    <h4>🔄 CTE vs Subquery Comparison</h4>
+                                    <table>
+                                        <tr>
+                                            <th>Aspect</th>
+                                            <th>CTE</th>
+                                            <th>Subquery</th>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Readability</strong></td>
+                                            <td>Very high ✅</td>
+                                            <td>Low for complex</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Performance</strong></td>
+                                            <td>Medium</td>
+                                            <td>Can be slow</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Reusable</strong></td>
+                                            <td>Yes ✅</td>
+                                            <td>No ❌</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
 
-                        <!-- Module 5: Window Functions -->
-                        <div class="module-subsection">
-                            <div class="module-title">📈 Module 5: Window Functions</div>
-                            <p><strong>Concepts:</strong> ROW_NUMBER, RANK, DENSE_RANK, LAG/LEAD, SUM/AVG OVER, PARTITION BY</p>
-                            <div class="code-block">SELECT order_id, customer_id, amount,<br>&nbsp;&nbsp;ROW_NUMBER() OVER (PARTITION BY customer_id ORDER BY amount DESC) as rank<br>FROM orders;</div>
-                            <div class="hint">Window functions compute without collapsing rows (unlike GROUP BY).</div>
+                        <!-- Module 5 -->
+                        <div class="sub-module" onclick="toggleSubModule(event)">
+                            <div class="sub-module-header">
+                                <div class="sub-module-title">
+                                    <span class="sub-module-icon">📈</span>
+                                    Window Functions
+                                </div>
+                                <span class="sub-toggle-icon">▸</span>
+                            </div>
+                            <div class="sub-module-content">
+                                <div class="sub-module-body">
+                                    <p><strong>Concepts:</strong> ROW_NUMBER, RANK, DENSE_RANK, LAG/LEAD, SUM/AVG OVER, PARTITION BY</p>
+                                    <div class="code-block">SELECT order_id, customer_id, amount,<br>&nbsp;&nbsp;ROW_NUMBER() OVER (PARTITION BY customer_id ORDER BY amount DESC) as rank<br>FROM orders;</div>
+                                    <div class="hint">Window functions compute without collapsing rows (unlike GROUP BY).</div>
 
-                            <h4>📊 Window Function Reference</h4>
-                            <table>
-                                <tr>
-                                    <th>Function</th>
-                                    <th>Purpose</th>
-                                    <th>Example</th>
-                                </tr>
-                                <tr>
-                                    <td><code>ROW_NUMBER()</code></td>
-                                    <td>Unique sequential integers</td>
-                                    <td>1,2,3,4,5</td>
-                                </tr>
-                                <tr>
-                                    <td><code>RANK()</code></td>
-                                    <td>Ranks with gaps on ties</td>
-                                    <td>1,2,2,4,5</td>
-                                </tr>
-                                <tr>
-                                    <td><code>DENSE_RANK()</code></td>
-                                    <td>Ranks without gaps</td>
-                                    <td>1,2,2,3,4</td>
-                                </tr>
-                            </table>
+                                    <h4>📊 Window Function Reference</h4>
+                                    <table>
+                                        <tr>
+                                            <th>Function</th>
+                                            <th>Purpose</th>
+                                            <th>Example Result</th>
+                                        </tr>
+                                        <tr>
+                                            <td><code>ROW_NUMBER()</code></td>
+                                            <td>Unique sequential integers</td>
+                                            <td>1,2,3,4,5</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>RANK()</code></td>
+                                            <td>Ranks with gaps on ties</td>
+                                            <td>1,2,2,4,5</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>DENSE_RANK()</code></td>
+                                            <td>Ranks without gaps</td>
+                                            <td>1,2,2,3,4</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- PERFORMANCE & OPTIMIZATION DOMAIN -->
+            <!-- PERFORMANCE DOMAIN -->
             <div class="domain-card performance" onclick="toggleDomain(this)">
                 <div class="domain-header">
                     <div class="domain-title-section">
@@ -768,7 +872,7 @@
                             <div class="domain-weight">⚖ 20%</div>
                             <div>2 Modules</div>
                         </div>
-                        <div class="domain-concepts">
+                        <div>
                             <span class="concept-tag">Indexes</span>
                             <span class="concept-tag">Query Plans</span>
                             <span class="concept-tag">DML</span>
@@ -779,67 +883,87 @@
 
                 <div class="domain-content">
                     <div class="domain-body">
-                        <!-- Module 6: Query Optimization -->
-                        <div class="module-subsection">
-                            <div class="module-title">🔧 Module 6: Query Optimization & Indexes</div>
-                            <p><strong>Concepts:</strong> EXPLAIN PLAN, indexes, query cost, full table scans</p>
-                            <div class="hint">A 10x faster query often comes from better indexes or earlier filtering, not complex logic.</div>
+                        <!-- Module 6 -->
+                        <div class="sub-module" onclick="toggleSubModule(event)">
+                            <div class="sub-module-header">
+                                <div class="sub-module-title">
+                                    <span class="sub-module-icon">🔧</span>
+                                    Query Optimization & Indexes
+                                </div>
+                                <span class="sub-toggle-icon">▸</span>
+                            </div>
+                            <div class="sub-module-content">
+                                <div class="sub-module-body">
+                                    <p><strong>Concepts:</strong> EXPLAIN PLAN, indexes, query cost, full table scans</p>
+                                    <div class="hint">A 10x faster query often comes from better indexes or earlier filtering, not complex logic.</div>
 
-                            <h4>📋 Query Optimization Techniques</h4>
-                            <table>
-                                <tr>
-                                    <th>Technique</th>
-                                    <th>Problem Solved</th>
-                                    <th>Impact</th>
-                                </tr>
-                                <tr>
-                                    <td><strong>Add Indexes</strong></td>
-                                    <td>Full table scans</td>
-                                    <td>⚡⚡⚡ High</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Early Filtering</strong></td>
-                                    <td>Large datasets</td>
-                                    <td>⚡⚡⚡ High</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Use EXPLAIN</strong></td>
-                                    <td>Unknown bottlenecks</td>
-                                    <td>⚡⚡ Medium</td>
-                                </tr>
-                            </table>
+                                    <h4>📋 Query Optimization Techniques</h4>
+                                    <table>
+                                        <tr>
+                                            <th>Technique</th>
+                                            <th>Problem Solved</th>
+                                            <th>Impact</th>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Add Indexes</strong></td>
+                                            <td>Full table scans</td>
+                                            <td>⚡⚡⚡ High</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Early Filtering</strong></td>
+                                            <td>Large datasets</td>
+                                            <td>⚡⚡⚡ High</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Use EXPLAIN</strong></td>
+                                            <td>Unknown bottlenecks</td>
+                                            <td>⚡⚡ Medium</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
 
-                        <!-- Module 7: Data Manipulation -->
-                        <div class="module-subsection">
-                            <div class="module-title">✏️ Module 7: Data Manipulation (DML)</div>
-                            <p><strong>Concepts:</strong> INSERT, UPDATE, DELETE, transactions, safety</p>
-                            <div class="code-block">-- Test first:<br>SELECT * FROM users WHERE status = 'inactive';<br>-- Then update:<br>UPDATE users SET status = 'archived' WHERE status = 'inactive';</div>
-                            <div class="hint">Always wrap destructive operations in transactions so you can ROLLBACK.</div>
+                        <!-- Module 7 -->
+                        <div class="sub-module" onclick="toggleSubModule(event)">
+                            <div class="sub-module-header">
+                                <div class="sub-module-title">
+                                    <span class="sub-module-icon">✏️</span>
+                                    Data Manipulation (DML)
+                                </div>
+                                <span class="sub-toggle-icon">▸</span>
+                            </div>
+                            <div class="sub-module-content">
+                                <div class="sub-module-body">
+                                    <p><strong>Concepts:</strong> INSERT, UPDATE, DELETE, transactions, safety</p>
+                                    <div class="code-block">-- Test first:<br>SELECT * FROM users WHERE status = 'inactive';<br>-- Then update:<br>UPDATE users SET status = 'archived' WHERE status = 'inactive';</div>
+                                    <div class="hint">Always wrap destructive operations in transactions so you can ROLLBACK.</div>
 
-                            <h4>📝 DML Operations</h4>
-                            <table>
-                                <tr>
-                                    <th>Operation</th>
-                                    <th>Risk Level</th>
-                                    <th>Best Practice</th>
-                                </tr>
-                                <tr>
-                                    <td><strong>INSERT</strong></td>
-                                    <td>Low</td>
-                                    <td>Add new rows</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>UPDATE</strong></td>
-                                    <td>High ⚠️</td>
-                                    <td>Verify WHERE clause first</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>DELETE</strong></td>
-                                    <td>Critical ⚠️⚠️</td>
-                                    <td>Use ROLLBACK capability</td>
-                                </tr>
-                            </table>
+                                    <h4>📝 DML Operations</h4>
+                                    <table>
+                                        <tr>
+                                            <th>Operation</th>
+                                            <th>Risk Level</th>
+                                            <th>Best Practice</th>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>INSERT</strong></td>
+                                            <td>Low</td>
+                                            <td>Add new rows</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>UPDATE</strong></td>
+                                            <td>High ⚠️</td>
+                                            <td>Verify WHERE clause first</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>DELETE</strong></td>
+                                            <td>Critical ⚠️⚠️</td>
+                                            <td>Use ROLLBACK capability</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -857,7 +981,7 @@
                             <div class="domain-weight">⚖ 20%</div>
                             <div>3 Modules</div>
                         </div>
-                        <div class="domain-concepts">
+                        <div>
                             <span class="concept-tag">NULL Handling</span>
                             <span class="concept-tag">Dates</span>
                             <span class="concept-tag">Data Cleaning</span>
@@ -868,97 +992,197 @@
 
                 <div class="domain-content">
                     <div class="domain-body">
-                        <!-- Module 8: Best Practices -->
-                        <div class="module-subsection">
-                            <div class="module-title">✨ Module 8: Best Practices & NULL Handling</div>
-                            <p><strong>Key principle:</strong> NULL is contagious: ANY comparison with NULL returns NULL, not FALSE.</p>
-                            <div class="hint">Show you think about data quality: always ask "What about NULLs?" when designing queries.</div>
+                        <!-- Module 8 -->
+                        <div class="sub-module" onclick="toggleSubModule(event)">
+                            <div class="sub-module-header">
+                                <div class="sub-module-title">
+                                    <span class="sub-module-icon">✨</span>
+                                    Best Practices & NULL Handling
+                                </div>
+                                <span class="sub-toggle-icon">▸</span>
+                            </div>
+                            <div class="sub-module-content">
+                                <div class="sub-module-body">
+                                    <p><strong>Key principle:</strong> NULL is contagious: ANY comparison with NULL returns NULL, not FALSE.</p>
+                                    <div class="hint">Show you think about data quality: always ask "What about NULLs?" when designing queries.</div>
 
-                            <h4>🛡️ Common NULL Pitfalls</h4>
-                            <table>
-                                <tr>
-                                    <th>Problem</th>
-                                    <th>Wrong ❌</th>
-                                    <th>Correct ✓</th>
-                                </tr>
-                                <tr>
-                                    <td>NULL comparison</td>
-                                    <td>WHERE col = NULL</td>
-                                    <td>WHERE col IS NULL</td>
-                                </tr>
-                                <tr>
-                                    <td>NOT IN with NULL</td>
-                                    <td>WHERE col NOT IN (1, 2, NULL)</td>
-                                    <td>WHERE col NOT IN (1, 2) OR col IS NULL</td>
-                                </tr>
-                                <tr>
-                                    <td>Handling missing values</td>
-                                    <td>Ignore NULLs</td>
-                                    <td>Use COALESCE()</td>
-                                </tr>
-                            </table>
+                                    <h4>🛡️ Common NULL Pitfalls</h4>
+                                    <table>
+                                        <tr>
+                                            <th>Problem</th>
+                                            <th>Wrong ❌</th>
+                                            <th>Correct ✓</th>
+                                        </tr>
+                                        <tr>
+                                            <td>NULL comparison</td>
+                                            <td>WHERE col = NULL</td>
+                                            <td>WHERE col IS NULL</td>
+                                        </tr>
+                                        <tr>
+                                            <td>NOT IN with NULL</td>
+                                            <td>WHERE col NOT IN (1, 2, NULL)</td>
+                                            <td>WHERE col NOT IN (1, 2) OR col IS NULL</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Handling missing values</td>
+                                            <td>Ignore NULLs</td>
+                                            <td>Use COALESCE()</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
 
-                        <!-- Module 9: Date Functions -->
-                        <div class="module-subsection">
-                            <div class="module-title">📅 Module 9: Date & Time Functions</div>
-                            <p><strong>Critical for reporting:</strong> Dynamic date ranges and scheduled tasks.</p>
-                            <div class="hint">Always use DATE_TRUNC or DATEPART for comparisons; avoid string-based date logic.</div>
+                        <!-- Module 9 -->
+                        <div class="sub-module" onclick="toggleSubModule(event)">
+                            <div class="sub-module-header">
+                                <div class="sub-module-title">
+                                    <span class="sub-module-icon">📅</span>
+                                    Date & Time Functions
+                                </div>
+                                <span class="sub-toggle-icon">▸</span>
+                            </div>
+                            <div class="sub-module-content">
+                                <div class="sub-module-body">
+                                    <p><strong>Critical for reporting:</strong> Dynamic date ranges and scheduled tasks.</p>
+                                    <div class="hint">Always use DATE_TRUNC or DATEPART for comparisons; avoid string-based date logic.</div>
 
-                            <h4>🗓️ Dynamic Date Ranges (Most Important)</h4>
-                            <table>
-                                <tr>
-                                    <th>Range</th>
-                                    <th>Query</th>
-                                </tr>
-                                <tr>
-                                    <td><strong>Last 7 days</strong></td>
-                                    <td><code>WHERE proc_dt BETWEEN DATEADD(day, -7, CURRENT_DATE()) AND CURRENT_DATE()</code></td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Current month</strong></td>
-                                    <td><code>WHERE proc_dt BETWEEN DATE_TRUNC('month', CURRENT_DATE()) AND LAST_DAY(CURRENT_DATE())</code></td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Year-to-date</strong></td>
-                                    <td><code>WHERE proc_dt BETWEEN DATE_TRUNC('year', CURRENT_DATE()) AND CURRENT_DATE()</code></td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Rolling 30 days</strong></td>
-                                    <td><code>WHERE proc_dt BETWEEN DATEADD(day, -30, CURRENT_DATE()) AND CURRENT_DATE()</code></td>
-                                </tr>
-                            </table>
+                                    <h4>📋 Date & Time Functions Reference</h4>
+                                    <table>
+                                        <tr>
+                                            <th>Type</th>
+                                            <th>Purpose</th>
+                                            <th>SQL Query</th>
+                                            <th>Example</th>
+                                        </tr>
+                                        <tr>
+                                            <td><code>NOW()</code></td>
+                                            <td>Current date/time</td>
+                                            <td><code>SELECT NOW()</code></td>
+                                            <td>2024-01-01</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>CURRENT_DATE()</code></td>
+                                            <td>Returns current date</td>
+                                            <td><code>SELECT CURRENT_DATE()</code></td>
+                                            <td>2024-01-01</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>DATEPART()</code></td>
+                                            <td>Returns specific datepart</td>
+                                            <td><code>DATEPART(year, date)</code></td>
+                                            <td>2024</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>EXTRACT()</code></td>
+                                            <td>Extract date component</td>
+                                            <td><code>EXTRACT(MONTH FROM proc_dt)</code></td>
+                                            <td>1</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>DATEADD()</code></td>
+                                            <td>Add time interval</td>
+                                            <td><code>DATEADD(day, 10, proc_dt)</code></td>
+                                            <td>+10 days</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>DATEDIFF()</code></td>
+                                            <td>Difference between dates</td>
+                                            <td><code>DATEDIFF(day, date1, date2)</code></td>
+                                            <td>31 days</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>DATE_TRUNC()</code></td>
+                                            <td>Truncate to period start</td>
+                                            <td><code>DATE_TRUNC('month', CURRENT_DATE())</code></td>
+                                            <td>2024-01-01</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>LAST_DAY()</code></td>
+                                            <td>Last day of month</td>
+                                            <td><code>SELECT LAST_DAY(proc_dt)</code></td>
+                                            <td>31</td>
+                                        </tr>
+                                    </table>
+
+                                    <h4>🗓️ Dynamic Date Ranges (Most Important)</h4>
+                                    <table>
+                                        <tr>
+                                            <th>Description</th>
+                                            <th>Query</th>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Last 7 days</strong></td>
+                                            <td><code>WHERE proc_dt BETWEEN DATEADD(day, -7, CURRENT_DATE()) AND CURRENT_DATE()</code></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Current month</strong></td>
+                                            <td><code>WHERE proc_dt BETWEEN DATE_TRUNC('month', CURRENT_DATE()) AND LAST_DAY(CURRENT_DATE())</code></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Year-to-date</strong></td>
+                                            <td><code>WHERE proc_dt BETWEEN DATE_TRUNC('year', CURRENT_DATE()) AND CURRENT_DATE()</code></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Rolling 30 days</strong></td>
+                                            <td><code>WHERE proc_dt BETWEEN DATEADD(day, -30, CURRENT_DATE()) AND CURRENT_DATE()</code></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Previous month</strong></td>
+                                            <td><code>WHERE proc_dt BETWEEN DATEADD(month, -1, DATE_TRUNC('month', CURRENT_DATE())) AND LAST_DAY(DATEADD(month, -1, CURRENT_DATE()))</code></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Quarterly report</strong></td>
+                                            <td><code>WHERE sale_date BETWEEN DATE_TRUNC('QUARTER', CURRENT_DATE()) AND LAST_DAY(CURRENT_DATE(), 'QUARTER')</code></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Rolling 12 months</strong></td>
+                                            <td><code>WHERE sale_date BETWEEN DATEADD(MONTH, -12, CURRENT_DATE()) AND CURRENT_DATE()</code></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
 
-                        <!-- Module 10: Data Cleaning -->
-                        <div class="module-subsection">
-                            <div class="module-title">🧹 Module 10: SQL-Focused Data Cleaning</div>
-                            <p><strong>Why it matters:</strong> Data cleaning is 80% of data work.</p>
-                            <div class="hint">Approach: identify issues → test fix → apply → verify. Always test on subset first.</div>
+                        <!-- Module 10 -->
+                        <div class="sub-module" onclick="toggleSubModule(event)">
+                            <div class="sub-module-header">
+                                <div class="sub-module-title">
+                                    <span class="sub-module-icon">🧹</span>
+                                    SQL-Focused Data Cleaning
+                                </div>
+                                <span class="sub-toggle-icon">▸</span>
+                            </div>
+                            <div class="sub-module-content">
+                                <div class="sub-module-body">
+                                    <p><strong>Why it matters:</strong> Data cleaning is 80% of data work.</p>
+                                    <div class="hint">Approach: identify issues → test fix → apply → verify. Always test on subset first.</div>
 
-                            <h4>🧹 Data Cleaning Techniques</h4>
-                            <table>
-                                <tr>
-                                    <th>Issue</th>
-                                    <th>Detection</th>
-                                    <th>Solution</th>
-                                </tr>
-                                <tr>
-                                    <td><strong>Duplicates</strong></td>
-                                    <td>GROUP BY with HAVING COUNT > 1</td>
-                                    <td>DELETE WHERE id NOT IN (SELECT MIN(id) GROUP BY unique_col)</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>NULL Values</strong></td>
-                                    <td>WHERE col IS NULL</td>
-                                    <td>UPDATE SET col = COALESCE(col, default)</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Whitespace</strong></td>
-                                    <td>WHERE col LIKE ' %'</td>
-                                    <td>UPDATE SET col = TRIM(col)</td>
-                                </tr>
-                            </table>
+                                    <h4>🧹 Data Cleaning Techniques</h4>
+                                    <table>
+                                        <tr>
+                                            <th>Issue</th>
+                                            <th>Detection</th>
+                                            <th>Solution</th>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Duplicates</strong></td>
+                                            <td>GROUP BY with HAVING COUNT > 1</td>
+                                            <td>DELETE WHERE id NOT IN (SELECT MIN(id) GROUP BY unique_col)</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>NULL Values</strong></td>
+                                            <td>WHERE col IS NULL</td>
+                                            <td>UPDATE SET col = COALESCE(col, default)</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Whitespace</strong></td>
+                                            <td>WHERE col LIKE ' %'</td>
+                                            <td>UPDATE SET col = TRIM(col)</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -976,7 +1200,7 @@
                             <div class="domain-weight">⚖ 10%</div>
                             <div>2 Modules</div>
                         </div>
-                        <div class="domain-concepts">
+                        <div>
                             <span class="concept-tag">Procedures</span>
                             <span class="concept-tag">Triggers</span>
                             <span class="concept-tag">Events</span>
@@ -987,68 +1211,88 @@
 
                 <div class="domain-content">
                     <div class="domain-body">
-                        <!-- Module 11: Stored Procedures -->
-                        <div class="module-subsection">
-                            <div class="module-title">⚙️ Module 11: Stored Procedures</div>
-                            <p><strong>What:</strong> Precompiled SQL statements stored in database, executed as single unit.</p>
-                            <div class="code-block">CREATE PROCEDURE GetCustomerOrders @CustomerID INT<br>AS<br>BEGIN<br>&nbsp;&nbsp;SELECT order_id, order_date, amount<br>&nbsp;&nbsp;FROM orders<br>&nbsp;&nbsp;WHERE customer_id = @CustomerID;<br>END;</div>
-                            <div class="hint">Useful for complex logic, but keep them simple for maintainability.</div>
+                        <!-- Module 11 -->
+                        <div class="sub-module" onclick="toggleSubModule(event)">
+                            <div class="sub-module-header">
+                                <div class="sub-module-title">
+                                    <span class="sub-module-icon">⚙️</span>
+                                    Stored Procedures
+                                </div>
+                                <span class="sub-toggle-icon">▸</span>
+                            </div>
+                            <div class="sub-module-content">
+                                <div class="sub-module-body">
+                                    <p><strong>What:</strong> Precompiled SQL statements stored in database, executed as single unit.</p>
+                                    <div class="code-block">CREATE PROCEDURE GetCustomerOrders @CustomerID INT<br>AS<br>BEGIN<br>&nbsp;&nbsp;SELECT order_id, order_date, amount<br>&nbsp;&nbsp;FROM orders<br>&nbsp;&nbsp;WHERE customer_id = @CustomerID;<br>END;</div>
+                                    <div class="hint">Useful for complex logic, but keep them simple for maintainability.</div>
 
-                            <h4>⚙️ Procedure Components</h4>
-                            <table>
-                                <tr>
-                                    <th>Component</th>
-                                    <th>Purpose</th>
-                                    <th>Example</th>
-                                </tr>
-                                <tr>
-                                    <td>Input Parameter</td>
-                                    <td>Pass data in</td>
-                                    <td>@CustomerID INT</td>
-                                </tr>
-                                <tr>
-                                    <td>Output Parameter</td>
-                                    <td>Return data</td>
-                                    <td>@Result INT OUTPUT</td>
-                                </tr>
-                                <tr>
-                                    <td>Error Handling</td>
-                                    <td>Catch exceptions</td>
-                                    <td>BEGIN TRY...CATCH</td>
-                                </tr>
-                            </table>
+                                    <h4>⚙️ Procedure Components</h4>
+                                    <table>
+                                        <tr>
+                                            <th>Component</th>
+                                            <th>Purpose</th>
+                                            <th>Example</th>
+                                        </tr>
+                                        <tr>
+                                            <td>Input Parameter</td>
+                                            <td>Pass data in</td>
+                                            <td>@CustomerID INT</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Output Parameter</td>
+                                            <td>Return data</td>
+                                            <td>@Result INT OUTPUT</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Error Handling</td>
+                                            <td>Catch exceptions</td>
+                                            <td>BEGIN TRY...CATCH</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
 
-                        <!-- Module 12: Triggers -->
-                        <div class="module-subsection">
-                            <div class="module-title">🔔 Module 12: Triggers & Events</div>
-                            <p><strong>Key idea:</strong> Triggers run on data changes; Events run on schedules. Both automate database tasks.</p>
-                            <div class="code-block">CREATE TRIGGER log_price_change<br>AFTER UPDATE ON products<br>FOR EACH ROW<br>BEGIN<br>&nbsp;&nbsp;INSERT INTO audit_log (product_id, old_price, new_price)<br>&nbsp;&nbsp;VALUES (NEW.product_id, OLD.price, NEW.price);<br>END;</div>
-                            <div class="hint">Use triggers sparingly — they can make debugging harder. Document well.</div>
+                        <!-- Module 12 -->
+                        <div class="sub-module" onclick="toggleSubModule(event)">
+                            <div class="sub-module-header">
+                                <div class="sub-module-title">
+                                    <span class="sub-module-icon">🔔</span>
+                                    Triggers & Events
+                                </div>
+                                <span class="sub-toggle-icon">▸</span>
+                            </div>
+                            <div class="sub-module-content">
+                                <div class="sub-module-body">
+                                    <p><strong>Key idea:</strong> Triggers run on data changes; Events run on schedules. Both automate database tasks.</p>
+                                    <div class="code-block">CREATE TRIGGER log_price_change<br>AFTER UPDATE ON products<br>FOR EACH ROW<br>BEGIN<br>&nbsp;&nbsp;INSERT INTO audit_log (product_id, old_price, new_price)<br>&nbsp;&nbsp;VALUES (NEW.product_id, OLD.price, NEW.price);<br>END;</div>
+                                    <div class="hint">Use triggers sparingly — they can make debugging harder. Document well.</div>
 
-                            <h4>🔔 Trigger Types & Use Cases</h4>
-                            <table>
-                                <tr>
-                                    <th>Type</th>
-                                    <th>Timing</th>
-                                    <th>Use Case</th>
-                                </tr>
-                                <tr>
-                                    <td>BEFORE INSERT</td>
-                                    <td>Before insert</td>
-                                    <td>Validate data</td>
-                                </tr>
-                                <tr>
-                                    <td>AFTER UPDATE</td>
-                                    <td>After update</td>
-                                    <td>Audit log</td>
-                                </tr>
-                                <tr>
-                                    <td>AFTER DELETE</td>
-                                    <td>After delete</td>
-                                    <td>Archive data</td>
-                                </tr>
-                            </table>
+                                    <h4>🔔 Trigger Types & Use Cases</h4>
+                                    <table>
+                                        <tr>
+                                            <th>Type</th>
+                                            <th>Timing</th>
+                                            <th>Use Case</th>
+                                        </tr>
+                                        <tr>
+                                            <td>BEFORE INSERT</td>
+                                            <td>Before insert</td>
+                                            <td>Validate data</td>
+                                        </tr>
+                                        <tr>
+                                            <td>AFTER UPDATE</td>
+                                            <td>After update</td>
+                                            <td>Audit log</td>
+                                        </tr>
+                                        <tr>
+                                            <td>AFTER DELETE</td>
+                                            <td>After delete</td>
+                                            <td>Archive data</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1179,6 +1423,12 @@
     <script>
         function toggleDomain(element) {
             element.classList.toggle('collapsed');
+        }
+
+        function toggleSubModule(event) {
+            event.stopPropagation();
+            const subModule = event.currentTarget.closest('.sub-module');
+            subModule.classList.toggle('collapsed');
         }
     </script>
 </body>
