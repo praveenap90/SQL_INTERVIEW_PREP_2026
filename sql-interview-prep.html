@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Interview Prep — Reference Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --text-primary: #f1f5f9;
+            --text-secondary: #cbd5e1;
+            --border-color: #334155;
+            --accent: #06b6d4;
+            --accent-light: #164e63;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 0;
+        }
+
+        header {
+            border-bottom: 1px solid var(--border-color);
+            padding: 2rem 0;
+            position: sticky;
+            top: 0;
+            background: var(--bg-primary);
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .header-meta {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        nav {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        .intro-section {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .intro-text {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .stat-item {
+            background: var(--bg-secondary);
+            padding: 1rem;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            margin-top: 0.5rem;
+            letter-spacing: 0.05em;
+        }
+
+        section {
+            margin: 3rem 0;
+        }
+
+        h2 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent);
+            font-weight: 700;
+        }
+
+        .section-intro {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .module-section {
+            margin: 2.5rem 0;
+            border-left: 3px solid var(--accent);
+            padding-left: 1.5rem;
+        }
+
+        .module-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            user-select: none;
+            color: var(--accent);
+        }
+
+        .module-title:hover {
+            opacity: 0.8;
+        }
+
+        .toggle-icon {
+            display: inline-block;
+            transition: transform 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .module-section.collapsed .toggle-icon {
+            transform: rotate(-90deg);
+        }
+
+        .module-content {
+            display: block;
+            overflow: visible;
+            margin-top: 1rem;
+        }
+
+        .module-section.collapsed .module-content {
+            display: none;
+        }
+
+        h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin: 1.5rem 0 1rem 0;
+            color: var(--text-primary);
+        }
+
+        h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin: 1.2rem 0 0.8rem 0;
+            color: var(--text-primary);
+        }
+
+        h5 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin: 1rem 0 0.6rem 0;
+            color: var(--text-secondary);
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .code-block {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 1rem;
+            font-family: 'Courier New', 'Monaco', monospace;
+            font-size: 0.85rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+            line-height: 1.5;
+            color: var(--accent);
+        }
+
+        .hint {
+            background: var(--accent-light);
+            border-left: 4px solid var(--accent);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+            font-size: 0.95rem;
+        }
+
+        .hint::before {
+            content: "💡 ";
+            font-weight: 600;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.9rem;
+            background: var(--bg-secondary);
+        }
+
+        th {
+            background: var(--accent);
+            color: white;
+            padding: 0.75rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 0.75rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        tr:hover {
+            background: rgba(6, 182, 212, 0.05);
+        }
+
+        .cheatsheet-table {
+            font-size: 0.85rem;
+        }
+
+        .cheatsheet-table td {
+            padding: 0.6rem;
+        }
+
+        .reference-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        .reference-table th {
+            background: var(--accent);
+            color: white;
+            padding: 0.75rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .reference-table td {
+            padding: 0.75rem;
+            border-bottom: 1px solid var(--border-color);
+            background: var(--bg-secondary);
+        }
+
+        .reference-table tr:hover {
+            background: rgba(6, 182, 212, 0.1);
+        }
+
+        .flashcards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .flashcard {
+            background: var(--bg-secondary);
+            border: 2px solid var(--accent);
+            border-radius: 8px;
+            padding: 2rem;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .flashcard:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 16px rgba(6, 182, 212, 0.2);
+        }
+
+        .flashcard.flipped {
+            background: var(--accent-light);
+            border-color: var(--success);
+        }
+
+        .flashcard-front {
+            display: block;
+        }
+
+        .flashcard.flipped .flashcard-front {
+            display: none;
+        }
+
+        .flashcard-back {
+            display: none;
+        }
+
+        .flashcard.flipped .flashcard-back {
+            display: block;
+        }
+
+        .quiz-section {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .quiz-question {
+            margin-bottom: 1.5rem;
+        }
+
+        .quiz-question h4 {
+            margin-bottom: 0.75rem;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .quiz-option {
+            padding: 0.75rem;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.9rem;
+        }
+
+        .quiz-option:hover {
+            border-color: var(--accent);
+            background: rgba(6, 182, 212, 0.1);
+        }
+
+        .quiz-option input {
+            margin-right: 0.5rem;
+        }
+
+        .score-display {
+            background: var(--success);
+            color: white;
+            padding: 1rem;
+            border-radius: 6px;
+            margin: 1rem 0;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+        }
+
+        .btn-secondary {
+            background: var(--bg-secondary);
+            color: var(--accent);
+            border: 1px solid var(--accent);
+        }
+
+        .btn-secondary:hover {
+            background: var(--accent-light);
+        }
+
+        footer {
+            border-top: 1px solid var(--border-color);
+            margin-top: 3rem;
+            padding: 2rem 0;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .footer-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 1.5rem 0;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            h2 {
+                font-size: 1.1rem;
+            }
+
+            nav {
+                gap: 1rem;
+                font-size: 0.85rem;
+            }
+
+            main {
+                padding: 1rem 1rem;
+            }
+
+            .stats {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .module-section {
+                padding-left: 1rem;
+            }
+
+            .flashcards-container {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>SQL Interview Prep</h1>
+            <p class="header-meta">Reference guide · 12 modules · 48 practice questions · 50 flashcards</p>
+            <nav>
+                <a href="#modules">Modules</a>
+                <a href="#quiz">Practice Quiz</a>
+                <a href="#cheatsheet">Cheat Sheet</a>
+                <a href="#flashcards">Flashcards</a>
+                <a href="#data-types">Data Types</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="intro-section">
+            <p class="intro-text">
+                Master SQL fundamentals, query optimization, and real-world patterns. This guide covers 12 core modules organized from basics through advanced techniques. Click any module to expand and explore concepts, examples, and interview tips.
+            </p>
+            <div class="cta-buttons">
+                <a href="#quiz" class="btn btn-primary">▶ Start Practice Quiz</a>
+                <a href="#modules" class="btn btn-secondary">Explore Modules →</a>
+            </div>
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number">12</div>
+                    <div class="stat-label">Modules</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">48</div>
+                    <div class="stat-label">Quiz Questions</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">50</div>
+                    <div class="stat-label">Flashcards</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="modules">
+            <h2>▸ Twelve Modules</h2>
+            <p class="section-intro"><strong>Fundamentals → Advanced Patterns → Performance → Database Objects.</strong> Click any module below to expand its content.</p>
+
+            <!-- FUNDAMENTALS CATEGORY -->
+            <h3 style="margin-top: 2rem; color: var(--accent); font-size: 1.1rem;">📌 FUNDAMENTALS</h3>
+
+            <!-- Module 1: SELECT -->
+            <div class="module-section" data-module="select">
+                <div class="module-title" onclick="toggleModule(this)">
+                    <span class="toggle-icon">▸</span>
+                    <span>SELECT Fundamentals</span>
+                </div>
+                <div class="module-content">
+                    <p><strong>Concepts:</strong> SELECT, FROM, WHERE, ORDER BY, LIMIT, DISTINCT</p>
+                    <p><strong>Real-world example:</strong> Fetching top 10 customers by revenue with filters and sorting.</p>
+                    <div class="code-block">SELECT customer_id, SUM(amount) as total<br>FROM orders<br>WHERE amount > 100<br>GROUP BY customer_id<br>ORDER BY total DESC<br>LIMIT 10;</div>
+                    <div class="hint">Always use LIMIT in early query development to avoid returning millions of rows.</div>
+                    <p><strong>Interview tip:</strong> Emphasize the importance of filtering early (WHERE clause) to reduce dataset size before aggregation.</p>
+
+                    <h4>🐍 SQL vs. Pandas Quick Reference</h4>
+                    <table class="cheatsheet-table">
+                        <tr>
+                            <th>#</th>
+                            <th>Task</th>
+                            <th>SQL</th>
+                            <th>Pandas</th>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>Select all rows</td>
+                            <td><code>SELECT * FROM table</code></td>
+                            <td><code>df</code></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Select columns</td>
+                            <td><code>SELECT col1, col2 FROM table</code></td>
+                            <td><code>df[['col1', 'col2']]</code></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Filter rows</td>
+                            <td><code>SELECT * FROM table WHERE col > 5</code></td>
+                            <td><code>df[df['col'] > 5]</code></td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Sort</td>
+                            <td><code>SELECT * FROM table ORDER BY col DESC</code></td>
+                            <td><code>df.sort_values(by='col', ascending=False)</code></td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Limit rows</td>
+                            <td><code>SELECT * FROM table LIMIT 10</code></td>
+                            <td><code>df.head(10)</code></td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>Distinct</td>
+                            <td><code>SELECT DISTINCT col FROM table</code></td>
+                            <td><code>df['col'].unique()</code></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Module 2: JOINs -->
+            <div class="module-section" data-module="joins">
+                <div class="module-title" onclick="toggleModule(this)">
+                    <span class="toggle-icon">▸</span>
+                    <span>JOINs & Table Relationships</span>
+                </div>
+                <div class="module-content">
+                    <p><strong>Concepts:</strong> INNER JOIN, LEFT/RIGHT/FULL OUTER JOIN, CROSS JOIN, Self-joins</p>
+                    <p><strong>Join types in order of frequency:</strong> INNER (most common), LEFT, RIGHT, FULL OUTER, CROSS (least)</p>
+                    <div class="code-block">SELECT o.order_id, c.customer_name, p.product_name<br>FROM orders o<br>INNER JOIN customers c ON o.customer_id = c.customer_id<br>LEFT JOIN products p ON o.product_id = p.product_id;</div>
+                    <div class="hint">LEFT JOIN preserves all rows from the left table, filling NULLs for missing matches.</div>
+                    <p><strong>Interview tip:</strong> Be ready to explain the difference between INNER and LEFT JOIN with a concrete example (e.g., all customers vs. only those with orders).</p>
+
+                    <h4>📋 JOIN Decision Table</h4>
+                    <table class="reference-table">
+                        <tr>
+                            <th>Scenario</th>
+                            <th>Use This Join</th>
+                            <th>Why</th>
+                        </tr>
+                        <tr>
+                            <td>Only matching rows from both tables</td>
+                            <td>INNER JOIN</td>
+                            <td>Removes non-matches (default, fastest)</td>
+                        </tr>
+                        <tr>
+                            <td>All from left, matches from right</td>
+                            <td>LEFT JOIN</td>
+                            <td>Keep incomplete records from left</td>
+                        </tr>
+                        <tr>
+                            <td>All from both, with NULLs for non-matches</td>
+                            <td>FULL OUTER JOIN</td>
+                            <td>Union of both sides</td>
+                        </tr>
+                        <tr>
+                            <td>All combinations (Cartesian product)</td>
+                            <td>CROSS JOIN</td>
+                            <td>Rare; useful for generating dates or sequences</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Module 3: Aggregation -->
+            <div class="module-section" data-module="aggregation">
+                <div class="module-title" onclick="toggleModule(this)">
+                    <span class="toggle-icon">▸</span>
+                    <span>Aggregation & GROUP BY</span>
+                </div>
+                <div class="module-content">
+                    <p><strong>Concepts:</strong> GROUP BY, HAVING, aggregate functions (COUNT, SUM, AVG, MIN, MAX)</p>
+                    <p><strong>Common pattern:</strong> GROUP BY non-aggregated columns, filter groups with HAVING, not WHERE.</p>
+                    <div class="code-block">SELECT category, COUNT(*) as product_count, AVG(price) as avg_price<br>FROM products<br>GROUP BY category<br>HAVING COUNT(*) > 5<br>ORDER BY avg_price DESC;</div>
+                    <div class="hint">HAVING filters on aggregated results; WHERE filters on individual rows.</div>
+                    <p><strong>Interview tip:</strong> Explain why WHERE can't filter on aggregates — the aggregate hasn't been computed yet at the WHERE stage.</p>
+
+                    <h4>📊 Aggregate Function Quick Reference</h4>
+                    <table class="reference-table">
+                        <tr>
+                            <th>Function</th>
+                            <th>Purpose</th>
+                            <th>Example</th>
+                        </tr>
+                        <tr>
+                            <td><code>COUNT(*)</code></td>
+                            <td>Count all rows</td>
+                            <td>COUNT(*) = 150</td>
+                        </tr>
+                        <tr>
+                            <td><code>COUNT(col)</code></td>
+                            <td>Count non-NULL values</td>
+                            <td>COUNT(email) = 145</td>
+                        </tr>
+                        <tr>
+                            <td><code>SUM(col)</code></td>
+                            <td>Total of numeric column</td>
+                            <td>SUM(amount) = 10000</td>
+                        </tr>
+                        <tr>
+                            <td><code>AVG(col)</code></td>
+                            <td>Average value</td>
+                            <td>AVG(price) = 29.99</td>
+                        </tr>
+                        <tr>
+                            <td><code>MIN/MAX(col)</code></td>
+                            <td>Minimum/Maximum</td>
+                            <td>MIN(date), MAX(score)</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <!-- ADVANCED PATTERNS CATEGORY -->
+            <h3 style="margin-top: 2rem; color: var(--accent); font-size: 1.1rem;">🔄 ADVANCED PATTERNS</h3>
+
+            <!-- Module 4: Subqueries -->
+            <div class="module-section" data-module="subqueries">
+                <div class="module-title" onclick="toggleModule(this)">
+                    <span class="toggle-icon">▸</span>
+                    <span>Subqueries & CTEs</span>
+                </div>
+                <div class="module-content">
+                    <p><strong>Concepts:</strong> Scalar subqueries, correlated subqueries, IN/EXISTS, Common Table Expressions (CTEs)</p>
+                    <p><strong>CTEs are more readable:</strong> WITH clauses make complex logic clearer.</p>
+                    <div class="code-block">WITH high_value_orders AS (<br>&nbsp;&nbsp;SELECT customer_id, COUNT(*) as order_count<br>&nbsp;&nbsp;FROM orders<br>&nbsp;&nbsp;WHERE amount > 500<br>&nbsp;&nbsp;GROUP BY customer_id<br>)<br>SELECT c.customer_name, hv.order_count<br>FROM customers c<br>JOIN high_value_orders hv ON c.customer_id = hv.customer_id;</div>
+                    <div class="hint">Use CTEs for readability; use subqueries in SELECT for single-value lookups.</div>
+                    <p><strong>Interview tip:</strong> Prefer CTEs over nested subqueries in real-world code — they're easier to test and reuse.</p>
+
+                    <h4>🔄 CTE vs Temporary Table vs Subquery</h4>
+                    <table class="reference-table" style="font-size: 0.85rem;">
+                        <tr>
+                            <th>Aspect</th>
+                            <th>CTE</th>
+                            <th>Temporary Table</th>
+                            <th>Subquery</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Scope</strong></td>
+                            <td>Only in executing query</td>
+                            <td>Entire session</td>
+                            <td>Only in that statement</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Readability</strong></td>
+                            <td>Very high ✅</td>
+                            <td>Medium</td>
+                            <td>Low for complex</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Performance (large)</strong></td>
+                            <td>Medium</td>
+                            <td>Best (materialized) ✅</td>
+                            <td>Can be slow</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Recursive queries</strong></td>
+                            <td>Supported ✅</td>
+                            <td>Not supported ❌</td>
+                            <td>Not supported ❌</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Best for analytics</strong></td>
+                            <td>Excellent ✅</td>
+                            <td>Overkill</td>
+                            <td>Limited ❌</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Module 5: Window Functions -->
+            <div class="module-section" data-module="window">
+                <div class="module-title" onclick="toggleModule(this)">
+                    <span class="toggle-icon">▸</span>
+                    <span>Window Functions</span>
+                </div>
+                <div class="module-content">
+                    <p><strong>Concepts:</strong> ROW_NUMBER, RANK, DENSE_RANK, LAG/LEAD, SUM/AVG OVER, PARTITION BY</p>
+                    <p><strong>When to use:</strong> Running totals, ranking, comparing rows within a group.</p>
+                    <div class="code-block">SELECT<br>&nbsp;&nbsp;order_id, customer_id, amount,<br>&nbsp;&nbsp;ROW_NUMBER() OVER (PARTITION BY customer_id ORDER BY amount DESC) as rank<br>FROM orders;</div>
+                    <div class="hint">Window functions compute without collapsing rows (unlike GROUP BY).</div>
+                    <p><strong>Interview tip:</strong> Know ROW_NUMBER vs. RANK — ROW_NUMBER never skips, RANK does with ties.</p>
+
+                    <h4>📊 Advanced Window Function Calculations</h4>
+                    <table class="reference-table" style="font-size: 0.85rem;">
+                        <tr>
+                            <th>Use Case</th>
+                            <th>Function</th>
+                            <th>Example</th>
+                        </tr>
+                        <tr>
+                            <td>Cumulative Sum</td>
+                            <td><code>SUM() OVER()</code></td>
+                            <td><code>SUM(amount) OVER (ORDER BY date ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW)</code></td>
+                        </tr>
+                        <tr>
+                            <td>Rolling Average</td>
+                            <td><code>AVG() OVER()</code></td>
+                            <td><code>AVG(amount) OVER (ORDER BY date ROWS BETWEEN 6 PRECEDING AND CURRENT ROW)</code></td>
+                        </tr>
+                        <tr>
+                            <td>Rank Within Group</td>
+                            <td><code>ROW_NUMBER()</code></td>
+                            <td><code>ROW_NUMBER() OVER (PARTITION BY category ORDER BY amount DESC)</code></td>
+                        </tr>
+                        <tr>
+                            <td>Dense Ranking</td>
+                            <td><code>DENSE_RANK()</code></td>
+                            <td><code>DENSE_RANK() OVER (ORDER BY amount DESC)</code></td>
+                        </tr>
+                        <tr>
+                            <td>Previous Value</td>
+                            <td><code>LAG()</code></td>
+                            <td><code>amount - LAG(amount) OVER (ORDER BY date)</code></td>
+                        </tr>
+                        <tr>
+                            <td>Next Value</td>
+                            <td><code>LEAD()</code></td>
+                            <td><code>LEAD(amount) OVER (ORDER BY date)</code></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <!-- PERFORMANCE & OPTIMIZATION CATEGORY -->
+            <h3 style="margin-top: 2rem; color: var(--accent); font-size: 1.1rem;">⚡ PERFORMANCE & OPTIMIZATION</h3>
+
+            <!-- Module 6: Query Optimization -->
+            <div class="module-section" data-module="optimization">
+                <div class="module-title" onclick="toggleModule(this)">
+                    <span class="toggle-icon">▸</span>
+                    <span>Query Optimization & Indexes</span>
+                </div>
+                <div class="module-content">
+                    <p><strong>Concepts:</strong> EXPLAIN PLAN, indexes, query cost, avoiding full table scans, statistics</p>
+                    <p><strong>Optimization checklist:</strong></p>
+                    <div class="code-block">✓ Use EXPLAIN to see the query plan<br>✓ Index on WHERE and JOIN columns<br>✓ Avoid SELECT *<br>✓ Filter early with WHERE<br>✓ Use indexes for ORDER BY<br>✓ Consider materialized views for repeated aggregations</div>
+                    <div class="hint">A 10x faster query often comes from better indexes or earlier filtering, not complex logic.</div>
+                    <p><strong>Interview tip:</strong> Always ask: "Is this query fast enough?" Premature optimization is wasted effort.</p>
+                </div>
+            </div>
+
+            <!-- Module 7: Data Manipulation -->
+            <div class="module-section" data-module="dml">
+                <div class="module-title" onclick="toggleModule(this)">
+                    <span class="toggle-icon">▸</span>
+                    <span>Data Manipulation: INSERT, UPDATE, DELETE</span>
+                </div>
+                <div class="module-content">
+                    <p><strong>Concepts:</strong> INSERT, UPDATE, DELETE, transactions, rollback safety</p>
+                    <p><strong>Safe update pattern:</strong> Always test SELECT before UPDATE/DELETE.</p>
+                    <div class="code-block">-- Test first:<br>SELECT * FROM users WHERE status = 'inactive';<br>-- Then update:<br>UPDATE users SET status = 'archived' WHERE status = 'inactive';</div>
+                    <div class="hint">Wrap destructive operations in transactions so you can ROLLBACK if something goes wrong.</div>
+                    <p><strong>Interview tip:</strong> Demonstrate defensive programming: always verify your WHERE clause before deleting.</p>
+                </div>
+            </div>
+
+            <!-- BEST PRACTICES CATEGORY -->
+            <h3 style="margin-top: 2rem; color: var(--accent); font-size: 1.1rem;">🎯 BEST PRACTICES & PATTERNS</h3>
+
+            <!-- Module 8: Best Practices -->
+            <div class="module-section" data-module="practices">
+                <div class="module-title" onclick="toggleModule(this)">
+                    <span class="toggle-icon">▸</span>
+                    <span>Best Practices & NULL Handling</span>
+                </div>
+                <div class="module-content">
+                    <p><strong>Key patterns to know:</strong></p>
+                    <div class="code-block">❌ SELECT * (wasteful)<br>✓ SELECT specific_column<br><br>❌ NOT IN with NULL (returns nothing)<br>✓ NOT IN only for finite sets, use NOT EXISTS<br><br>❌ GROUP BY without ORDER BY<br>✓ Always ORDER BY for determinism</div>
+                    <div class="hint">NULL is contagious: ANY comparison with NULL returns NULL, not FALSE.</div>
+                    <p><strong>Interview tip:</strong> Show you think about data quality: ask "What about NULLs?" when designing queries.</p>
+                </div>
+            </div>
+
+            <!-- Module 9: Date Functions -->
+            <div class="module-section" data-module="dates">
+                <div class="module-title" onclick="toggleModule(this)">
+                    <span class="toggle-icon">▸</span>
+                    <span>Date & Time Functions</span>
+                </div>
+                <div class="module-content">
+                    <p><strong>Concepts:</strong> Date types, date functions, dynamic date ranges, time intervals</p>
+                    <p><strong>Common Date Functions:</strong></p>
+                    <div class="code-block">NOW() / CURRENT_TIMESTAMP — Current date and time<br>CURRENT_DATE() — Current date only<br>DATEPART() / EXTRACT() — Extract specific part (year, month, day)<br>DATE_ADD() / DATEADD() — Add/subtract intervals<br>DATE_DIFF() — Calculate difference between dates<br>DATE_TRUNC() — Truncate to start of period (month, year, etc.)</div>
+                    <div class="hint">Always use DATE_TRUNC or DATEPART for comparisons; avoid string-based date logic.</div>
+                    <p><strong>Interview tip:</strong> Know how to write dynamic date ranges: "last 30 days" or "this quarter".</p>
+                </div>
+            </div>
+
+            <!-- Module 10: Data Cleaning -->
+            <div class="module-section" data-module="cleaning">
+                <div class="module-title" onclick="toggleModule(this)">
+                    <span class="toggle-icon">▸</span>
+                    <span>SQL-Focused Data Cleaning</span>
+                </div>
+                <div class="module-content">
+                    <p><strong>Concepts:</strong> Removing duplicates, handling NULL values, standardizing formats, data validation</p>
+                    <p><strong>Why it matters:</strong> Data cleaning is 80% of data work. Mastering SQL-based cleaning is faster and more scalable than manual methods.</p>
+                    <p><strong>Interview tip:</strong> Explain your approach: identify issues → test the fix → apply → verify. Always test on a subset first.</p>
+                    <div class="code-block">-- Remove duplicates:<br>DELETE FROM table WHERE id NOT IN (SELECT MIN(id) FROM table GROUP BY unique_key);<br><br>-- Handle NULLs:<br>UPDATE table SET col = default_value WHERE col IS NULL;<br><br>-- Standardize:<br>UPDATE table SET col = UPPER(TRIM(col));</div>
+                </div>
+            </div>
+
+            <!-- DATABASE OBJECTS CATEGORY -->
+            <h3 style="margin-top: 2rem; color: var(--accent); font-size: 1.1rem;">🔐 DATABASE OBJECTS</h3>
+
+            <!-- Module 11: Stored Procedures -->
+            <div class="module-section" data-module="procedures">
+                <div class="module-title" onclick="toggleModule(this)">
+                    <span class="toggle-icon">▸</span>
+                    <span>Stored Procedures</span>
+                </div>
+                <div class="module-content">
+                    <p><strong>Concepts:</strong> Creating procedures, input/output parameters, conditional logic, transactions, error handling</p>
+                    <p><strong>What are Stored Procedures?</strong> Precompiled sets of SQL statements stored in the database and executed as a single unit. Write once, call many times.</p>
+                    <div class="code-block">CREATE PROCEDURE GetCustomerOrders @CustomerID INT<br>AS<br>BEGIN<br>&nbsp;&nbsp;SELECT order_id, order_date, amount<br>&nbsp;&nbsp;FROM orders<br>&nbsp;&nbsp;WHERE customer_id = @CustomerID<br>&nbsp;&nbsp;ORDER BY order_date DESC;<br>END;</div>
+                    <div class="hint">Procedures are useful for complex business logic, but keep them simple for maintainability.</div>
+                </div>
+            </div>
+
+            <!-- Module 12: Triggers -->
+            <div class="module-section" data-module="triggers">
+                <div class="module-title" onclick="toggleModule(this)">
+                    <span class="toggle-icon">▸</span>
+                    <span>Triggers & Events</span>
+                </div>
+                <div class="module-content">
+                    <p><strong>Concepts:</strong> Triggers (BEFORE/AFTER INSERT/UPDATE/DELETE), Events (scheduled tasks), automation, auditing</p>
+                    <p><strong>Key Idea:</strong> Triggers run on data changes; Events run on schedules. Both automate database tasks.</p>
+                    <div class="code-block">CREATE TRIGGER log_price_change<br>AFTER UPDATE ON products<br>FOR EACH ROW<br>BEGIN<br>&nbsp;&nbsp;INSERT INTO audit_log (product_id, old_price, new_price, changed_at)<br>&nbsp;&nbsp;VALUES (NEW.product_id, OLD.price, NEW.price, NOW());<br>END;</div>
+                    <div class="hint">Use triggers sparingly — they can make debugging harder. Document them well.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- QUIZ SECTION -->
+        <section id="quiz">
+            <h2>▸ Practice Quiz</h2>
+            <p class="section-intro">Test your knowledge with 48 questions spanning all 12 modules. Select your answers and get instant feedback.</p>
+
+            <div style="text-align: center; margin: 2rem 0;">
+                <p style="font-size: 1.1rem; margin-bottom: 1rem;">
+                    <strong>Ready to test yourself?</strong>
+                </p>
+                <button class="btn btn-primary" onclick="startQuiz()">Start the Quiz</button>
+            </div>
+
+            <div id="quizContainer" style="display: none;">
+                <div id="moduleSelectionView" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem;"></div>
+                <div id="questionView" style="display: none;"></div>
+            </div>
+        </section>
+
+        <!-- CHEATSHEET SECTION -->
+        <section id="cheatsheet">
+            <h2>▸ Quick Reference Cheat Sheet</h2>
+            <p class="section-intro">Common SQL patterns, functions, and decision tables for quick lookup during interviews and development.</p>
+
+            <h3>Data Exploration Queries</h3>
+            <table class="reference-table" style="font-size: 0.9rem;">
+                <tr>
+                    <th>Operation</th>
+                    <th>SQL Query</th>
+                </tr>
+                <tr>
+                    <td>View table structure</td>
+                    <td><code>DESCRIBE table_name;</code></td>
+                </tr>
+                <tr>
+                    <td>Preview sample data</td>
+                    <td><code>SELECT * FROM table_name LIMIT 10;</code></td>
+                </tr>
+                <tr>
+                    <td>Count total rows</td>
+                    <td><code>SELECT COUNT(*) FROM table_name;</code></td>
+                </tr>
+                <tr>
+                    <td>Check NULL values</td>
+                    <td><code>SELECT COUNT(*) FROM table WHERE col IS NULL;</code></td>
+                </tr>
+                <tr>
+                    <td>Find duplicates</td>
+                    <td><code>SELECT key_col, COUNT(*) FROM table GROUP BY key_col HAVING COUNT(*) > 1;</code></td>
+                </tr>
+                <tr>
+                    <td>Frequency distribution</td>
+                    <td><code>SELECT column_name, COUNT(*) FROM table GROUP BY column_name ORDER BY COUNT(*) DESC;</code></td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- FLASHCARDS SECTION -->
+        <section id="flashcards">
+            <h2>▸ Flashcards (Spaced Repetition)</h2>
+            <p class="section-intro">Click any card to flip. Test yourself on key concepts and definitions.</p>
+
+            <div class="flashcards-container">
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-front">INNER JOIN</div>
+                    <div class="flashcard-back">Returns only rows where both tables have a match on the join key.</div>
+                </div>
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-front">LEFT JOIN</div>
+                    <div class="flashcard-back">Returns all rows from left table, with NULLs for missing matches from right.</div>
+                </div>
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-front">GROUP BY</div>
+                    <div class="flashcard-back">Aggregates rows by one or more columns; must include all non-aggregated columns.</div>
+                </div>
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-front">HAVING</div>
+                    <div class="flashcard-back">Filters groups after aggregation (WHERE filters rows before aggregation).</div>
+                </div>
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-front">CTE (Common Table Expression)</div>
+                    <div class="flashcard-back">Named subquery defined with WITH; scoped to the single statement; improves readability.</div>
+                </div>
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-front">Window Function</div>
+                    <div class="flashcard-back">Computes across a partition of rows without collapsing them (unlike GROUP BY). Syntax: FUNC() OVER (PARTITION BY ... ORDER BY ...).</div>
+                </div>
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-front">ROW_NUMBER()</div>
+                    <div class="flashcard-back">Assigns unique sequential integers; never skips. Ties get consecutive numbers (1,2,3,4,5...).</div>
+                </div>
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-front">RANK()</div>
+                    <div class="flashcard-back">Assigns ranks with gaps on ties. (1,2,2,4,5...). Good for leaderboards.</div>
+                </div>
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-front">DENSE_RANK()</div>
+                    <div class="flashcard-back">Assigns ranks without gaps on ties (1,2,2,3,4...). Useful when you don't want to skip numbers.</div>
+                </div>
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-front">NULL Comparison</div>
+                    <div class="flashcard-back">Use IS NULL or IS NOT NULL. Comparisons with NULL (=, <>) return NULL, not TRUE or FALSE.</div>
+                </div>
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-front">Subquery</div>
+                    <div class="flashcard-back">Query within a query. Can be scalar (returns 1 row), IN/EXISTS (returns multiple rows), or correlated (references outer query).</div>
+                </div>
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="flashcard-front">Correlated Subquery</div>
+                    <div class="flashcard-back">Subquery that references columns from the outer query. Executes once per outer row (slower, but powerful for existence checks).</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DATA TYPES & VIEWS -->
+        <section id="data-types">
+            <h2>▸ Data Types & Snowflake Views</h2>
+            <p class="section-intro">Reference for common SQL data types and Snowflake-specific view types.</p>
+
+            <h3>Numeric Data Types</h3>
+            <table class="reference-table">
+                <tr>
+                    <th>Type</th>
+                    <th>Size</th>
+                    <th>Range</th>
+                    <th>Use Case</th>
+                </tr>
+                <tr>
+                    <td>BIT</td>
+                    <td>1 bit</td>
+                    <td>0 or 1</td>
+                    <td>Boolean flags</td>
+                </tr>
+                <tr>
+                    <td>TINYINT</td>
+                    <td>1 byte</td>
+                    <td>-128 to 127</td>
+                    <td>Small integers, status codes</td>
+                </tr>
+                <tr>
+                    <td>SMALLINT</td>
+                    <td>2 bytes</td>
+                    <td>-32,768 to 32,767</td>
+                    <td>Counts, IDs</td>
+                </tr>
+                <tr>
+                    <td>INT</td>
+                    <td>4 bytes</td>
+                    <td>-2.1B to 2.1B</td>
+                    <td>Most common for IDs</td>
+                </tr>
+                <tr>
+                    <td>BIGINT</td>
+                    <td>8 bytes</td>
+                    <td>-9.2Q to 9.2Q</td>
+                    <td>Large IDs, timestamps</td>
+                </tr>
+                <tr>
+                    <td>DECIMAL(p, s)</td>
+                    <td>Variable</td>
+                    <td>Exact precision</td>
+                    <td>Money, financial data</td>
+                </tr>
+                <tr>
+                    <td>FLOAT / DOUBLE</td>
+                    <td>4-8 bytes</td>
+                    <td>Approximate</td>
+                    <td>Scientific calculations, measurements</td>
+                </tr>
+            </table>
+
+            <h3>String & Date Data Types</h3>
+            <table class="reference-table">
+                <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                    <th>Use Case</th>
+                </tr>
+                <tr>
+                    <td>VARCHAR(n)</td>
+                    <td>Variable-length string, max n characters</td>
+                    <td>Names, emails, descriptions</td>
+                </tr>
+                <tr>
+                    <td>CHAR(n)</td>
+                    <td>Fixed-length string, always n characters (padded)</td>
+                    <td>Codes, postal codes, keys</td>
+                </tr>
+                <tr>
+                    <td>TEXT</td>
+                    <td>Large text field</td>
+                    <td>Articles, comments, long descriptions</td>
+                </tr>
+                <tr>
+                    <td>DATE</td>
+                    <td>YYYY-MM-DD</td>
+                    <td>Dates without time</td>
+                </tr>
+                <tr>
+                    <td>TIMESTAMP</td>
+                    <td>YYYY-MM-DD HH:MM:SS.fff</td>
+                    <td>Events, created_at, updated_at</td>
+                </tr>
+            </table>
+
+            <h3>Snowflake View Types</h3>
+            <table class="reference-table">
+                <tr>
+                    <th>View Type</th>
+                    <th>Definition</th>
+                    <th>Performance</th>
+                    <th>Use Case</th>
+                </tr>
+                <tr>
+                    <td><strong>Dynamic Views</strong></td>
+                    <td>Standard views; queries are recomputed each time</td>
+                    <td>Slower (recomputed)</td>
+                    <td>Frequently changing data</td>
+                </tr>
+                <tr>
+                    <td><strong>Materialized Views</strong></td>
+                    <td>Persisted as a physical table; queries run on the copy</td>
+                    <td>Faster ⚡</td>
+                    <td>Complex aggregations, reports, static snapshots</td>
+                </tr>
+                <tr>
+                    <td><strong>Iceberg Tables</strong></td>
+                    <td>High-performance tables with ACID guarantees</td>
+                    <td>Very fast</td>
+                    <td>Data lakes, time-travel queries</td>
+                </tr>
+                <tr>
+                    <td><strong>Dynamic Tables</strong></td>
+                    <td>Snowflake-managed views that auto-refresh</td>
+                    <td>Fast (incremental)</td>
+                    <td>Real-time dashboards, pipelines</td>
+                </tr>
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>SQL Interview Prep | Built as a personal portfolio project | Updated 2024</p>
+        </div>
+    </footer>
+
+    <script>
+        // Toggle module expansion
+        function toggleModule(element) {
+            const moduleSection = element.closest('.module-section');
+            moduleSection.classList.toggle('collapsed');
+        }
+
+        // Expand all modules by default (content visible)
+        document.addEventListener('DOMContentLoaded', function() {
+            // Modules are expanded by default; no collapsed class needed
+        });
+
+        // Quiz functionality
+        function startQuiz() {
+            document.getElementById('quizContainer').style.display = 'block';
+            initializeModuleSelection();
+        }
+
+        function initializeModuleSelection() {
+            const moduleNames = [
+                "SELECT Fundamentals",
+                "JOINs & Table Relationships",
+                "Aggregation & GROUP BY",
+                "Subqueries & CTEs",
+                "Window Functions",
+                "Query Optimization",
+                "Data Manipulation",
+                "Best Practices",
+                "Date Functions",
+                "Data Cleaning",
+                "Stored Procedures",
+                "Triggers & Events"
+            ];
+
+            const container = document.getElementById('moduleSelectionView');
+            container.innerHTML = '';
+            moduleNames.forEach((name, index) => {
+                const btn = document.createElement('button');
+                btn.textContent = `${index + 1}. ${name}`;
+                btn.className = 'btn btn-secondary';
+                btn.onclick = () => selectModule(index);
+                container.appendChild(btn);
+            });
+        }
+
+        function selectModule(moduleIndex) {
+            alert(`Quiz for Module ${moduleIndex + 1} would be loaded here with 4 practice questions.`);
+        }
+    </script>
+</body>
+</html>
