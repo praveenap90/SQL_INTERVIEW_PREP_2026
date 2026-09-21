@@ -1016,8 +1016,47 @@
                     <div class="flashcard-back">Functions that compute over a window (partition) of rows without collapsing them. Syntax: FUNC() OVER (PARTITION BY ... ORDER BY ...)</div>
                 </div>
                 <div class="flashcard" onclick="this.classList.toggle('flipped')">
-                    <div class="flashcard-front">Q: ROW_NUMBER() vs RANK()?</div>
-                    <div class="flashcard-back">ROW_NUMBER() gives unique sequential numbers. RANK() gives ranks with gaps on ties (1,2,2,4).</div>
+                    <div class="flashcard-front">Q: ROW_NUMBER() vs RANK() vs DENSE_RANK()?</div>
+                    <div class="flashcard-back">
+                        <table style="width:100%; font-size:0.85rem; border-collapse:collapse;">
+                            <tr style="background:#f0f0f0;">
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">Aspect</th>
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">ROW_NUMBER()</th>
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">RANK()</th>
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">DENSE_RANK()</th>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>Purpose</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Sequential numbering</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Ranking with gaps</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Ranking without gaps</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>On Ties</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Unique numbers</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Same rank, next skip</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Same rank, continuous</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>Example</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">1, 2, 3, 4, 5</td>
+                                <td style="border:1px solid #ddd; padding:8px;">1, 2, 2, 4, 5</td>
+                                <td style="border:1px solid #ddd; padding:8px;">1, 2, 2, 3, 4</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>Use Case</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Unique row IDs, pagination</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Sports rankings, scores</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Grade levels, categories</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>Top-N Queries</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Top 3 = exactly 3 rows</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Top 3 rank = 5+ rows if ties</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Top 3 rank = 3-4 rows</td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
                 <div class="flashcard" onclick="this.classList.toggle('flipped')">
                     <div class="flashcard-front">Q: When to use scalar subquery?</div>
@@ -1029,7 +1068,50 @@
                 </div>
                 <div class="flashcard" onclick="this.classList.toggle('flipped')">
                     <div class="flashcard-front">Q: RANK() vs DENSE_RANK()?</div>
-                    <div class="flashcard-back">RANK() has gaps on ties (1,2,2,4). DENSE_RANK() no gaps (1,2,2,3). Use DENSE_RANK for continuous rankings.</div>
+                    <div class="flashcard-back">
+                        <table style="width:100%; font-size:0.85rem; border-collapse:collapse;">
+                            <tr style="background:#f0f0f0;">
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">Feature</th>
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">RANK()</th>
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">DENSE_RANK()</th>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>Ties Handling</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Same rank for tied values</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Same rank for tied values</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>Next Rank After Tie</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Skips numbers (gaps)</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Continuous (no gaps)</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>Example Sequence</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">1, 2, 2, 4, 5</td>
+                                <td style="border:1px solid #ddd; padding:8px;">1, 2, 2, 3, 4</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>Top-N Query</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">WHERE RANK() = 3 → 1 row</td>
+                                <td style="border:1px solid #ddd; padding:8px;">WHERE DENSE_RANK() = 3 → 1 row</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>Top 3</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">WHERE RANK() ≤ 3 → 4+ rows if ties</td>
+                                <td style="border:1px solid #ddd; padding:8px;">WHERE DENSE_RANK() ≤ 3 → 3-4 rows</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>Best For</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Competition rankings (olympics)</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Tier classifications, levels</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>Syntax</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;"><code>RANK() OVER (ORDER BY col)</code></td>
+                                <td style="border:1px solid #ddd; padding:8px;"><code>DENSE_RANK() OVER (ORDER BY col)</code></td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
 
                 <!-- Performance & Optimization Q&A -->
