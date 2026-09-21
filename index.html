@@ -1635,7 +1635,41 @@
                 <!-- Triggers -->
                 <div class="flashcard" onclick="this.classList.toggle('flipped')">
                     <div class="flashcard-front">Q: Triggers and types?</div>
-                    <div class="flashcard-back"><strong>Trigger:</strong> Automated code executing on data change. <strong>Types:</strong> BEFORE (validate/modify before INSERT/UPDATE/DELETE), AFTER (audit/cascade after). <strong>Uses:</strong> Enforce business rules, maintain audit logs, auto-update fields, cascade operations. <strong>Caution:</strong> Hard to debug, impacts performance. Test thoroughly. Use sparingly—prefer application logic when possible.</div>
+                    <div class="flashcard-back">
+                        <table style="width:100%; font-size:0.85rem; border-collapse:collapse;">
+                            <tr style="background:#f0f0f0;">
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">Aspect</th>
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">BEFORE Trigger</th>
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">AFTER Trigger</th>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>Timing</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Executes BEFORE change</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Executes AFTER change</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>Action</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">INSERT, UPDATE, DELETE</td>
+                                <td style="border:1px solid #ddd; padding:8px;">INSERT, UPDATE, DELETE</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>Purpose</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Validate/modify data</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Audit/cascade/update related</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>Can Modify Data</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Yes (via :NEW)</td>
+                                <td style="border:1px solid #ddd; padding:8px;">No (data already changed)</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>Example Use</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Enforce business rules, validate emails</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Log changes, maintain counters</td>
+                            </tr>
+                        </table>
+                        <div style="margin-top:8px; font-size:0.8rem;"><strong>Caution:</strong> Hard to debug, impacts performance. Use sparingly—prefer application logic when possible.</div>
+                    </div>
                 </div>
 
                 <!-- Various Operators in SQL -->
@@ -1750,7 +1784,41 @@
                 <!-- COMMIT and ROLLBACK -->
                 <div class="flashcard" onclick="this.classList.toggle('flipped')">
                     <div class="flashcard-front">Q: Why use COMMIT and ROLLBACK commands?</div>
-                    <div class="flashcard-back"><strong>COMMIT:</strong> Saves all changes made in transaction permanently to database; once executed, changes are irreversible. <strong>ROLLBACK:</strong> Undoes all changes in transaction; reverts database to state before transaction started. <strong>Why needed:</strong> Ensure data integrity (all-or-nothing execution), recover from errors, allow testing without permanent changes. Example: BEGIN TRAN; UPDATE...; IF @@ERROR &lt;&gt; 0 ROLLBACK; ELSE COMMIT;</div>
+                    <div class="flashcard-back">
+                        <table style="width:100%; font-size:0.85rem; border-collapse:collapse;">
+                            <tr style="background:#f0f0f0;">
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">Aspect</th>
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">COMMIT</th>
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">ROLLBACK</th>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>Action</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Saves all changes permanently</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Undoes all changes in transaction</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>Reversibility</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Irreversible (changes permanent)</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Reverts to pre-transaction state</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>When to Use</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">After successful operations</td>
+                                <td style="border:1px solid #ddd; padding:8px;">On error or when canceling</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>Impact</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Makes changes visible to other users</td>
+                                <td style="border:1px solid #ddd; padding:8px;">No changes reach other users</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>Why Needed</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Ensure data integrity, finalize atomic operations</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Recover from errors, allow safe testing</td>
+                            </tr>
+                        </table>
+                        <div style="margin-top:8px; font-size:0.8rem;"><strong>Example:</strong> <code>BEGIN TRAN; UPDATE...; IF @@ERROR &lt;&gt; 0 ROLLBACK; ELSE COMMIT;</code></div>
+                    </div>
                 </div>
 
                 <!-- MERGE Statement -->
@@ -1792,7 +1860,47 @@
                 <!-- Avoid Duplicates without DISTINCT -->
                 <div class="flashcard" onclick="this.classList.toggle('flipped')">
                     <div class="flashcard-front">Q: Avoid duplicate entries without DISTINCT?</div>
-                    <div class="flashcard-back"><strong>Methods:</strong> (1) GROUP BY with HAVING (aggregates one row per group). (2) ROW_NUMBER() OVER (PARTITION BY col ORDER BY id) = 1 (window function). (3) UNION (removes duplicates, slower). (4) WHERE col IN (SELECT col FROM table GROUP BY col) (subquery). (5) Add PRIMARY KEY/UNIQUE constraint (prevents future duplicates). <strong>Best for large data:</strong> ROW_NUMBER() or GROUP BY.</div>
+                    <div class="flashcard-back">
+                        <table style="width:100%; font-size:0.80rem; border-collapse:collapse;">
+                            <tr style="background:#f0f0f0;">
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">Method</th>
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">Syntax</th>
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">Speed</th>
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">Use Case</th>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>GROUP BY</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;"><code>SELECT col FROM table GROUP BY col</code></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Fast</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Aggregate one row per group</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>ROW_NUMBER</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;"><code>WHERE ROW_NUMBER() OVER (PARTITION BY col ORDER BY id) = 1</code></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Very Fast</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Large data, keep specific row per group</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>UNION</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;"><code>SELECT * FROM t1 UNION SELECT * FROM t2</code></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Slow</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Combine tables, auto-remove duplicates</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>Subquery</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;"><code>WHERE col IN (SELECT col FROM table GROUP BY col)</code></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Moderate</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Conditional filtering</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>Constraint</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;"><code>ADD CONSTRAINT pk UNIQUE (col)</code></td>
+                                <td style="border:1px solid #ddd; padding:8px;">N/A</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Prevent future duplicates</td>
+                            </tr>
+                        </table>
+                        <div style="margin-top:8px; font-size:0.8rem;"><strong>Best for Large Data:</strong> ROW_NUMBER() (fastest) or GROUP BY (reliable)</div>
+                    </div>
                 </div>
 
                 <!-- Constraint Information -->
@@ -1905,7 +2013,40 @@
                 </div>
                 <div class="flashcard" onclick="this.classList.toggle('flipped')">
                     <div class="flashcard-front">Q: BEFORE vs AFTER triggers?</div>
-                    <div class="flashcard-back">BEFORE: execute before INSERT/UPDATE/DELETE (validate/modify data). AFTER: execute after (audit/cascade updates).</div>
+                    <div class="flashcard-back">
+                        <table style="width:100%; font-size:0.85rem; border-collapse:collapse;">
+                            <tr style="background:#f0f0f0;">
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">Aspect</th>
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">BEFORE Trigger</th>
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">AFTER Trigger</th>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>Execution Time</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Before INSERT/UPDATE/DELETE executes</td>
+                                <td style="border:1px solid #ddd; padding:8px;">After INSERT/UPDATE/DELETE executes</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>Can Access Data</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">NEW values (can modify)</td>
+                                <td style="border:1px solid #ddd; padding:8px;">OLD and NEW values (read-only)</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>Can Prevent Action</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Yes (raise error to cancel)</td>
+                                <td style="border:1px solid #ddd; padding:8px;">No (action already done)</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>Best For</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Validation, data transformation, business rules</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Auditing, logging, updating other tables</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>Example</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Validate email format, auto-generate ID</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Log to audit table, update counters</td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
                 <div class="flashcard" onclick="this.classList.toggle('flipped')">
                     <div class="flashcard-front">Q: Scheduled events/tasks?</div>
@@ -1921,7 +2062,41 @@
                 </div>
                 <div class="flashcard" onclick="this.classList.toggle('flipped')">
                     <div class="flashcard-front">Q: Transactions and ROLLBACK?</div>
-                    <div class="flashcard-back">BEGIN TRANSACTION; ... COMMIT (save) or ROLLBACK (undo). Critical for multi-step operations to ensure all-or-nothing execution.</div>
+                    <div class="flashcard-back">
+                        <table style="width:100%; font-size:0.85rem; border-collapse:collapse;">
+                            <tr style="background:#f0f0f0;">
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">Concept</th>
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">Description</th>
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">Example</th>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>Transaction</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Group of SQL statements as one unit; all succeed or all fail</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Transfer money: debit + credit both succeed</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>BEGIN</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Starts a transaction (BEGIN TRANSACTION or BEGIN TRAN)</td>
+                                <td style="border:1px solid #ddd; padding:8px;">BEGIN TRAN;</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>COMMIT</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Saves all changes permanently to database</td>
+                                <td style="border:1px solid #ddd; padding:8px;">COMMIT;</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>ROLLBACK</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Undoes all changes; reverts to state before BEGIN</td>
+                                <td style="border:1px solid #ddd; padding:8px;">ROLLBACK;</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>SAVEPOINT</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Marks checkpoint; ROLLBACK can go to specific point</td>
+                                <td style="border:1px solid #ddd; padding:8px;">SAVE TRANSACTION sp1; ROLLBACK TO sp1;</td>
+                            </tr>
+                        </table>
+                        <div style="margin-top:8px; font-size:0.8rem;"><strong>Critical for:</strong> Multi-step operations, data integrity, error handling, testing without side effects</div>
+                    </div>
                 </div>
             </div>
         </section>
