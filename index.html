@@ -1103,7 +1103,46 @@
                 <!-- Data Definition Language (DDL/DML/DQL/DCL/TCL) -->
                 <div class="flashcard" onclick="this.classList.toggle('flipped')">
                     <div class="flashcard-front">Q: DDL vs DML vs DQL vs DCL vs TCL?</div>
-                    <div class="flashcard-back"><strong>DDL (Data Definition Language):</strong> CREATE, ALTER, DROP — define/modify schema. <strong>DML (Data Manipulation Language):</strong> INSERT, UPDATE, DELETE — manipulate data. <strong>DQL (Data Query Language):</strong> SELECT — retrieve data. <strong>DCL (Data Control Language):</strong> GRANT, REVOKE — control access. <strong>TCL (Transaction Control Language):</strong> COMMIT, ROLLBACK — manage transactions.</div>
+                    <div class="flashcard-back">
+                        <table style="width:100%; font-size:0.85rem; border-collapse:collapse;">
+                            <tr style="background:#f0f0f0;">
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">Acronym</th>
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">Full Name</th>
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">Commands</th>
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">Purpose</th>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>DDL</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Data Definition Language</td>
+                                <td style="border:1px solid #ddd; padding:8px;">CREATE, ALTER, DROP</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Define/modify database schema</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>DML</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Data Manipulation Language</td>
+                                <td style="border:1px solid #ddd; padding:8px;">INSERT, UPDATE, DELETE</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Manipulate data in tables</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>DQL</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Data Query Language</td>
+                                <td style="border:1px solid #ddd; padding:8px;">SELECT</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Retrieve/query data</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>DCL</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Data Control Language</td>
+                                <td style="border:1px solid #ddd; padding:8px;">GRANT, REVOKE</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Control access/permissions</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>TCL</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Transaction Control Language</td>
+                                <td style="border:1px solid #ddd; padding:8px;">COMMIT, ROLLBACK, SAVEPOINT</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Manage transactions</td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
 
                 <!-- ALTER statement -->
@@ -1121,19 +1160,135 @@
                 <!-- DELETE vs TRUNCATE vs DROP -->
                 <div class="flashcard" onclick="this.classList.toggle('flipped')">
                     <div class="flashcard-front">Q: DELETE vs TRUNCATE vs DROP?</div>
-                    <div class="flashcard-back"><strong>DELETE:</strong> Remove specific rows (WHERE clause), slower, triggers fire, can ROLLBACK. <strong>TRUNCATE:</strong> Remove all rows, fast (deallocates pages), no triggers, cannot ROLLBACK easily. <strong>DROP:</strong> Remove entire table/object, drops structure + data, cannot ROLLBACK. Use: DELETE for selective; TRUNCATE for speed; DROP when table no longer needed.</div>
+                    <div class="flashcard-back">
+                        <table style="width:100%; font-size:0.85rem; border-collapse:collapse;">
+                            <tr style="background:#f0f0f0;">
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">Aspect</th>
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">DELETE</th>
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">TRUNCATE</th>
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">DROP</th>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>Scope</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Specific rows (WHERE clause)</td>
+                                <td style="border:1px solid #ddd; padding:8px;">All rows</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Entire table/object</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>Speed</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Slower</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Fast (deallocates pages)</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Very fast</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>Triggers</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Fires (per row)</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Does NOT fire</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Does NOT fire</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>Rollback</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Can ROLLBACK</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Cannot easily ROLLBACK</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Cannot ROLLBACK</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>Use Case</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Selective deletion</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Fast bulk clear</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Remove structure</td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
 
                 <!-- ORDER BY vs GROUP BY -->
                 <div class="flashcard" onclick="this.classList.toggle('flipped')">
                     <div class="flashcard-front">Q: ORDER BY vs GROUP BY?</div>
-                    <div class="flashcard-back"><strong>ORDER BY:</strong> Sorts result set by column(s) in ASC/DESC; applied last; doesn't aggregate. <strong>GROUP BY:</strong> Aggregates rows by column(s) for use with aggregate functions (COUNT, SUM, AVG); applied before HAVING; creates one row per group. Use ORDER BY for sorting results, GROUP BY for aggregation.</div>
+                    <div class="flashcard-back">
+                        <table style="width:100%; font-size:0.85rem; border-collapse:collapse;">
+                            <tr style="background:#f0f0f0;">
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">Aspect</th>
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">ORDER BY</th>
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">GROUP BY</th>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>Purpose</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Sorts result set</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Aggregates rows into groups</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>Direction</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">ASC or DESC</td>
+                                <td style="border:1px solid #ddd; padding:8px;">No direction (creates groups)</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>Aggregation</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Does NOT aggregate</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Aggregates with COUNT, SUM, AVG</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>Execution</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Applied LAST (final step)</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Applied BEFORE HAVING clause</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>Result Rows</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Same number as input</td>
+                                <td style="border:1px solid #ddd; padding:8px;">One row per group</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>Use Case</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Sort for display</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Summarize data</td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
 
                 <!-- Snowflake Date Formats -->
                 <div class="flashcard" onclick="this.classList.toggle('flipped')">
                     <div class="flashcard-front">Q: Common date formats in Snowflake?</div>
-                    <div class="flashcard-back"><strong>Key formats:</strong> DATE_FORMAT(col, 'YYYY-MM-DD'), TO_DATE(col, 'YYYY-MM-DD'), DATEADD(day, 7, col), DATEDIFF(day, start_date, end_date). <strong>Examples:</strong> 'YYYY-MM-DD HH24:MI:SS', 'MM/DD/YYYY', 'DD-MON-YYYY'. Use TO_TIMESTAMP for converting strings to timestamp, DATE_TRUNC for rounding to period.</div>
+                    <div class="flashcard-back">
+                        <table style="width:100%; font-size:0.85rem; border-collapse:collapse;">
+                            <tr style="background:#f0f0f0;">
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">Function</th>
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">Syntax</th>
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">Purpose</th>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>TO_DATE</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">TO_DATE(col, 'YYYY-MM-DD')</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Convert string to date</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>TO_TIMESTAMP</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">TO_TIMESTAMP(col, 'YYYY-MM-DD HH24:MI:SS')</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Convert string to timestamp</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>DATEADD</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">DATEADD(day, 7, col)</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Add/subtract days/months</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>DATEDIFF</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">DATEDIFF(day, start_date, end_date)</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Calculate difference between dates</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>DATE_TRUNC</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">DATE_TRUNC('month', col)</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Round to period (month/year/day)</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>DATE_FORMAT</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">DATE_FORMAT(col, 'MM/DD/YYYY')</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Format date for display</td>
+                            </tr>
+                        </table>
+                        <div style="margin-top:8px; font-size:0.8rem;"><strong>Format Examples:</strong> 'YYYY-MM-DD', 'MM/DD/YYYY', 'DD-MON-YYYY', 'YYYY-MM-DD HH24:MI:SS'</div>
+                    </div>
                 </div>
 
                 <!-- String Data Types -->
