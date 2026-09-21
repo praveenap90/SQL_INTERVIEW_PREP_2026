@@ -505,24 +505,24 @@
 
         .flashcards-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 1.8rem;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 2.5rem;
             margin: 2rem 0;
         }
 
         /* Larger cards for query questions */
         .query-questions-container .flashcards-container {
-            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 3rem;
         }
 
         .flashcard {
             background: linear-gradient(135deg, var(--color-fundamentals) 0%, rgba(179, 217, 255, 0.3) 100%);
             border: 2px solid rgba(179, 217, 255, 0.5);
             border-radius: 10px;
-            padding: 1.8rem;
-            min-height: 160px;
-            max-height: 200px;
+            padding: 2rem;
+            min-height: 150px;
+            max-height: auto;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -533,7 +533,7 @@
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
             position: relative;
             width: 100%;
-            overflow: hidden;
+            overflow: visible;
         }
 
         .flashcard:hover {
@@ -561,12 +561,14 @@
 
         .flashcard-front {
             display: block;
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 700;
-            line-height: 1.4;
+            line-height: 1.5;
             word-wrap: break-word;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            word-break: break-word;
+            overflow-wrap: break-word;
+            white-space: normal;
+            width: 100%;
         }
 
         .flashcard.flipped .flashcard-front {
@@ -767,7 +769,7 @@
         }
 
         .query-questions-container {
-            display: none;
+            display: none !important;
             margin-bottom: 3rem;
             padding: 2.5rem;
             background: linear-gradient(135deg, rgba(245, 245, 245, 0.8) 0%, rgba(255, 255, 255, 0.9) 100%);
@@ -777,7 +779,7 @@
         }
 
         .query-questions-container.active {
-            display: block;
+            display: block !important;
             animation: slideDown 0.3s ease;
         }
 
@@ -5202,30 +5204,25 @@
 
         function toggleQueryCategory(category) {
             // Hide all query categories
-            document.getElementById('query-category-easy').classList.remove('active');
-            document.getElementById('query-category-medium').classList.remove('active');
-            document.getElementById('query-category-advanced').classList.remove('active');
-            if (document.getElementById('query-category-medium-cont')) {
-                document.getElementById('query-category-medium-cont').classList.remove('active');
-            }
+            const categories = document.querySelectorAll('.query-questions-container');
+            categories.forEach(cat => cat.classList.remove('active'));
 
             // Show selected category
-            if (category === 'easy') {
-                document.getElementById('query-category-easy').classList.add('active');
-            } else if (category === 'medium') {
-                document.getElementById('query-category-medium').classList.add('active');
-                if (document.getElementById('query-category-medium-cont')) {
-                    document.getElementById('query-category-medium-cont').classList.add('active');
-                }
-            } else if (category === 'advanced') {
-                document.getElementById('query-category-advanced').classList.add('active');
+            const selectedId = 'query-category-' + category;
+            const selectedElement = document.getElementById(selectedId);
+            if (selectedElement) {
+                selectedElement.classList.add('active');
+                selectedElement.style.display = 'block';
             }
 
             currentQueryCategory = category;
 
             // Smooth scroll to section
             setTimeout(() => {
-                document.getElementById('query-category-' + category).scrollIntoView({ behavior: 'smooth', block: 'start' });
+                const element = document.getElementById(selectedId);
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
             }, 100);
         }
 
@@ -5334,4 +5331,3 @@
     </script>
 </body>
 </html>
-                    
