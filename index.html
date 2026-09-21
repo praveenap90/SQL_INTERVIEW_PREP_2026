@@ -1139,43 +1139,342 @@
                 <!-- String Data Types -->
                 <div class="flashcard" onclick="this.classList.toggle('flipped')">
                     <div class="flashcard-front">Q: Common string data types?</div>
-                    <div class="flashcard-back"><strong>VARCHAR(n):</strong> Variable-length up to n chars (most common). <strong>CHAR(n):</strong> Fixed-length, padded with spaces. <strong>TEXT/CLOB:</strong> Large text (unlimited). <strong>STRING:</strong> Snowflake's flexible type. Use VARCHAR for names/emails, TEXT for descriptions, CHAR for codes. VARCHAR is preferred for flexibility and storage efficiency.</div>
+                    <div class="flashcard-back">
+                        <table style="width:100%; font-size:0.85rem; border-collapse:collapse;">
+                            <tr style="background:#f0f0f0;">
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">Type</th>
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">Description</th>
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">Use Case</th>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>VARCHAR(n)</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Variable-length up to n chars</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Names, emails (most common)</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>CHAR(n)</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Fixed-length, padded with spaces</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Codes, fixed formats</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>TEXT/CLOB</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Large text (unlimited)</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Descriptions, long content</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>STRING</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Snowflake's flexible type</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Snowflake-specific</td>
+                            </tr>
+                        </table>
+                        <div style="margin-top:8px; font-size:0.8rem;"><strong>Tip:</strong> VARCHAR is preferred for flexibility and storage efficiency.</div>
+                    </div>
                 </div>
 
                 <!-- Numeric Data Types -->
                 <div class="flashcard" onclick="this.classList.toggle('flipped')">
                     <div class="flashcard-front">Q: Common numeric data types?</div>
-                    <div class="flashcard-back"><strong>INT/INTEGER:</strong> 4 bytes, -2.1B to 2.1B. <strong>BIGINT:</strong> 8 bytes, -9.2Q to 9.2Q (IDs, timestamps). <strong>DECIMAL(p,s):</strong> Exact precision (money). <strong>FLOAT/DOUBLE:</strong> Approximate (scientific calc). <strong>TINYINT:</strong> 1 byte (small counts). Use INT for IDs, DECIMAL for money, FLOAT for rates/percentages.</div>
+                    <div class="flashcard-back">
+                        <table style="width:100%; font-size:0.85rem; border-collapse:collapse;">
+                            <tr style="background:#f0f0f0;">
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">Type</th>
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">Size</th>
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">Range</th>
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">Use Case</th>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>TINYINT</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">1 byte</td>
+                                <td style="border:1px solid #ddd; padding:8px;">-128 to 127</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Small counts, flags</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>INT/INTEGER</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">4 bytes</td>
+                                <td style="border:1px solid #ddd; padding:8px;">-2.1B to 2.1B</td>
+                                <td style="border:1px solid #ddd; padding:8px;">IDs, quantities</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>BIGINT</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">8 bytes</td>
+                                <td style="border:1px solid #ddd; padding:8px;">-9.2Q to 9.2Q</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Large IDs, timestamps</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>DECIMAL(p,s)</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Variable</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Exact precision</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Money, financial</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>FLOAT/DOUBLE</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">4-8 bytes</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Approximate</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Scientific, rates</td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
 
                 <!-- Bitwise Operators -->
                 <div class="flashcard" onclick="this.classList.toggle('flipped')">
                     <div class="flashcard-front">Q: Bitwise operators?</div>
-                    <div class="flashcard-back"><strong>&amp; (AND):</strong> Both bits 1. <strong>| (OR):</strong> Either bit 1. <strong>^ (XOR):</strong> Bits different. <strong>~ (NOT):</strong> Flip bits. <strong>&lt;&lt; (Left Shift):</strong> Multiply by 2. <strong>&gt;&gt; (Right Shift):</strong> Divide by 2. Example: 5 &amp; 3 = 1 (0101 &amp; 0011 = 0001). Used in flags, permissions, optimization.</div>
+                    <div class="flashcard-back">
+                        <table style="width:100%; font-size:0.85rem; border-collapse:collapse;">
+                            <tr style="background:#f0f0f0;">
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">Operator</th>
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">Name</th>
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">Operation</th>
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">Example</th>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>&amp;</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">AND</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Both bits 1</td>
+                                <td style="border:1px solid #ddd; padding:8px;">5 &amp; 3 = 1</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>|</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">OR</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Either bit 1</td>
+                                <td style="border:1px solid #ddd; padding:8px;">5 | 3 = 7</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>^</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">XOR</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Bits different</td>
+                                <td style="border:1px solid #ddd; padding:8px;">5 ^ 3 = 6</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>~</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">NOT</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Flip bits</td>
+                                <td style="border:1px solid #ddd; padding:8px;">~5 = -6</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>&lt;&lt;</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Left Shift</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Multiply by 2</td>
+                                <td style="border:1px solid #ddd; padding:8px;">5 &lt;&lt; 1 = 10</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>&gt;&gt;</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Right Shift</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Divide by 2</td>
+                                <td style="border:1px solid #ddd; padding:8px;">5 &gt;&gt; 1 = 2</td>
+                            </tr>
+                        </table>
+                        <div style="margin-top:8px; font-size:0.8rem;"><strong>Use Cases:</strong> Flags, permissions, bit-level optimization</div>
+                    </div>
                 </div>
 
                 <!-- Compound Operators -->
                 <div class="flashcard" onclick="this.classList.toggle('flipped')">
                     <div class="flashcard-front">Q: Compound operators and examples?</div>
-                    <div class="flashcard-back"><strong>+= :</strong> Add and assign (x += 5). <strong>-= :</strong> Subtract and assign. <strong>*= :</strong> Multiply and assign. <strong>/= :</strong> Divide and assign. <strong>%= :</strong> Modulo and assign. <strong>&amp;= :</strong> Bitwise AND assign. <strong>|= :</strong> Bitwise OR assign. Shorthand for x = x + 5 becomes x += 5. Improves readability.</div>
+                    <div class="flashcard-back">
+                        <table style="width:100%; font-size:0.85rem; border-collapse:collapse;">
+                            <tr style="background:#f0f0f0;">
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">Operator</th>
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">Description</th>
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">Example</th>
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">Equivalent</th>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>+=</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Add and assign</td>
+                                <td style="border:1px solid #ddd; padding:8px;">x += 5</td>
+                                <td style="border:1px solid #ddd; padding:8px;">x = x + 5</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>-=</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Subtract and assign</td>
+                                <td style="border:1px solid #ddd; padding:8px;">x -= 3</td>
+                                <td style="border:1px solid #ddd; padding:8px;">x = x - 3</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>*=</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Multiply and assign</td>
+                                <td style="border:1px solid #ddd; padding:8px;">x *= 2</td>
+                                <td style="border:1px solid #ddd; padding:8px;">x = x * 2</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>/=</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Divide and assign</td>
+                                <td style="border:1px solid #ddd; padding:8px;">x /= 2</td>
+                                <td style="border:1px solid #ddd; padding:8px;">x = x / 2</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>%=</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Modulo and assign</td>
+                                <td style="border:1px solid #ddd; padding:8px;">x %= 3</td>
+                                <td style="border:1px solid #ddd; padding:8px;">x = x % 3</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>&amp;=</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Bitwise AND assign</td>
+                                <td style="border:1px solid #ddd; padding:8px;">x &amp;= y</td>
+                                <td style="border:1px solid #ddd; padding:8px;">x = x &amp; y</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>|=</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Bitwise OR assign</td>
+                                <td style="border:1px solid #ddd; padding:8px;">x |= y</td>
+                                <td style="border:1px solid #ddd; padding:8px;">x = x | y</td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
 
                 <!-- String Functions -->
                 <div class="flashcard" onclick="this.classList.toggle('flipped')">
                     <div class="flashcard-front">Q: Essential string functions?</div>
-                    <div class="flashcard-back"><strong>UPPER/LOWER:</strong> Convert case. <strong>LENGTH:</strong> String length. <strong>SUBSTRING(s, pos, len):</strong> Extract substring. <strong>TRIM/LTRIM/RTRIM:</strong> Remove whitespace. <strong>CONCAT/CONCATENATE:</strong> Join strings. <strong>REPLACE(s, old, new):</strong> Find/replace. <strong>INSTR(s, substr):</strong> Find position. <strong>SPLIT_PART:</strong> Split by delimiter. Example: UPPER('hello') = 'HELLO'.</div>
+                    <div class="flashcard-back">
+                        <table style="width:100%; font-size:0.85rem; border-collapse:collapse;">
+                            <tr style="background:#f0f0f0;">
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">Function</th>
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">Purpose</th>
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">Example</th>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>UPPER/LOWER</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Convert case</td>
+                                <td style="border:1px solid #ddd; padding:8px;">UPPER('hello') = 'HELLO'</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>LENGTH</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">String length</td>
+                                <td style="border:1px solid #ddd; padding:8px;">LENGTH('hello') = 5</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>SUBSTRING(s, pos, len)</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Extract substring</td>
+                                <td style="border:1px solid #ddd; padding:8px;">SUBSTRING('hello', 2, 3) = 'ell'</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>TRIM/LTRIM/RTRIM</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Remove whitespace</td>
+                                <td style="border:1px solid #ddd; padding:8px;">TRIM('  hello  ') = 'hello'</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>CONCAT</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Join strings</td>
+                                <td style="border:1px solid #ddd; padding:8px;">CONCAT('hello', ' ', 'world')</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>REPLACE(s, old, new)</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Find/replace text</td>
+                                <td style="border:1px solid #ddd; padding:8px;">REPLACE('hello', 'l', 'x') = 'hexxo'</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>INSTR(s, substr)</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Find position</td>
+                                <td style="border:1px solid #ddd; padding:8px;">INSTR('hello', 'l') = 3</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>SPLIT_PART</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Split by delimiter</td>
+                                <td style="border:1px solid #ddd; padding:8px;">SPLIT_PART('a-b-c', '-', 2) = 'b'</td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
 
                 <!-- Wildcard Characters -->
                 <div class="flashcard" onclick="this.classList.toggle('flipped')">
                     <div class="flashcard-front">Q: Wildcard characters in SQL?</div>
-                    <div class="flashcard-back"><strong>% (Percent):</strong> Matches any sequence (0+ chars). <strong>_ (Underscore):</strong> Matches exactly 1 char. Use in LIKE clause. Examples: 'A%' = starts with A, '%B' = ends with B, 'A_C' = 3 chars starting with A, ending with C. Case-insensitive by default (depends on collation). Useful for pattern matching in WHERE clauses.</div>
+                    <div class="flashcard-back">
+                        <table style="width:100%; font-size:0.85rem; border-collapse:collapse;">
+                            <tr style="background:#f0f0f0;">
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">Wildcard</th>
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">Matches</th>
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">Pattern Example</th>
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">Matches</th>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>%</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Any sequence (0+ chars)</td>
+                                <td style="border:1px solid #ddd; padding:8px;">A%</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Starts with A</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>%</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Any sequence (0+ chars)</td>
+                                <td style="border:1px solid #ddd; padding:8px;">%B</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Ends with B</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>%</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Any sequence (0+ chars)</td>
+                                <td style="border:1px solid #ddd; padding:8px;">%Cat%</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Contains 'Cat'</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>_</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Exactly 1 char</td>
+                                <td style="border:1px solid #ddd; padding:8px;">A_C</td>
+                                <td style="border:1px solid #ddd; padding:8px;">3 chars: A, any, C</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>_</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Exactly 1 char</td>
+                                <td style="border:1px solid #ddd; padding:8px;">A__</td>
+                                <td style="border:1px solid #ddd; padding:8px;">3 chars starting A</td>
+                            </tr>
+                        </table>
+                        <div style="margin-top:8px; font-size:0.8rem;"><strong>Note:</strong> Used in LIKE clause; case-insensitive by default (depends on collation)</div>
+                    </div>
                 </div>
 
                 <!-- Index Types -->
                 <div class="flashcard" onclick="this.classList.toggle('flipped')">
                     <div class="flashcard-front">Q: Various types of indexes?</div>
-                    <div class="flashcard-back"><strong>Clustered:</strong> Sorts/stores table data; one per table; faster access. <strong>Non-Clustered:</strong> Separate lookup structure; many per table. <strong>Unique:</strong> Ensures uniqueness on column(s). <strong>Full-Text:</strong> Fast text search. <strong>Composite:</strong> Index on multiple columns; order matters. <strong>Partial:</strong> Index on subset (WHERE condition). Choose based on query patterns; avoid over-indexing (slows writes).</div>
+                    <div class="flashcard-back">
+                        <table style="width:100%; font-size:0.85rem; border-collapse:collapse;">
+                            <tr style="background:#f0f0f0;">
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">Index Type</th>
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">Description</th>
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">Per Table</th>
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">Use Case</th>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>Clustered</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Sorts/stores table data physically</td>
+                                <td style="border:1px solid #ddd; padding:8px;">1 only</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Primary key, fastest access</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>Non-Clustered</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Separate lookup structure</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Multiple</td>
+                                <td style="border:1px solid #ddd; padding:8px;">WHERE, JOIN, ORDER BY columns</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>Unique</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Ensures uniqueness on column(s)</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Multiple</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Email, username (unique constraint)</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>Composite</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Index on multiple columns</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Multiple</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Complex queries; order matters</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>Full-Text</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Fast text search</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Multiple</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Document/article search</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>Partial</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Index on subset (WHERE condition)</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Multiple</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Active records only</td>
+                            </tr>
+                        </table>
+                        <div style="margin-top:8px; font-size:0.8rem;"><strong>Tip:</strong> Choose based on query patterns; avoid over-indexing (slows writes)</div>
+                    </div>
                 </div>
 
                 <!-- Triggers -->
@@ -1187,7 +1486,60 @@
                 <!-- Various Operators in SQL -->
                 <div class="flashcard" onclick="this.classList.toggle('flipped')">
                     <div class="flashcard-front">Q: Various operators in SQL?</div>
-                    <div class="flashcard-back"><strong>Arithmetic:</strong> +, -, *, /, % (modulo). <strong>Comparison:</strong> =, !=, &lt;, &gt;, &lt;=, &gt;=. <strong>Logical:</strong> AND, OR, NOT. <strong>Bitwise:</strong> &amp;, |, ^, ~, &lt;&lt;, &gt;&gt;. <strong>Assignment:</strong> =, +=, -=, *=, /=. <strong>Membership:</strong> IN, NOT IN, BETWEEN. <strong>Pattern:</strong> LIKE, NOT LIKE. <strong>Null:</strong> IS NULL, IS NOT NULL. <strong>Set:</strong> UNION, INTERSECT, EXCEPT.</div>
+                    <div class="flashcard-back">
+                        <table style="width:100%; font-size:0.85rem; border-collapse:collapse;">
+                            <tr style="background:#f0f0f0;">
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">Category</th>
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">Operators</th>
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">Example</th>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>Arithmetic</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">+, -, *, /, %</td>
+                                <td style="border:1px solid #ddd; padding:8px;">5 + 3, 10 % 3</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>Comparison</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">=, !=, &lt;, &gt;, &lt;=, &gt;=</td>
+                                <td style="border:1px solid #ddd; padding:8px;">age &gt; 18, status = 'active'</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>Logical</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">AND, OR, NOT</td>
+                                <td style="border:1px solid #ddd; padding:8px;">age &gt; 18 AND status = 'active'</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>Bitwise</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">&amp;, |, ^, ~, &lt;&lt;, &gt;&gt;</td>
+                                <td style="border:1px solid #ddd; padding:8px;">5 &amp; 3, flags &lt;&lt; 1</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>Assignment</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">=, +=, -=, *=, /=</td>
+                                <td style="border:1px solid #ddd; padding:8px;">x = 5, x += 10</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>Membership</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">IN, NOT IN, BETWEEN</td>
+                                <td style="border:1px solid #ddd; padding:8px;">status IN ('active', 'pending')</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>Pattern</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">LIKE, NOT LIKE</td>
+                                <td style="border:1px solid #ddd; padding:8px;">name LIKE 'A%'</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>Null</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">IS NULL, IS NOT NULL</td>
+                                <td style="border:1px solid #ddd; padding:8px;">email IS NOT NULL</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>Set</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">UNION, INTERSECT, EXCEPT</td>
+                                <td style="border:1px solid #ddd; padding:8px;">SELECT * FROM t1 UNION SELECT * FROM t2</td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
 
                 <!-- Local and Global Variables -->
@@ -1199,7 +1551,45 @@
                 <!-- Clustered vs Non-Clustered Index (duplicate check) -->
                 <div class="flashcard" onclick="this.classList.toggle('flipped')">
                     <div class="flashcard-front">Q: Clustered vs Non-Clustered Index difference?</div>
-                    <div class="flashcard-back"><strong>Clustered:</strong> One per table; sorts and stores table data physically; primary key usually clustered; determines physical order of rows; faster for range queries. <strong>Non-Clustered:</strong> Many per table; separate lookup structure; points to data (via clustered index or row locator); slower than clustered but flexible. <strong>Analogy:</strong> Clustered = book's page order; Non-Clustered = book's index pages.</div>
+                    <div class="flashcard-back">
+                        <table style="width:100%; font-size:0.85rem; border-collapse:collapse;">
+                            <tr style="background:#f0f0f0;">
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">Aspect</th>
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">Clustered</th>
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">Non-Clustered</th>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>Per Table</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">1 only</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Multiple (many)</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>Storage</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Sorts and stores table data physically</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Separate lookup structure</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>Purpose</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Determines physical order of rows</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Points to data via clustered index</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>Speed</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Faster for range queries</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Slower but more flexible</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>Example</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Primary key (usually)</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Email, phone (search fields)</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>Analogy</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">Book's page order</td>
+                                <td style="border:1px solid #ddd; padding:8px;">Book's index pages</td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
 
                 <!-- COMMIT and ROLLBACK -->
@@ -1253,13 +1643,66 @@
                 <!-- Constraint Information -->
                 <div class="flashcard" onclick="this.classList.toggle('flipped')">
                     <div class="flashcard-front">Q: Find available constraint information in a table?</div>
-                    <div class="flashcard-back"><strong>SQL Server:</strong> SELECT * FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE TABLE_NAME = 'table_name'; or sp_helpconstraint 'table_name'. <strong>PostgreSQL:</strong> SELECT * FROM information_schema.table_constraints WHERE table_name = 'table_name'; <strong>MySQL:</strong> SELECT * FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = 'table_name'; Shows PRIMARY KEY, FOREIGN KEY, UNIQUE, CHECK constraints.</div>
+                    <div class="flashcard-back">
+                        <table style="width:100%; font-size:0.80rem; border-collapse:collapse;">
+                            <tr style="background:#f0f0f0;">
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">Database</th>
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">Query</th>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>SQL Server</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;"><code>SELECT * FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE TABLE_NAME = 'table_name';</code><br/><code>sp_helpconstraint 'table_name';</code></td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>PostgreSQL</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;"><code>SELECT * FROM information_schema.table_constraints WHERE table_name = 'table_name';</code></td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>MySQL</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;"><code>SELECT * FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = 'table_name';</code></td>
+                            </tr>
+                        </table>
+                        <div style="margin-top:8px; font-size:0.8rem;"><strong>Shows:</strong> PRIMARY KEY, FOREIGN KEY, UNIQUE, CHECK constraints</div>
+                    </div>
                 </div>
 
                 <!-- Current Date Query -->
                 <div class="flashcard" onclick="this.classList.toggle('flipped')">
                     <div class="flashcard-front">Q: SQL query to display current date?</div>
-                    <div class="flashcard-back"><strong>SQL Server:</strong> SELECT GETDATE(); or CURRENT_TIMESTAMP; (includes time). <strong>PostgreSQL:</strong> SELECT CURRENT_DATE; or NOW(); <strong>MySQL:</strong> SELECT CURDATE(); or CURRENT_DATE; <strong>Oracle:</strong> SELECT SYSDATE FROM DUAL; <strong>Snowflake:</strong> SELECT CURRENT_DATE(); All return today's date. Use GETDATE() for date+time, CURRENT_DATE for date only.</div>
+                    <div class="flashcard-back">
+                        <table style="width:100%; font-size:0.85rem; border-collapse:collapse;">
+                            <tr style="background:#f0f0f0;">
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">Database</th>
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">Date Only</th>
+                                <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">Date + Time</th>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>SQL Server</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">CAST(GETDATE() AS DATE)</td>
+                                <td style="border:1px solid #ddd; padding:8px;">GETDATE() or CURRENT_TIMESTAMP</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>PostgreSQL</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">CURRENT_DATE</td>
+                                <td style="border:1px solid #ddd; padding:8px;">NOW() or CURRENT_TIMESTAMP</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>MySQL</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">CURDATE() or CURRENT_DATE()</td>
+                                <td style="border:1px solid #ddd; padding:8px;">NOW() or CURRENT_TIMESTAMP</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>Oracle</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">TRUNC(SYSDATE)</td>
+                                <td style="border:1px solid #ddd; padding:8px;">SYSDATE FROM DUAL</td>
+                            </tr>
+                            <tr>
+                                <td style="border:1px solid #ddd; padding:8px;"><strong>Snowflake</strong></td>
+                                <td style="border:1px solid #ddd; padding:8px;">CURRENT_DATE()</td>
+                                <td style="border:1px solid #ddd; padding:8px;">CURRENT_TIMESTAMP()</td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
 
                 <!-- ETL in SQL -->
@@ -3386,6 +3829,11 @@
                 section.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
         }
+
+        // Initialize: Show Easy category by default on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            toggleQueryCategory('easy');
+        });
     </script>
 </body>
 </html>
