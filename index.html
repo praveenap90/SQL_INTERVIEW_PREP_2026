@@ -505,45 +505,68 @@
 
         .flashcards-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.8rem;
             margin: 2rem 0;
+        }
+
+        /* Larger cards for query questions */
+        .query-questions-container .flashcards-container {
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            gap: 2rem;
         }
 
         .flashcard {
             background: linear-gradient(135deg, var(--color-fundamentals) 0%, rgba(179, 217, 255, 0.3) 100%);
             border: 2px solid rgba(179, 217, 255, 0.5);
-            border-radius: 8px;
-            padding: 2rem;
-            min-height: 200px;
+            border-radius: 10px;
+            padding: 1.8rem;
+            min-height: 160px;
+            max-height: 200px;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
             text-align: center;
             font-weight: 600;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
             position: relative;
             width: 100%;
+            overflow: hidden;
         }
 
         .flashcard:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+            border-color: rgba(179, 217, 255, 0.7);
         }
 
         .flashcard.flipped {
             background: linear-gradient(135deg, var(--color-advanced) 0%, rgba(184, 245, 194, 0.3) 100%);
             border-color: rgba(16, 185, 129, 0.5);
             min-height: auto;
+            max-height: none;
             align-items: flex-start;
             justify-content: flex-start;
+            padding: 2rem;
+            text-align: left;
+            overflow-y: auto;
+            max-height: 500px;
+        }
+
+        .flashcard.flipped:hover {
+            border-color: rgba(16, 185, 129, 0.7);
         }
 
         .flashcard-front {
             display: block;
-            font-size: 1.1rem;
+            font-size: 1rem;
+            font-weight: 700;
+            line-height: 1.4;
+            word-wrap: break-word;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .flashcard.flipped .flashcard-front {
@@ -552,12 +575,33 @@
 
         .flashcard-back {
             display: none;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             line-height: 1.6;
+            text-align: left;
+            font-weight: normal;
         }
 
         .flashcard.flipped .flashcard-back {
             display: block;
+        }
+
+        .flashcard-back strong {
+            display: block;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        .flashcard-back strong:first-child {
+            margin-top: 0;
+        }
+
+        .flashcard-back .code-block {
+            margin: 0.6rem 0;
+            padding: 0.8rem;
+            font-size: 0.8rem;
         }
 
         .difficulty-badge {
@@ -591,84 +635,156 @@
         /* Query Category Boxes */
         .query-category-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
             margin-bottom: 3rem;
         }
 
         .query-category-box {
-            background: linear-gradient(135deg, var(--color-fundamentals) 0%, rgba(179, 217, 255, 0.3) 100%);
-            border: 2px solid rgba(179, 217, 255, 0.5);
-            border-radius: 10px;
-            padding: 2rem;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(59, 130, 246, 0.05) 100%);
+            border: 2px solid rgba(59, 130, 246, 0.3);
+            border-radius: 12px;
+            padding: 2.5rem;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
             text-align: center;
             user-select: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .query-category-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, rgba(59, 130, 246, 0.8), rgba(59, 130, 246, 0.3));
+            transition: height 0.3s ease;
         }
 
         .query-category-box:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+            transform: translateY(-6px);
+            box-shadow: 0 12px 24px rgba(59, 130, 246, 0.2);
+            border-color: rgba(59, 130, 246, 0.6);
+        }
+
+        .query-category-box:hover::before {
+            height: 6px;
         }
 
         .query-category-box.easy {
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(16, 185, 129, 0.05) 100%);
-            border-color: rgba(16, 185, 129, 0.5);
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(16, 185, 129, 0.05) 100%);
+            border-color: rgba(16, 185, 129, 0.4);
+        }
+
+        .query-category-box.easy::before {
+            background: linear-gradient(90deg, rgba(16, 185, 129, 0.8), rgba(16, 185, 129, 0.3));
         }
 
         .query-category-box.easy:hover {
-            box-shadow: 0 8px 16px rgba(16, 185, 129, 0.2);
-            border-color: rgba(16, 185, 129, 0.8);
+            box-shadow: 0 12px 24px rgba(16, 185, 129, 0.2);
+            border-color: rgba(16, 185, 129, 0.7);
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.25) 0%, rgba(16, 185, 129, 0.08) 100%);
         }
 
         .query-category-box.medium {
-            background: linear-gradient(135deg, rgba(245, 158, 11, 0.2) 0%, rgba(245, 158, 11, 0.05) 100%);
-            border-color: rgba(245, 158, 11, 0.5);
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(245, 158, 11, 0.05) 100%);
+            border-color: rgba(245, 158, 11, 0.4);
+        }
+
+        .query-category-box.medium::before {
+            background: linear-gradient(90deg, rgba(245, 158, 11, 0.8), rgba(245, 158, 11, 0.3));
         }
 
         .query-category-box.medium:hover {
-            box-shadow: 0 8px 16px rgba(245, 158, 11, 0.2);
-            border-color: rgba(245, 158, 11, 0.8);
+            box-shadow: 0 12px 24px rgba(245, 158, 11, 0.2);
+            border-color: rgba(245, 158, 11, 0.7);
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.25) 0%, rgba(245, 158, 11, 0.08) 100%);
         }
 
         .query-category-box.advanced {
-            background: linear-gradient(135deg, rgba(239, 68, 68, 0.2) 0%, rgba(239, 68, 68, 0.05) 100%);
-            border-color: rgba(239, 68, 68, 0.5);
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.15) 0%, rgba(239, 68, 68, 0.05) 100%);
+            border-color: rgba(239, 68, 68, 0.4);
+        }
+
+        .query-category-box.advanced::before {
+            background: linear-gradient(90deg, rgba(239, 68, 68, 0.8), rgba(239, 68, 68, 0.3));
         }
 
         .query-category-box.advanced:hover {
-            box-shadow: 0 8px 16px rgba(239, 68, 68, 0.2);
-            border-color: rgba(239, 68, 68, 0.8);
+            box-shadow: 0 12px 24px rgba(239, 68, 68, 0.2);
+            border-color: rgba(239, 68, 68, 0.7);
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.25) 0%, rgba(239, 68, 68, 0.08) 100%);
         }
 
         .query-category-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 0.8rem;
+            background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .query-category-box.easy .query-category-number {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .query-category-box.medium .query-category-number {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .query-category-box.advanced .query-category-number {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .query-category-title {
-            font-size: 1.3rem;
+            font-size: 1.5rem;
             font-weight: 700;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
             color: var(--text-primary);
+            letter-spacing: 0.5px;
         }
 
         .query-category-subtitle {
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             color: var(--text-secondary);
+            font-weight: 500;
+            line-height: 1.5;
         }
 
         .query-questions-container {
             display: none;
             margin-bottom: 3rem;
+            padding: 2.5rem;
+            background: linear-gradient(135deg, rgba(245, 245, 245, 0.8) 0%, rgba(255, 255, 255, 0.9) 100%);
+            border-radius: 12px;
+            border: 1px solid var(--border-light);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
         }
 
         .query-questions-container.active {
             display: block;
             animation: slideDown 0.3s ease;
+        }
+
+        .query-questions-container h3 {
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid var(--border-light);
+            margin-bottom: 2rem;
         }
 
         footer {
@@ -742,7 +858,7 @@
     <header>
         <div class="header-content">
             <h1>SQL Interview Prep</h1>
-            <p class="header-meta">Comprehensive Guide · 12 Modules · 60 Flashcards · 45 Query Problems</p>
+            <p class="header-meta">Comprehensive Guide · 17 Modules · 92 Flashcards · 195+ Queries & Scenarios</p>
             <nav>
                 <a href="#domains">Domains</a>
                 <a href="#flashcards">Flashcards</a>
@@ -760,11 +876,11 @@
     <main>
         <section class="intro-section">
             <p class="intro-text">
-                Master SQL fundamentals, advanced patterns, and optimization techniques. This comprehensive guide covers 12 core modules organized by complexity level. Click any domain to explore detailed concepts, examples, and interview tips.
+                Master SQL fundamentals, advanced patterns, and optimization techniques. This comprehensive guide covers 16 core modules organized by complexity level. Click any domain to explore detailed concepts, examples, and interview tips.
             </p>
             <div class="stats">
                 <div class="stat-item" onclick="scrollToSection('domains')">
-                    <div class="stat-number">12</div>
+                    <div class="stat-number">17</div>
                     <div class="stat-label">Modules</div>
                 </div>
                 <div class="stat-item" onclick="scrollToSection('flashcards')">
@@ -792,13 +908,13 @@
                     <div class="domain-icon">📌</div>
                     <div class="domain-title">Fundamentals</div>
                     <div class="domain-meta">
-                        <span class="domain-weight">⚖ 25%</span>
-                        <span>3 Modules</span>
+                        <span class="domain-weight">⚖ 27%</span>
+                        <span>4 Modules</span>
                     </div>
                     <div class="domain-tags">
                         <span class="concept-tag">SELECT</span>
                         <span class="concept-tag">JOINs</span>
-                        <span class="concept-tag">Aggregation</span>
+                        <span class="concept-tag">String Functions</span>
                     </div>
                 </div>
 
@@ -807,13 +923,13 @@
                     <div class="domain-icon">🔄</div>
                     <div class="domain-title">Advanced Patterns</div>
                     <div class="domain-meta">
-                        <span class="domain-weight">⚖ 25%</span>
-                        <span>2 Modules</span>
+                        <span class="domain-weight">⚖ 27%</span>
+                        <span>3 Modules</span>
                     </div>
                     <div class="domain-tags">
                         <span class="concept-tag">Subqueries</span>
                         <span class="concept-tag">CTEs</span>
-                        <span class="concept-tag">Window Functions</span>
+                        <span class="concept-tag">Advanced Scenarios</span>
                     </div>
                 </div>
 
@@ -822,13 +938,13 @@
                     <div class="domain-icon">⚡</div>
                     <div class="domain-title">Performance & Optimization</div>
                     <div class="domain-meta">
-                        <span class="domain-weight">⚖ 20%</span>
-                        <span>2 Modules</span>
+                        <span class="domain-weight">⚖ 23%</span>
+                        <span>3 Modules</span>
                     </div>
                     <div class="domain-tags">
                         <span class="concept-tag">Indexes</span>
                         <span class="concept-tag">Query Plans</span>
-                        <span class="concept-tag">DML</span>
+                        <span class="concept-tag">Data Structures</span>
                     </div>
                 </div>
 
@@ -838,10 +954,10 @@
                     <div class="domain-title">Best Practices & Patterns</div>
                     <div class="domain-meta">
                         <span class="domain-weight">⚖ 20%</span>
-                        <span>3 Modules</span>
+                        <span>5 Modules</span>
                     </div>
                     <div class="domain-tags">
-                        <span class="concept-tag">NULL Handling</span>
+                        <span class="concept-tag">Data Exploration</span>
                         <span class="concept-tag">Dates</span>
                         <span class="concept-tag">Data Cleaning</span>
                     </div>
@@ -882,6 +998,11 @@
                         <div class="sub-module-title">Aggregation & GROUP BY</div>
                         <div class="sub-module-description">GROUP BY, HAVING, aggregate functions</div>
                     </div>
+                    <div class="sub-module-box" onclick="selectModule('string-functions', this)">
+                        <div class="sub-module-icon">📝</div>
+                        <div class="sub-module-title">String & Case Functions</div>
+                        <div class="sub-module-description">CONCAT, UPPER, LOWER, INITCAP, text manipulation</div>
+                    </div>
                 </div>
             </div>
 
@@ -898,6 +1019,11 @@
                         <div class="sub-module-icon">📈</div>
                         <div class="sub-module-title">Window Functions</div>
                         <div class="sub-module-description">ROW_NUMBER, RANK, DENSE_RANK, LAG/LEAD</div>
+                    </div>
+                    <div class="sub-module-box" onclick="selectModule('advanced-sql', this)">
+                        <div class="sub-module-icon">⚡</div>
+                        <div class="sub-module-title">Advanced SQL Scenarios</div>
+                        <div class="sub-module-description">Top N, running totals, deduplication, hierarchies</div>
                     </div>
                 </div>
             </div>
@@ -916,6 +1042,11 @@
                         <div class="sub-module-title">Data Manipulation (DML)</div>
                         <div class="sub-module-description">INSERT, UPDATE, DELETE, transactions</div>
                     </div>
+                    <div class="sub-module-box" onclick="selectModule('performance-optimization', this)">
+                        <div class="sub-module-icon">🚀</div>
+                        <div class="sub-module-title">Performance & Data Structures</div>
+                        <div class="sub-module-description">Table vs View vs Materialized View, data quality</div>
+                    </div>
                 </div>
             </div>
 
@@ -923,6 +1054,11 @@
             <div id="practices-modules" class="sub-modules-section">
                 <h3 style="margin-top: 0; margin-bottom: 1.5rem;">Best Practices & Patterns Modules</h3>
                 <div class="sub-modules-grid">
+                    <div class="sub-module-box" onclick="selectModule('data-exploration', this)">
+                        <div class="sub-module-icon">🔍</div>
+                        <div class="sub-module-title">Data Exploration & Analysis</div>
+                        <div class="sub-module-description">MySQL vs Snowflake, data profiling</div>
+                    </div>
                     <div class="sub-module-box" onclick="selectModule('null-handling', this)">
                         <div class="sub-module-icon">✨</div>
                         <div class="sub-module-title">Best Practices & NULL Handling</div>
@@ -937,6 +1073,11 @@
                         <div class="sub-module-icon">🧹</div>
                         <div class="sub-module-title">SQL-Focused Data Cleaning</div>
                         <div class="sub-module-description">Duplicates, NULLs, whitespace</div>
+                    </div>
+                    <div class="sub-module-box" onclick="selectModule('sql-interview-questions', this)">
+                        <div class="sub-module-icon">❓</div>
+                        <div class="sub-module-title">SQL Interview Questions</div>
+                        <div class="sub-module-description">15 common interview scenarios with solutions</div>
                     </div>
                 </div>
             </div>
@@ -2308,36 +2449,25 @@
 
         <!-- QUERY QUESTIONS SECTION -->
         <section id="query-questions">
-            <h2>▸ Query Questions & Solutions (165)</h2>
-            <p style="color: var(--text-secondary); margin-bottom: 2rem;">Click on a difficulty level below to explore 153 real-world SQL problems with multiple solutions.</p>
+            <h2>▸ Query Questions & Solutions (159)</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 2.5rem; font-size: 1.05rem; line-height: 1.6;">Master real-world SQL problems with detailed solutions. Each question includes multiple approaches and explanations. Select a difficulty level to start practicing.</p>
 
             <!-- Query Category Boxes -->
             <div class="query-category-grid">
                 <div class="query-category-box easy" onclick="toggleQueryCategory('easy')">
                     <div class="query-category-number">31</div>
                     <div class="query-category-title">Easy</div>
-                    <div class="query-category-subtitle">Q1-Q161 · Foundational queries</div>
+                    <div class="query-category-subtitle">Foundational queries</div>
                 </div>
-                <div class="query-category-box medium" onclick="toggleQueryCategory('medium')">
-                    <div class="query-category-number">72</div>
-                    <div class="query-category-title">Medium</div>
-                    <div class="query-category-subtitle">Q13-Q171 · Intermediate techniques</div>
-                </div>
-                <div class="query-category-box advanced" onclick="toggleQueryCategory('advanced')">
-                    <div class="query-category-number">62</div>
-                    <div class="query-category-title">Advanced</div>
-                    <div class="query-category-subtitle">Q25-Q168 · Expert-level patterns</div>
-                </div>
-            </div>
                 <div class="query-category-box medium" onclick="toggleQueryCategory('medium')">
                     <div class="query-category-number">69</div>
                     <div class="query-category-title">Medium</div>
-                    <div class="query-category-subtitle">Q13-Q24, Q40-Q52, Q64-Q67, Q72-Q75, Q77, Q79, Q81, Q82, Q84, Q87, Q91, Q93, Q96, Q99, Q101-Q106, Q110-Q114, Q127-Q129, Q133, Q135, Q136, Q139, Q141, Q164, Q165, Q169, Q170, Q171 · Intermediate techniques</div>
+                    <div class="query-category-subtitle">Intermediate techniques</div>
                 </div>
                 <div class="query-category-box advanced" onclick="toggleQueryCategory('advanced')">
                     <div class="query-category-number">59</div>
                     <div class="query-category-title">Advanced</div>
-                    <div class="query-category-subtitle">Q25-Q39, Q53-Q63, Q69-Q71, Q76, Q80, Q85, Q86, Q88, Q92, Q94, Q95, Q98, Q100, Q108, Q115-Q121, Q123-Q126, Q130, Q131, Q134, Q138, Q140, Q142, Q162, Q163, Q166, Q167, Q168 · Expert-level patterns</div>
+                    <div class="query-category-subtitle">Expert-level patterns</div>
                 </div>
             </div>
 
@@ -3799,6 +3929,30 @@
                     <p><strong>Real-world example:</strong> Fetching top 10 customers by revenue with filters and sorting.</p>
                     <div class="code-block">SELECT customer_id, SUM(amount) as total<br>FROM orders<br>WHERE amount > 100<br>GROUP BY customer_id<br>ORDER BY total DESC<br>LIMIT 10;</div>
                     <div class="hint">Always use LIMIT in early query development to avoid returning millions of rows.</div>
+
+                    <h4 style="margin-top: 2rem; margin-bottom: 1rem; color: #06b6d4;">✅ 15 Practice Scenarios</h4>
+                    <table style="width:100%; font-size:0.8rem; border-collapse:collapse;">
+                        <tr style="background:#f0f0f0;">
+                            <th style="border:1px solid #ddd; padding:6px; text-align:left; font-weight:bold;">Scenario</th>
+                            <th style="border:1px solid #ddd; padding:6px; text-align:left; font-weight:bold;">Description</th>
+                            <th style="border:1px solid #ddd; padding:6px; text-align:left; font-weight:bold;">SQL Query</th>
+                        </tr>
+                        <tr><td style="border:1px solid #ddd; padding:6px;"><strong>Select all rows</strong></td><td style="border:1px solid #ddd; padding:6px;">Fetch all records</td><td style="border:1px solid #ddd; padding:6px;"><code>SELECT * FROM employees;</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:6px;"><strong>Specific columns</strong></td><td style="border:1px solid #ddd; padding:6px;">Fetch required columns</td><td style="border:1px solid #ddd; padding:6px;"><code>SELECT id, name FROM employees;</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:6px;"><strong>Filter rows</strong></td><td style="border:1px solid #ddd; padding:6px;">WHERE clause</td><td style="border:1px solid #ddd; padding:6px;"><code>SELECT * FROM employees WHERE dept = 'HR';</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:6px;"><strong>Sort ascending</strong></td><td style="border:1px solid #ddd; padding:6px;">ORDER BY</td><td style="border:1px solid #ddd; padding:6px;"><code>SELECT * FROM employees ORDER BY salary;</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:6px;"><strong>Sort descending</strong></td><td style="border:1px solid #ddd; padding:6px;">DESC order</td><td style="border:1px solid #ddd; padding:6px;"><code>SELECT * FROM employees ORDER BY salary DESC;</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:6px;"><strong>Distinct values</strong></td><td style="border:1px solid #ddd; padding:6px;">Remove duplicates</td><td style="border:1px solid #ddd; padding:6px;"><code>SELECT DISTINCT dept FROM employees;</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:6px;"><strong>Limit rows</strong></td><td style="border:1px solid #ddd; padding:6px;">Restrict output</td><td style="border:1px solid #ddd; padding:6px;"><code>SELECT * FROM employees LIMIT 10;</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:6px;"><strong>Offset rows</strong></td><td style="border:1px solid #ddd; padding:6px;">Skip first N rows</td><td style="border:1px solid #ddd; padding:6px;"><code>SELECT * FROM employees LIMIT 10 OFFSET 5;</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:6px;"><strong>Column alias</strong></td><td style="border:1px solid #ddd; padding:6px;">Rename in result</td><td style="border:1px solid #ddd; padding:6px;"><code>SELECT salary AS monthly_salary FROM employees;</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:6px;"><strong>IN clause</strong></td><td style="border:1px solid #ddd; padding:6px;">Match list values</td><td style="border:1px solid #ddd; padding:6px;"><code>SELECT * FROM employees WHERE dept IN ('HR','IT');</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:6px;"><strong>NOT IN</strong></td><td style="border:1px solid #ddd; padding:6px;">Exclude values</td><td style="border:1px solid #ddd; padding:6px;"><code>SELECT * FROM employees WHERE dept NOT IN ('HR');</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:6px;"><strong>BETWEEN</strong></td><td style="border:1px solid #ddd; padding:6px;">Filter by range</td><td style="border:1px solid #ddd; padding:6px;"><code>SELECT * FROM employees WHERE salary BETWEEN 30000 AND 60000;</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:6px;"><strong>LIKE pattern</strong></td><td style="border:1px solid #ddd; padding:6px;">Pattern search</td><td style="border:1px solid #ddd; padding:6px;"><code>SELECT * FROM employees WHERE name LIKE 'A%';</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:6px;"><strong>IS NULL</strong></td><td style="border:1px solid #ddd; padding:6px;">Find missing values</td><td style="border:1px solid #ddd; padding:6px;"><code>SELECT * FROM employees WHERE manager_id IS NULL;</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:6px;"><strong>IS NOT NULL</strong></td><td style="border:1px solid #ddd; padding:6px;">Find non-missing</td><td style="border:1px solid #ddd; padding:6px;"><code>SELECT * FROM employees WHERE manager_id IS NOT NULL;</code></td></tr>
+                    </table>
                 `
             },
             'joins': {
@@ -3808,6 +3962,43 @@
                     <p><strong>Concepts:</strong> INNER JOIN, LEFT/RIGHT/FULL OUTER JOIN, CROSS JOIN, Self-joins</p>
                     <div class="code-block">SELECT o.order_id, c.customer_name, p.product_name<br>FROM orders o<br>INNER JOIN customers c ON o.customer_id = c.customer_id<br>LEFT JOIN products p ON o.product_id = p.product_id;</div>
                     <div class="hint">LEFT JOIN preserves all rows from the left table, filling NULLs for missing matches.</div>
+
+                    <h4 style="margin-top: 2rem; margin-bottom: 1rem; color: #06b6d4;">🔹 JOIN Scenarios</h4>
+                    <table style="width:100%; font-size:0.8rem; border-collapse:collapse;">
+                        <tr style="background:#f0f0f0;">
+                            <th style="border:1px solid #ddd; padding:6px; text-align:left; font-weight:bold;">Scenario</th>
+                            <th style="border:1px solid #ddd; padding:6px; text-align:left; font-weight:bold;">Description</th>
+                            <th style="border:1px solid #ddd; padding:6px; text-align:left; font-weight:bold;">SQL Query</th>
+                        </tr>
+                        <tr><td style="border:1px solid #ddd; padding:6px;"><strong>INNER JOIN</strong></td><td style="border:1px solid #ddd; padding:6px;">Match both tables</td><td style="border:1px solid #ddd; padding:6px;"><code>SELECT * FROM emp e JOIN dept d ON e.dept_id=d.id;</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:6px;"><strong>LEFT JOIN</strong></td><td style="border:1px solid #ddd; padding:6px;">All left rows</td><td style="border:1px solid #ddd; padding:6px;"><code>SELECT * FROM emp e LEFT JOIN dept d ON e.dept_id=d.id;</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:6px;"><strong>RIGHT JOIN</strong></td><td style="border:1px solid #ddd; padding:6px;">All right rows</td><td style="border:1px solid #ddd; padding:6px;"><code>SELECT * FROM emp e RIGHT JOIN dept d ON e.dept_id=d.id;</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:6px;"><strong>FULL JOIN</strong></td><td style="border:1px solid #ddd; padding:6px;">All rows both tables</td><td style="border:1px solid #ddd; padding:6px;"><code>FULL JOIN (Snowflake) / LEFT+UNION (MySQL)</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:6px;"><strong>SELF JOIN</strong></td><td style="border:1px solid #ddd; padding:6px;">Table to itself</td><td style="border:1px solid #ddd; padding:6px;"><code>SELECT e1.name, e2.name FROM emp e1 JOIN emp e2 ON e1.manager_id=e2.id;</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:6px;"><strong>CROSS JOIN</strong></td><td style="border:1px solid #ddd; padding:6px;">Cartesian product</td><td style="border:1px solid #ddd; padding:6px;"><code>SELECT * FROM t1 CROSS JOIN t2;</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:6px;"><strong>JOIN + WHERE</strong></td><td style="border:1px solid #ddd; padding:6px;">Filter joined data</td><td style="border:1px solid #ddd; padding:6px;"><code>SELECT * FROM emp e JOIN dept d ON e.dept_id=d.id WHERE d.name='IT';</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:6px;"><strong>JOIN + GROUP BY</strong></td><td style="border:1px solid #ddd; padding:6px;">Aggregate joined tables</td><td style="border:1px solid #ddd; padding:6px;"><code>SELECT d.name, COUNT(*) FROM emp e JOIN dept d ON e.dept_id=d.id GROUP BY d.name;</code></td></tr>
+                    </table>
+
+                    <h4 style="margin-top: 2rem; margin-bottom: 1rem; color: #06b6d4;">🔹 Complex Joins & Subqueries (Advanced)</h4>
+                    <table style="width:100%; font-size:0.75rem; border-collapse:collapse;">
+                        <tr style="background:#f0f0f0;">
+                            <th style="border:1px solid #ddd; padding:5px; text-align:left; font-weight:bold;">S.No</th>
+                            <th style="border:1px solid #ddd; padding:5px; text-align:left; font-weight:bold;">Scenario</th>
+                            <th style="border:1px solid #ddd; padding:5px; text-align:left; font-weight:bold;">Description</th>
+                            <th style="border:1px solid #ddd; padding:5px; text-align:left; font-weight:bold;">SQL</th>
+                        </tr>
+                        <tr><td style="border:1px solid #ddd; padding:5px;">1</td><td style="border:1px solid #ddd; padding:5px;"><strong>Orphan records</strong></td><td style="border:1px solid #ddd; padding:5px;">Employees without department</td><td style="border:1px solid #ddd; padding:5px;"><code>SELECT * FROM emp e LEFT JOIN dept d ON e.dept_id=d.id WHERE d.id IS NULL;</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:5px;">2</td><td style="border:1px solid #ddd; padding:5px;"><strong>Unused records</strong></td><td style="border:1px solid #ddd; padding:5px;">Departments without employees</td><td style="border:1px solid #ddd; padding:5px;"><code>SELECT * FROM dept d WHERE NOT EXISTS (SELECT 1 FROM emp e WHERE e.dept_id=d.id);</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:5px;">3</td><td style="border:1px solid #ddd; padding:5px;"><strong>Correlated subquery</strong></td><td style="border:1px solid #ddd; padding:5px;">Employees earning above dept avg</td><td style="border:1px solid #ddd; padding:5px;"><code>SELECT * FROM emp e WHERE salary > (SELECT AVG(salary) FROM emp WHERE dept=e.dept);</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:5px;">4</td><td style="border:1px solid #ddd; padding:5px;"><strong>Latest per group</strong></td><td style="border:1px solid #ddd; padding:5px;">Most recent order per customer</td><td style="border:1px solid #ddd; padding:5px;"><code>SELECT * FROM (SELECT *, ROW_NUMBER() OVER(PARTITION BY cust_id ORDER BY order_date DESC) rn FROM orders) t WHERE rn=1;</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:5px;">5</td><td style="border:1px solid #ddd; padding:5px;"><strong>Max per group</strong></td><td style="border:1px solid #ddd; padding:5px;">Highest salary per department</td><td style="border:1px solid #ddd; padding:5px;"><code>SELECT dept, MAX(salary) FROM emp GROUP BY dept;</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:5px;">6</td><td style="border:1px solid #ddd; padding:5px;"><strong>Multiple joins</strong></td><td style="border:1px solid #ddd; padding:6px;"><strong>Complex multi-table join</strong></td><td style="border:1px solid #ddd; padding:5px;"><code>SELECT * FROM orders o JOIN customers c ON o.cid=c.id JOIN payments p ON o.id=p.oid WHERE p.status='SUCCESS';</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:5px;">7</td><td style="border:1px solid #ddd; padding:5px;"><strong>Self join hierarchy</strong></td><td style="border:1px solid #ddd; padding:5px;">Employee-manager tree</td><td style="border:1px solid #ddd; padding:5px;"><code>SELECT e.name, m.name FROM emp e JOIN emp m ON e.manager_id=m.id;</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:5px;">8</td><td style="border:1px solid #ddd; padding:5px;"><strong>ANY usage</strong></td><td style="border:1px solid #ddd; padding:5px;">Salary greater than any HR salary</td><td style="border:1px solid #ddd; padding:5px;"><code>SELECT * FROM emp WHERE salary > ANY (SELECT salary FROM emp WHERE dept='HR');</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:5px;">9</td><td style="border:1px solid #ddd; padding:5px;"><strong>ALL usage</strong></td><td style="border:1px solid #ddd; padding:5px;">Salary greater than all HR salaries</td><td style="border:1px solid #ddd; padding:5px;"><code>SELECT * FROM emp WHERE salary > ALL (SELECT salary FROM emp WHERE dept='HR');</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:5px;">10</td><td style="border:1px solid #ddd; padding:5px;"><strong>Conditional join</strong></td><td style="border:1px solid #ddd; padding:5px;">Join only active records</td><td style="border:1px solid #ddd; padding:5px;"><code>SELECT * FROM emp e JOIN dept d ON e.dept_id=d.id AND d.active=1;</code></td></tr>
+                    </table>
                 `
             },
             'aggregation': {
@@ -3817,6 +4008,25 @@
                     <p><strong>Concepts:</strong> GROUP BY, HAVING, aggregate functions (COUNT, SUM, AVG, MIN, MAX)</p>
                     <div class="code-block">SELECT category, COUNT(*) as count, AVG(price) as avg_price<br>FROM products<br>GROUP BY category<br>HAVING COUNT(*) > 5<br>ORDER BY avg_price DESC;</div>
                     <div class="hint">HAVING filters on aggregated results; WHERE filters on individual rows.</div>
+
+                    <h4 style="margin-top: 2rem; margin-bottom: 1rem; color: #06b6d4;">🔹 Aggregate Function Scenarios</h4>
+                    <table style="width:100%; font-size:0.8rem; border-collapse:collapse;">
+                        <tr style="background:#f0f0f0;">
+                            <th style="border:1px solid #ddd; padding:6px; text-align:left; font-weight:bold;">Scenario</th>
+                            <th style="border:1px solid #ddd; padding:6px; text-align:left; font-weight:bold;">Description</th>
+                            <th style="border:1px solid #ddd; padding:6px; text-align:left; font-weight:bold;">SQL Query</th>
+                        </tr>
+                        <tr><td style="border:1px solid #ddd; padding:6px;"><strong>COUNT</strong></td><td style="border:1px solid #ddd; padding:6px;">Count rows</td><td style="border:1px solid #ddd; padding:6px;"><code>SELECT COUNT(*) FROM employees;</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:6px;"><strong>COUNT DISTINCT</strong></td><td style="border:1px solid #ddd; padding:6px;">Count unique values</td><td style="border:1px solid #ddd; padding:6px;"><code>SELECT COUNT(DISTINCT dept) FROM employees;</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:6px;"><strong>SUM</strong></td><td style="border:1px solid #ddd; padding:6px;">Total of column</td><td style="border:1px solid #ddd; padding:6px;"><code>SELECT SUM(salary) FROM employees;</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:6px;"><strong>AVG</strong></td><td style="border:1px solid #ddd; padding:6px;">Average value</td><td style="border:1px solid #ddd; padding:6px;"><code>SELECT AVG(salary) FROM employees;</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:6px;"><strong>MIN</strong></td><td style="border:1px solid #ddd; padding:6px;">Lowest value</td><td style="border:1px solid #ddd; padding:6px;"><code>SELECT MIN(salary) FROM employees;</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:6px;"><strong>MAX</strong></td><td style="border:1px solid #ddd; padding:6px;">Highest value</td><td style="border:1px solid #ddd; padding:6px;"><code>SELECT MAX(salary) FROM employees;</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:6px;"><strong>GROUP BY</strong></td><td style="border:1px solid #ddd; padding:6px;">Aggregate per group</td><td style="border:1px solid #ddd; padding:6px;"><code>SELECT dept, COUNT(*) FROM employees GROUP BY dept;</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:6px;"><strong>HAVING</strong></td><td style="border:1px solid #ddd; padding:6px;">Filter aggregates</td><td style="border:1px solid #ddd; padding:6px;"><code>SELECT dept, COUNT(*) FROM employees GROUP BY dept HAVING COUNT(*) > 5;</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:6px;"><strong>Multiple Agg</strong></td><td style="border:1px solid #ddd; padding:6px;">Multiple functions</td><td style="border:1px solid #ddd; padding:6px;"><code>SELECT dept, COUNT(*), AVG(salary) FROM employees GROUP BY dept;</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:6px;"><strong>Conditional Agg</strong></td><td style="border:1px solid #ddd; padding:6px;">Conditional sum</td><td style="border:1px solid #ddd; padding:6px;"><code>SELECT dept, SUM(CASE WHEN active=1 THEN salary END) FROM employees GROUP BY dept;</code></td></tr>
+                    </table>
                 `
             },
             'subqueries': {
@@ -3984,6 +4194,21 @@
                     </table>
 
                     <div class="hint" style="margin-top: 2rem;">💡 <strong>Interview Tip:</strong> CTEs with window functions are the modern "sweet spot" for most analytics queries. Master recursive CTEs for hierarchy problems. Use temp tables when performance matters.</div>
+
+                    <h4 style="margin-top: 2rem; margin-bottom: 1rem; color: #06b6d4;">🔹 Subquery / ANY / ALL Scenarios</h4>
+                    <table style="width:100%; font-size:0.8rem; border-collapse:collapse;">
+                        <tr style="background:#f0f0f0;">
+                            <th style="border:1px solid #ddd; padding:6px; text-align:left; font-weight:bold;">Scenario</th>
+                            <th style="border:1px solid #ddd; padding:6px; text-align:left; font-weight:bold;">Description</th>
+                            <th style="border:1px solid #ddd; padding:6px; text-align:left; font-weight:bold;">SQL Query</th>
+                        </tr>
+                        <tr><td style="border:1px solid #ddd; padding:6px;"><strong>Scalar Subquery</strong></td><td style="border:1px solid #ddd; padding:6px;">Single value subquery</td><td style="border:1px solid #ddd; padding:6px;"><code>SELECT * FROM emp WHERE salary > (SELECT AVG(salary) FROM emp);</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:6px;"><strong>IN Subquery</strong></td><td style="border:1px solid #ddd; padding:6px;">Multiple value subquery</td><td style="border:1px solid #ddd; padding:6px;"><code>SELECT * FROM emp WHERE dept_id IN (SELECT id FROM dept);</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:6px;"><strong>ANY</strong></td><td style="border:1px solid #ddd; padding:6px;">Compare with any value</td><td style="border:1px solid #ddd; padding:6px;"><code>SELECT * FROM emp WHERE salary > ANY (SELECT salary FROM emp WHERE dept='HR');</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:6px;"><strong>ALL</strong></td><td style="border:1px solid #ddd; padding:6px;">Compare with all values</td><td style="border:1px solid #ddd; padding:6px;"><code>SELECT * FROM emp WHERE salary > ALL (SELECT salary FROM emp WHERE dept='HR');</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:6px;"><strong>EXISTS</strong></td><td style="border:1px solid #ddd; padding:6px;">Check subquery existence</td><td style="border:1px solid #ddd; padding:6px;"><code>SELECT * FROM emp e WHERE EXISTS (SELECT 1 FROM dept d WHERE d.id=e.dept_id);</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:6px;"><strong>NOT EXISTS</strong></td><td style="border:1px solid #ddd; padding:6px;">Check missing relationships</td><td style="border:1px solid #ddd; padding:6px;"><code>SELECT * FROM dept d WHERE NOT EXISTS (SELECT 1 FROM emp e WHERE e.dept_id=d.id);</code></td></tr>
+                    </table>
                 `
             },
             'window-functions': {
@@ -4145,6 +4370,30 @@
                             <td style="border:1px solid #ddd; padding:8px;"><strong>Sliding windows</strong></td>
                             <td style="border:1px solid #ddd; padding:8px;"><code>PRECEDING, FOLLOWING</code></td>
                         </tr>
+                    </table>
+
+                    <h4 style="margin-top: 2rem; margin-bottom: 1rem; color: #06b6d4;">🧮 Advanced Calculations with Window Functions</h4>
+                    <table style="width:100%; font-size:0.7rem; border-collapse:collapse;">
+                        <tr style="background:#f0f0f0;">
+                            <th style="border:1px solid #ddd; padding:4px; text-align:left; font-weight:bold;">Use Case</th>
+                            <th style="border:1px solid #ddd; padding:4px; text-align:left; font-weight:bold;">Window Function</th>
+                            <th style="border:1px solid #ddd; padding:4px; text-align:left; font-weight:bold;">Example</th>
+                        </tr>
+                        <tr><td style="border:1px solid #ddd; padding:4px;"><strong>Cumulative Sum</strong></td><td style="border:1px solid #ddd; padding:4px;"><code>SUM() OVER()</code></td><td style="border:1px solid #ddd; padding:4px;"><code>SUM(amount) OVER (ORDER BY date ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW)</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:4px;"><strong>Rolling Average</strong></td><td style="border:1px solid #ddd; padding:4px;"><code>AVG() OVER()</code></td><td style="border:1px solid #ddd; padding:4px;"><code>AVG(amount) OVER (ORDER BY date ROWS BETWEEN 6 PRECEDING AND CURRENT ROW)</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:4px;"><strong>Rolling Sum</strong></td><td style="border:1px solid #ddd; padding:4px;"><code>SUM() OVER()</code></td><td style="border:1px solid #ddd; padding:4px;"><code>SUM(amount) OVER (ORDER BY date ROWS BETWEEN 2 PRECEDING AND CURRENT ROW)</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:4px;"><strong>Top-N per group</strong></td><td style="border:1px solid #ddd; padding:4px;"><code>ROW_NUMBER()</code></td><td style="border:1px solid #ddd; padding:4px;"><code>ROW_NUMBER() OVER (PARTITION BY category ORDER BY amount DESC)</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:4px;"><strong>Dense Ranking</strong></td><td style="border:1px solid #ddd; padding:4px;"><code>DENSE_RANK()</code></td><td style="border:1px solid #ddd; padding:4px;"><code>DENSE_RANK() OVER (ORDER BY amount DESC)</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:4px;"><strong>Standard Ranking</strong></td><td style="border:1px solid #ddd; padding:4px;"><code>RANK()</code></td><td style="border:1px solid #ddd; padding:4px;"><code>RANK() OVER (ORDER BY amount DESC)</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:4px;"><strong>Day-over-day change</strong></td><td style="border:1px solid #ddd; padding:4px;"><code>LAG()</code></td><td style="border:1px solid #ddd; padding:4px;"><code>amount - LAG(amount) OVER (ORDER BY date)</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:4px;"><strong>Look-ahead</strong></td><td style="border:1px solid #ddd; padding:4px;"><code>LEAD()</code></td><td style="border:1px solid #ddd; padding:4px;"><code>LEAD(amount) OVER (ORDER BY date)</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:4px;"><strong>% of total</strong></td><td style="border:1px solid #ddd; padding:4px;"><code>SUM() OVER()</code></td><td style="border:1px solid #ddd; padding:4px;"><code>amount / SUM(amount) OVER () * 100</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:4px;"><strong>Running total/group</strong></td><td style="border:1px solid #ddd; padding:4px;"><code>SUM() OVER(PARTITION)</code></td><td style="border:1px solid #ddd; padding:4px;"><code>SUM(amount) OVER (PARTITION BY category ORDER BY date)</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:4px;"><strong>First value</strong></td><td style="border:1px solid #ddd; padding:4px;"><code>FIRST_VALUE()</code></td><td style="border:1px solid #ddd; padding:4px;"><code>FIRST_VALUE(amount) OVER (PARTITION BY category ORDER BY date)</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:4px;"><strong>Last value</strong></td><td style="border:1px solid #ddd; padding:4px;"><code>LAST_VALUE()</code></td><td style="border:1px solid #ddd; padding:4px;"><code>LAST_VALUE(amount) OVER (ORDER BY date ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING)</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:4px;"><strong>Gap detection</strong></td><td style="border:1px solid #ddd; padding:4px;"><code>LEAD()</code></td><td style="border:1px solid #ddd; padding:4px;"><code>LEAD(value) OVER (ORDER BY value) - value</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:4px;"><strong>Deduplication</strong></td><td style="border:1px solid #ddd; padding:4px;"><code>ROW_NUMBER()</code></td><td style="border:1px solid #ddd; padding:4px;"><code>ROW_NUMBER() OVER (PARTITION BY key_col ORDER BY id) = 1</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:4px;"><strong>Running count</strong></td><td style="border:1px solid #ddd; padding:4px;"><code>COUNT() OVER()</code></td><td style="border:1px solid #ddd; padding:4px;"><code>COUNT(*) OVER (ORDER BY date)</code></td></tr>
                     </table>
                 `
             },
@@ -4317,6 +4566,25 @@
                             <td style="border:1px solid #ddd; padding:6px;"><code>SELECT * FROM sales WHERE MONTH(sale_date) BETWEEN 6 AND 8 AND YEAR(sale_date) = YEAR(CURRENT_DATE())</code></td>
                         </tr>
                     </table>
+
+                    <h4 style="margin-top: 2rem; margin-bottom: 1rem; color: #06b6d4;">🔹 Date-Based Business Problems</h4>
+                    <table style="width:100%; font-size:0.8rem; border-collapse:collapse;">
+                        <tr style="background:#f0f0f0;">
+                            <th style="border:1px solid #ddd; padding:6px; text-align:left; font-weight:bold;">Scenario</th>
+                            <th style="border:1px solid #ddd; padding:6px; text-align:left; font-weight:bold;">Description</th>
+                            <th style="border:1px solid #ddd; padding:6px; text-align:left; font-weight:bold;">SQL (MySQL / Snowflake)</th>
+                        </tr>
+                        <tr><td style="border:1px solid #ddd; padding:6px;"><strong>Month-over-month growth</strong></td><td style="border:1px solid #ddd; padding:6px;">Revenue growth</td><td style="border:1px solid #ddd; padding:6px;"><code>SUM(amount) - LAG(SUM(amount)) OVER(ORDER BY month)</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:6px;"><strong>YTD total</strong></td><td style="border:1px solid #ddd; padding:6px;">Year-to-date sum</td><td style="border:1px solid #ddd; padding:6px;"><code>SUM(amount) OVER(PARTITION BY YEAR(dt) ORDER BY dt)</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:6px;"><strong>Active users (30 days)</strong></td><td style="border:1px solid #ddd; padding:6px;">Last 30 days active</td><td style="border:1px solid #ddd; padding:6px;"><code>WHERE login_date >= CURDATE()-30 (MySQL) / CURRENT_DATE-30 (Snowflake)</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:6px;"><strong>Gap detection</strong></td><td style="border:1px solid #ddd; padding:6px;">Missing dates</td><td style="border:1px solid #ddd; padding:6px;"><code>Window function + calendar table</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:6px;"><strong>Session duration</strong></td><td style="border:1px solid #ddd; padding:6px;">Login to logout</td><td style="border:1px solid #ddd; padding:6px;"><code>TIMESTAMPDIFF(MINUTE, login, logout) / DATEDIFF(minute, login, logout)</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:6px;"><strong>First purchase date</strong></td><td style="border:1px solid #ddd; padding:6px;">Customer acquisition</td><td style="border:1px solid #ddd; padding:6px;"><code>MIN(order_date)</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:6px;"><strong>Churn users</strong></td><td style="border:1px solid #ddd; padding:6px;">No activity in 90 days</td><td style="border:1px solid #ddd; padding:6px;"><code>Subquery with date filter WHERE last_login < CURRENT_DATE - 90</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:6px;"><strong>Retention rate</strong></td><td style="border:1px solid #ddd; padding:6px;">Repeat customers</td><td style="border:1px solid #ddd; padding:6px;"><code>COUNT(DISTINCT cust_id) with repeat criteria</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:6px;"><strong>Peak day</strong></td><td style="border:1px solid #ddd; padding:6px;">Highest sales day</td><td style="border:1px solid #ddd; padding:6px;"><code>ORDER BY SUM(amount) DESC LIMIT 1</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:6px;"><strong>Weekend sales</strong></td><td style="border:1px solid #ddd; padding:6px;">Sales on weekends</td><td style="border:1px solid #ddd; padding:6px;"><code>WHERE DAYOFWEEK(date) IN (1,7)</code></td></tr>
+                    </table>
                 `
             },
             'data-cleaning': {
@@ -4325,6 +4593,167 @@
                 content: `
                     <p><strong>Why it matters:</strong> Data cleaning is 80% of data work.</p>
                     <div class="hint">Approach: identify issues → test fix → apply → verify. Always test on subset first.</div>
+
+                    <h4 style="margin-top: 2rem; margin-bottom: 1rem; color: #06b6d4;">8️⃣ SQL Data Cleaning Techniques</h4>
+                    <table style="width:100%; font-size:0.85rem; border-collapse:collapse; margin: 1rem 0;">
+                        <tr style="background:#f0f0f0;">
+                            <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">Technique</th>
+                            <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">Description</th>
+                            <th style="border:1px solid #ddd; padding:8px; text-align:left; font-weight:bold;">SQL Example</th>
+                        </tr>
+                        <tr>
+                            <td style="border:1px solid #ddd; padding:8px;"><strong>Remove Duplicates</strong></td>
+                            <td style="border:1px solid #ddd; padding:8px;">Eliminate duplicate records</td>
+                            <td style="border:1px solid #ddd; padding:8px;"><code>DELETE FROM table WHERE id IN (SELECT id FROM (SELECT id, ROW_NUMBER() OVER (PARTITION BY email ORDER BY created_at) rn FROM table) t WHERE rn > 1)</code></td>
+                        </tr>
+                        <tr>
+                            <td style="border:1px solid #ddd; padding:8px;"><strong>Handle Missing Values</strong></td>
+                            <td style="border:1px solid #ddd; padding:8px;">Fill or remove NULL values</td>
+                            <td style="border:1px solid #ddd; padding:8px;"><code>SELECT COALESCE(phone, 'N/A') FROM customers</code></td>
+                        </tr>
+                        <tr>
+                            <td style="border:1px solid #ddd; padding:8px;"><strong>Standardize Formats</strong></td>
+                            <td style="border:1px solid #ddd; padding:8px;">Ensure consistent data format</td>
+                            <td style="border:1px solid #ddd; padding:8px;"><code>UPDATE table SET email = LOWER(email)</code></td>
+                        </tr>
+                        <tr>
+                            <td style="border:1px solid #ddd; padding:8px;"><strong>Trim Whitespaces</strong></td>
+                            <td style="border:1px solid #ddd; padding:8px;">Remove leading/trailing spaces</td>
+                            <td style="border:1px solid #ddd; padding:8px;"><code>UPDATE table SET name = TRIM(name)</code></td>
+                        </tr>
+                        <tr>
+                            <td style="border:1px solid #ddd; padding:8px;"><strong>Convert Data Types</strong></td>
+                            <td style="border:1px solid #ddd; padding:8px;">Change column data type safely</td>
+                            <td style="border:1px solid #ddd; padding:8px;"><code>UPDATE table SET amount = CAST(amount AS DECIMAL(10,2))</code></td>
+                        </tr>
+                        <tr>
+                            <td style="border:1px solid #ddd; padding:8px;"><strong>Validate Data</strong></td>
+                            <td style="border:1px solid #ddd; padding:8px;">Check for valid values</td>
+                            <td style="border:1px solid #ddd; padding:8px;"><code>SELECT * FROM table WHERE email NOT LIKE '%@%.%' OR amount < 0</code></td>
+                        </tr>
+                        <tr>
+                            <td style="border:1px solid #ddd; padding:8px;"><strong>Remove Irrelevant Columns</strong></td>
+                            <td style="border:1px solid #ddd; padding:8px;">Drop unused or redundant data</td>
+                            <td style="border:1px solid #ddd; padding:8px;"><code>ALTER TABLE table DROP COLUMN temp_column</code></td>
+                        </tr>
+                        <tr>
+                            <td style="border:1px solid #ddd; padding:8px;"><strong>Handle Duplicated IDs</strong></td>
+                            <td style="border:1px solid #ddd; padding:8px;">Keep first occurrence, remove rest</td>
+                            <td style="border:1px solid #ddd; padding:8px;"><code>DELETE FROM table WHERE id IN (SELECT id FROM (SELECT id, ROW_NUMBER() OVER (PARTITION BY key_col ORDER BY created_at) rn FROM table) WHERE rn > 1)</code></td>
+                        </tr>
+                    </table>
+
+                    <h4 style="margin-top: 2rem; margin-bottom: 1rem; color: #06b6d4;">📊 Data Cleaning Techniques - Basic to Advanced (Snowflake)</h4>
+                    <table style="width:100%; font-size:0.75rem; border-collapse:collapse; margin: 1rem 0;">
+                        <tr style="background:#f0f0f0;">
+                            <th style="border:1px solid #ddd; padding:6px; text-align:left; font-weight:bold;">Level</th>
+                            <th style="border:1px solid #ddd; padding:6px; text-align:left; font-weight:bold;">Technique</th>
+                            <th style="border:1px solid #ddd; padding:6px; text-align:left; font-weight:bold;">Description</th>
+                            <th style="border:1px solid #ddd; padding:6px; text-align:left; font-weight:bold;">Snowflake Query Example</th>
+                        </tr>
+                        <tr style="background:#f9f9f9;">
+                            <td style="border:1px solid #ddd; padding:6px;"><strong>BASIC</strong></td>
+                            <td style="border:1px solid #ddd; padding:6px;"><strong>Remove Duplicates</strong></td>
+                            <td style="border:1px solid #ddd; padding:6px;">Keep only unique records</td>
+                            <td style="border:1px solid #ddd; padding:6px;"><code style="font-size:0.7rem;">DELETE FROM customers WHERE customer_id IN (SELECT customer_id FROM (SELECT customer_id, ROW_NUMBER() OVER (ORDER BY customer_id) AS rn FROM customers) WHERE rn > 1);</code></td>
+                        </tr>
+                        <tr>
+                            <td style="border:1px solid #ddd; padding:6px;"><strong>BASIC</strong></td>
+                            <td style="border:1px solid #ddd; padding:6px;"><strong>Handle NULLs</strong></td>
+                            <td style="border:1px solid #ddd; padding:6px;">Replace or remove NULL values</td>
+                            <td style="border:1px solid #ddd; padding:6px;"><code style="font-size:0.7rem;">UPDATE customers SET phone = COALESCE(phone, 'N/A'); SELECT * FROM customers WHERE email IS NOT NULL;</code></td>
+                        </tr>
+                        <tr style="background:#f9f9f9;">
+                            <td style="border:1px solid #ddd; padding:6px;"><strong>BASIC</strong></td>
+                            <td style="border:1px solid #ddd; padding:6px;"><strong>Trim Whitespace</strong></td>
+                            <td style="border:1px solid #ddd; padding:6px;">Remove leading/trailing spaces</td>
+                            <td style="border:1px solid #ddd; padding:6px;"><code style="font-size:0.7rem;">UPDATE customers SET name = TRIM(name), email = TRIM(email);</code></td>
+                        </tr>
+                        <tr>
+                            <td style="border:1px solid #ddd; padding:6px;"><strong>BASIC</strong></td>
+                            <td style="border:1px solid #ddd; padding:6px;"><strong>Standardize Case</strong></td>
+                            <td style="border:1px solid #ddd; padding:6px;">Uniform text format (upper/lower)</td>
+                            <td style="border:1px solid #ddd; padding:6px;"><code style="font-size:0.7rem;">UPDATE customers SET email = LOWER(email), category = UPPER(category);</code></td>
+                        </tr>
+                        <tr style="background:#f9f9f9;">
+                            <td style="border:1px solid #ddd; padding:6px;"><strong>BASIC</strong></td>
+                            <td style="border:1px solid #ddd; padding:6px;"><strong>Data Type Casting</strong></td>
+                            <td style="border:1px solid #ddd; padding:6px;">Convert to correct data type</td>
+                            <td style="border:1px solid #ddd; padding:6px;"><code style="font-size:0.7rem;">SELECT CAST(salary AS DECIMAL(10,2)), TO_DATE(birth_date, 'YYYY-MM-DD') FROM employees;</code></td>
+                        </tr>
+                        <tr>
+                            <td style="border:1px solid #ddd; padding:6px;"><strong>BASIC</strong></td>
+                            <td style="border:1px solid #ddd; padding:6px;"><strong>Validate Range</strong></td>
+                            <td style="border:1px solid #ddd; padding:6px;">Check for invalid values</td>
+                            <td style="border:1px solid #ddd; padding:6px;"><code style="font-size:0.7rem;">DELETE FROM orders WHERE amount < 0 OR amount > 1000000 OR order_date > CURRENT_DATE;</code></td>
+                        </tr>
+                        <tr style="background:#e8f4f8;">
+                            <td style="border:1px solid #ddd; padding:6px;"><strong>INTERMEDIATE</strong></td>
+                            <td style="border:1px solid #ddd; padding:6px;"><strong>Remove Special Characters</strong></td>
+                            <td style="border:1px solid #ddd; padding:6px;">Clean unwanted symbols</td>
+                            <td style="border:1px solid #ddd; padding:6px;"><code style="font-size:0.7rem;">UPDATE products SET sku = REGEXP_REPLACE(sku, '[^A-Z0-9]', ''); -- Keep only alphanumeric</code></td>
+                        </tr>
+                        <tr style="background:#e8f4f8;">
+                            <td style="border:1px solid #ddd; padding:6px;"><strong>INTERMEDIATE</strong></td>
+                            <td style="border:1px solid #ddd; padding:6px;"><strong>Fill Missing Values</strong></td>
+                            <td style="border:1px solid #ddd; padding:6px;">Impute with forward-fill or mean</td>
+                            <td style="border:1px solid #ddd; padding:6px;"><code style="font-size:0.7rem;">SELECT *, COALESCE(rating, AVG(rating) OVER (PARTITION BY category)) AS rating FROM reviews;</code></td>
+                        </tr>
+                        <tr style="background:#e8f4f8;">
+                            <td style="border:1px solid #ddd; padding:6px;"><strong>INTERMEDIATE</strong></td>
+                            <td style="border:1px solid #ddd; padding:6px;"><strong>Split Columns</strong></td>
+                            <td style="border:1px solid #ddd; padding:6px;">Parse combined data into separate columns</td>
+                            <td style="border:1px solid #ddd; padding:6px;"><code style="font-size:0.7rem;">SELECT SPLIT_PART(full_name, ' ', 1) AS first_name, SPLIT_PART(full_name, ' ', 2) AS last_name FROM customers;</code></td>
+                        </tr>
+                        <tr style="background:#e8f4f8;">
+                            <td style="border:1px solid #ddd; padding:6px;"><strong>INTERMEDIATE</strong></td>
+                            <td style="border:1px solid #ddd; padding:6px;"><strong>Date Standardization</strong></td>
+                            <td style="border:1px solid #ddd; padding:6px;">Convert various date formats to standard</td>
+                            <td style="border:1px solid #ddd; padding:6px;"><code style="font-size:0.7rem;">UPDATE events SET event_date = CASE WHEN LENGTH(event_date) = 10 THEN TO_DATE(event_date, 'YYYY-MM-DD') ELSE TO_DATE(event_date, 'MM/DD/YYYY') END;</code></td>
+                        </tr>
+                        <tr style="background:#e8f4f8;">
+                            <td style="border:1px solid #ddd; padding:6px;"><strong>INTERMEDIATE</strong></td>
+                            <td style="border:1px solid #ddd; padding:6px;"><strong>Pattern Validation</strong></td>
+                            <td style="border:1px solid #ddd; padding:6px;">Verify format matches rules</td>
+                            <td style="border:1px solid #ddd; padding:6px;"><code style="font-size:0.7rem;">SELECT * FROM users WHERE email NOT REGEXP_LIKE('^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Z|a-z]{2,}$');</code></td>
+                        </tr>
+                        <tr style="background:#f0f5e8;">
+                            <td style="border:1px solid #ddd; padding:6px;"><strong>ADVANCED</strong></td>
+                            <td style="border:1px solid #ddd; padding:6px;"><strong>Outlier Detection (Z-Score)</strong></td>
+                            <td style="border:1px solid #ddd; padding:6px;">Identify statistical anomalies</td>
+                            <td style="border:1px solid #ddd; padding:6px;"><code style="font-size:0.7rem;">WITH stats AS (SELECT AVG(amount) AS mean, STDDEV_POP(amount) AS std FROM transactions) SELECT * FROM transactions, stats WHERE ABS((amount - stats.mean) / stats.std) > 3;</code></td>
+                        </tr>
+                        <tr style="background:#f0f5e8;">
+                            <td style="border:1px solid #ddd; padding:6px;"><strong>ADVANCED</strong></td>
+                            <td style="border:1px solid #ddd; padding:6px;"><strong>IQR Outlier Detection</strong></td>
+                            <td style="border:1px solid #ddd; padding:6px;">Find outliers using interquartile range</td>
+                            <td style="border:1px solid #ddd; padding:6px;"><code style="font-size:0.7rem;">WITH quartiles AS (SELECT PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY salary) AS q1, PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY salary) AS q3 FROM employees) SELECT * FROM employees, quartiles WHERE salary < q1 - 1.5 * (q3 - q1) OR salary > q3 + 1.5 * (q3 - q1);</code></td>
+                        </tr>
+                        <tr style="background:#f0f5e8;">
+                            <td style="border:1px solid #ddd; padding:6px;"><strong>ADVANCED</strong></td>
+                            <td style="border:1px solid #ddd; padding:6px;"><strong>Fuzzy Matching</strong></td>
+                            <td style="border:1px solid #ddd; padding:6px;">Find similar but not identical records</td>
+                            <td style="border:1px solid #ddd; padding:6px;"><code style="font-size:0.7rem;">SELECT a.*, b.* FROM customers a JOIN customers b ON EDITDISTANCE(UPPER(a.name), UPPER(b.name)) <= 2 WHERE a.customer_id < b.customer_id;</code></td>
+                        </tr>
+                        <tr style="background:#f0f5e8;">
+                            <td style="border:1px solid #ddd; padding:6px;"><strong>ADVANCED</strong></td>
+                            <td style="border:1px solid #ddd; padding:6px;"><strong>Data Profiling</strong></td>
+                            <td style="border:1px solid #ddd; padding:6px;">Generate comprehensive data quality metrics</td>
+                            <td style="border:1px solid #ddd; padding:6px;"><code style="font-size:0.7rem;">SELECT COUNT(*) AS total_rows, COUNT(DISTINCT id) AS distinct_ids, SUM(CASE WHEN email IS NULL THEN 1 ELSE 0 END) AS null_emails, COUNT(DISTINCT email) / COUNT(*) AS email_uniqueness FROM users;</code></td>
+                        </tr>
+                        <tr style="background:#f0f5e8;">
+                            <td style="border:1px solid #ddd; padding:6px;"><strong>ADVANCED</strong></td>
+                            <td style="border:1px solid #ddd; padding:6px;"><strong>Quality Score Calculation</strong></td>
+                            <td style="border:1px solid #ddd; padding:6px;">Assign data completeness/accuracy score</td>
+                            <td style="border:1px solid #ddd; padding:6px;"><code style="font-size:0.7rem;">SELECT customer_id, ROUND((CASE WHEN name IS NOT NULL THEN 1 ELSE 0 END + CASE WHEN email IS NOT NULL THEN 1 ELSE 0 END + CASE WHEN phone IS NOT NULL THEN 1 ELSE 0 END) / 3.0 * 100, 2) AS completeness_score FROM customers;</code></td>
+                        </tr>
+                        <tr style="background:#f0f5e8;">
+                            <td style="border:1px solid #ddd; padding:6px;"><strong>ADVANCED</strong></td>
+                            <td style="border:1px solid #ddd; padding:6px;"><strong>Time-Series Gap Detection</strong></td>
+                            <td style="border:1px solid #ddd; padding:6px;">Find missing sequences or periods</td>
+                            <td style="border:1px solid #ddd; padding:6px;"><code style="font-size:0.7rem;">WITH daily_data AS (SELECT DISTINCT date FROM sales ORDER BY date) SELECT date, date - ROW_NUMBER() OVER (ORDER BY date) AS gap_group FROM daily_data HAVING COUNT(*) > 1;</code></td>
+                        </tr>
+                    </table>
                 `
             },
             'procedures': {
@@ -4472,6 +4901,298 @@
                     <p style="margin-top: 1rem;"><strong>Check event scheduler status:</strong></p>
                     <div class="code-block" style="font-size:0.85rem;">SHOW VARIABLES LIKE 'event%';<br><br>-- Enable event scheduler<br>SET event_scheduler = 'ON';</div>
                 `
+            },
+            'string-functions': {
+                title: '📝 String & Case Functions',
+                subtitle: 'String manipulation, CASE expressions, and text transformations',
+                content: `
+                    <p><strong>Concepts:</strong> String functions for data cleaning, case conversion, concatenation, and pattern matching.</p>
+                    <div class="code-block">SELECT CONCAT(first_name, ' ', last_name) AS full_name,<br>UPPER(department) AS dept_upper,<br>SUBSTRING(email, 1, POSITION('@' IN email)-1) AS username<br>FROM employees;</div>
+                    <div class="hint">String functions are essential for data cleaning and formatting. Common in ETL pipelines.</div>
+
+                    <h4 style="margin-top: 2rem; margin-bottom: 1rem; color: #06b6d4;">🔹 Case Scenarios in Snowflake/MySQL</h4>
+                    <table style="width:100%; font-size:0.8rem; border-collapse:collapse;">
+                        <tr style="background:#f0f0f0;">
+                            <th style="border:1px solid #ddd; padding:6px; text-align:left; font-weight:bold;">Scenario</th>
+                            <th style="border:1px solid #ddd; padding:6px; text-align:left; font-weight:bold;">Input</th>
+                            <th style="border:1px solid #ddd; padding:6px; text-align:left; font-weight:bold;">SQL Expression</th>
+                            <th style="border:1px solid #ddd; padding:6px; text-align:left; font-weight:bold;">Output</th>
+                        </tr>
+                        <tr><td style="border:1px solid #ddd; padding:6px;"><strong>Uppercase</strong></td><td style="border:1px solid #ddd; padding:6px;"><code>PRODUCT</code></td><td style="border:1px solid #ddd; padding:6px;"><code>INITCAP(product_name)</code></td><td style="border:1px solid #ddd; padding:6px;"><code>Product</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:6px;"><strong>Mixed case</strong></td><td style="border:1px solid #ddd; padding:6px;"><code>pRoDuCt</code></td><td style="border:1px solid #ddd; padding:6px;"><code>INITCAP(product_name)</code></td><td style="border:1px solid #ddd; padding:6px;"><code>Product</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:6px;"><strong>Multiple words</strong></td><td style="border:1px solid #ddd; padding:6px;"><code>gaming mouse</code></td><td style="border:1px solid #ddd; padding:6px;"><code>INITCAP(product_name)</code></td><td style="border:1px solid #ddd; padding:6px;"><code>Gaming Mouse</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:6px;"><strong>Uppercase words</strong></td><td style="border:1px solid #ddd; padding:6px;"><code>WIRELESS KEYBOARD</code></td><td style="border:1px solid #ddd; padding:6px;"><code>INITCAP(product_name)</code></td><td style="border:1px solid #ddd; padding:6px;"><code>Wireless Keyboard</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:6px;"><strong>Hyphenated</strong></td><td style="border:1px solid #ddd; padding:6px;"><code>wireless-mouse</code></td><td style="border:1px solid #ddd; padding:6px;"><code>INITCAP(product_name)</code></td><td style="border:1px solid #ddd; padding:6px;"><code>Wireless-Mouse</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:6px;"><strong>Apostrophe</strong></td><td style="border:1px solid #ddd; padding:6px;"><code>o'connor device</code></td><td style="border:1px solid #ddd; padding:6px;"><code>INITCAP(product_name)</code></td><td style="border:1px solid #ddd; padding:6px;"><code>O'Connor Device</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:6px;"><strong>Numbers</strong></td><td style="border:1px solid #ddd; padding:6px;"><code>usb cable 2m</code></td><td style="border:1px solid #ddd; padding:6px;"><code>INITCAP(product_name)</code></td><td style="border:1px solid #ddd; padding:6px;"><code>Usb Cable 2m</code></td></tr>
+                    </table>
+                `
+            },
+            'advanced-sql': {
+                title: '⚡ Advanced SQL Scenarios',
+                subtitle: 'Top N per group, running totals, deduplication, hierarchies, and complex analytics',
+                content: `
+                    <p><strong>Master advanced patterns:</strong> These scenarios combine multiple SQL concepts for complex data problems.</p>
+                    <div class="hint">Use window functions for most of these patterns. They're more efficient than self-joins or subqueries.</div>
+
+                    <h4 style="margin-top: 2rem; margin-bottom: 1rem; color: #06b6d4;">🔹 Advanced SQL Scenarios (10 Patterns)</h4>
+                    <table style="width:100%; font-size:0.75rem; border-collapse:collapse;">
+                        <tr style="background:#f0f0f0;">
+                            <th style="border:1px solid #ddd; padding:5px; text-align:left; font-weight:bold;">S.No</th>
+                            <th style="border:1px solid #ddd; padding:5px; text-align:left; font-weight:bold;">Scenario</th>
+                            <th style="border:1px solid #ddd; padding:5px; text-align:left; font-weight:bold;">Description</th>
+                            <th style="border:1px solid #ddd; padding:5px; text-align:left; font-weight:bold;">SQL</th>
+                        </tr>
+                        <tr><td style="border:1px solid #ddd; padding:5px;">1</td><td style="border:1px solid #ddd; padding:5px;"><strong>Top N per group</strong></td><td style="border:1px solid #ddd; padding:5px;">Find top 3 salaries per department</td><td style="border:1px solid #ddd; padding:5px;"><code>SELECT * FROM (SELECT *, ROW_NUMBER() OVER(PARTITION BY dept ORDER BY salary DESC) rn FROM emp) t WHERE rn<=3;</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:5px;">2</td><td style="border:1px solid #ddd; padding:5px;"><strong>Second highest salary</strong></td><td style="border:1px solid #ddd; padding:5px;">Get 2nd highest salary overall</td><td style="border:1px solid #ddd; padding:5px;"><code>SELECT MAX(salary) FROM emp WHERE salary < (SELECT MAX(salary) FROM emp);</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:5px;">3</td><td style="border:1px solid #ddd; padding:5px;"><strong>Nth highest salary</strong></td><td style="border:1px solid #ddd; padding:5px;">Fetch Nth highest salary</td><td style="border:1px solid #ddd; padding:5px;"><code>SELECT salary FROM (SELECT salary, DENSE_RANK() OVER(ORDER BY salary DESC) r FROM emp) t WHERE r=N;</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:5px;">4</td><td style="border:1px solid #ddd; padding:5px;"><strong>Running total</strong></td><td style="border:1px solid #ddd; padding:5px;">Cumulative salary by date</td><td style="border:1px solid #ddd; padding:5px;"><code>SUM(salary) OVER(ORDER BY hire_date)</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:5px;">5</td><td style="border:1px solid #ddd; padding:5px;"><strong>Moving average</strong></td><td style="border:1px solid #ddd; padding:5px;">3-month rolling average</td><td style="border:1px solid #ddd; padding:5px;"><code>AVG(salary) OVER(ORDER BY hire_date ROWS 2 PRECEDING)</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:5px;">6</td><td style="border:1px solid #ddd; padding:5px;"><strong>Salary comparison</strong></td><td style="border:1px solid #ddd; padding:5px;">Compare salary with previous row</td><td style="border:1px solid #ddd; padding:5px;"><code>salary - LAG(salary) OVER(ORDER BY hire_date)</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:5px;">7</td><td style="border:1px solid #ddd; padding:5px;"><strong>Rank change</strong></td><td style="border:1px solid #ddd; padding:5px;">Rank difference month over month</td><td style="border:1px solid #ddd; padding:5px;"><code>RANK() OVER(ORDER BY salary) - LAG(RANK() OVER(ORDER BY salary)) OVER()</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:5px;">8</td><td style="border:1px solid #ddd; padding:5px;"><strong>Percent contribution</strong></td><td style="border:1px solid #ddd; padding:5px;">Salary % of department total</td><td style="border:1px solid #ddd; padding:5px;"><code>salary*100 / SUM(salary) OVER(PARTITION BY dept)</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:5px;">9</td><td style="border:1px solid #ddd; padding:5px;"><strong>Duplicate detection</strong></td><td style="border:1px solid #ddd; padding:5px;">Find duplicate records</td><td style="border:1px solid #ddd; padding:5px;"><code>SELECT id, COUNT(*) FROM emp GROUP BY id HAVING COUNT(*)>1;</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:5px;">10</td><td style="border:1px solid #ddd; padding:5px;"><strong>Remove duplicates</strong></td><td style="border:1px solid #ddd; padding:5px;">Keep latest record</td><td style="border:1px solid #ddd; padding:5px;"><code>DELETE FROM emp WHERE id NOT IN (SELECT MAX(id) FROM emp GROUP BY emp_id);</code></td></tr>
+                    </table>
+                `
+            },
+            'data-exploration': {
+                title: '🔍 Data Exploration & Analysis',
+                subtitle: 'MySQL vs Snowflake comparison, data profiling, and exploratory queries',
+                content: `
+                    <p><strong>Data Exploration is the first step:</strong> Before analysis, understand your data structure, distributions, and quality issues.</p>
+                    <div class="hint">Always start with LIMIT, COUNT, and DISTINCT. Profile data before running complex queries.</div>
+
+                    <h4 style="margin-top: 2rem; margin-bottom: 1rem; color: #06b6d4;">🔹 Basic Data Exploration (MySQL vs Snowflake)</h4>
+                    <table style="width:100%; font-size:0.75rem; border-collapse:collapse; margin-bottom: 2rem;">
+                        <tr style="background:#f0f0f0;">
+                            <th style="border:1px solid #ddd; padding:5px; text-align:left; font-weight:bold;">Operation</th>
+                            <th style="border:1px solid #ddd; padding:5px; text-align:left; font-weight:bold;">MySQL</th>
+                            <th style="border:1px solid #ddd; padding:5px; text-align:left; font-weight:bold;">Snowflake</th>
+                        </tr>
+                        <tr><td style="border:1px solid #ddd; padding:5px;"><strong>View table structure</strong></td><td style="border:1px solid #ddd; padding:5px;"><code>DESCRIBE table_name;</code></td><td style="border:1px solid #ddd; padding:5px;"><code>DESC TABLE table_name;</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:5px;"><strong>Preview data</strong></td><td style="border:1px solid #ddd; padding:5px;"><code>SELECT * FROM table LIMIT 10;</code></td><td style="border:1px solid #ddd; padding:5px;"><code>SELECT * FROM table LIMIT 10;</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:5px;"><strong>Count rows</strong></td><td style="border:1px solid #ddd; padding:5px;"><code>SELECT COUNT(*) FROM table;</code></td><td style="border:1px solid #ddd; padding:5px;"><code>SELECT COUNT(*) FROM table;</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:5px;"><strong>Check NULL</strong></td><td style="border:1px solid #ddd; padding:5px;"><code>WHERE col IS NULL</code></td><td style="border:1px solid #ddd; padding:5px;"><code>WHERE col IS NULL</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:5px;"><strong>Frequency dist</strong></td><td style="border:1px solid #ddd; padding:5px;"><code>GROUP BY col ORDER BY COUNT(*) DESC</code></td><td style="border:1px solid #ddd; padding:5px;"><code>GROUP BY col ORDER BY COUNT(*) DESC</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:5px;"><strong>Pattern match</strong></td><td style="border:1px solid #ddd; padding:5px;"><code>WHERE text LIKE '%pattern%'</code></td><td style="border:1px solid #ddd; padding:5px;"><code>WHERE text ILIKE '%pattern%'</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:5px;"><strong>Find duplicates</strong></td><td style="border:1px solid #ddd; padding:5px;"><code>GROUP BY id HAVING COUNT(*)>1</code></td><td style="border:1px solid #ddd; padding:5px;"><code>GROUP BY id HAVING COUNT(*)>1</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:5px;"><strong>Random sample</strong></td><td style="border:1px solid #ddd; padding:5px;"><code>ORDER BY RAND() LIMIT 10</code></td><td style="border:1px solid #ddd; padding:5px;"><code>SAMPLE (10 ROWS)</code></td></tr>
+                    </table>
+
+                    <h4 style="margin-top: 2rem; margin-bottom: 1rem; color: #06b6d4;">🔹 Advanced Data Exploration Techniques</h4>
+                    <table style="width:100%; font-size:0.7rem; border-collapse:collapse;">
+                        <tr style="background:#f0f0f0;">
+                            <th style="border:1px solid #ddd; padding:4px; text-align:left; font-weight:bold;">Operation</th>
+                            <th style="border:1px solid #ddd; padding:4px; text-align:left; font-weight:bold;">SQL Example</th>
+                            <th style="border:1px solid #ddd; padding:4px; text-align:left; font-weight:bold;">Use Case</th>
+                        </tr>
+                        <tr><td style="border:1px solid #ddd; padding:4px;"><strong>7-day rolling avg</strong></td><td style="border:1px solid #ddd; padding:4px;"><code>AVG(col3) OVER (PARTITION BY col1 ORDER BY col2 ROWS BETWEEN 6 PRECEDING AND CURRENT ROW)</code></td><td style="border:1px solid #ddd; padding:4px;">Smooth trends</td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:4px;"><strong>Cumulative sum</strong></td><td style="border:1px solid #ddd; padding:4px;"><code>SUM(col3) OVER (PARTITION BY col1 ORDER BY col2 ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW)</code></td><td style="border:1px solid #ddd; padding:4px;">Running totals</td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:4px;"><strong>Percent change DoD</strong></td><td style="border:1px solid #ddd; padding:4px;"><code>ROUND((col3 - LAG(col3) OVER(...)) / LAG(col3) OVER(...) * 100, 2)</code></td><td style="border:1px solid #ddd; padding:4px;">Growth rate</td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:4px;"><strong>Rank within group</strong></td><td style="border:1px solid #ddd; padding:4px;"><code>RANK() OVER (PARTITION BY col1 ORDER BY col3 DESC)</code></td><td style="border:1px solid #ddd; padding:4px;">Top N per group</td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:4px;"><strong>Top N rows/group</strong></td><td style="border:1px solid #ddd; padding:4px;"><code>...WHERE RANK()<=5 (or use QUALIFY in Snowflake)</code></td><td style="border:1px solid #ddd; padding:4px;">Best performers</td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:4px;"><strong>Rolling sum</strong></td><td style="border:1px solid #ddd; padding:4px;"><code>SUM(col3) OVER (PARTITION BY col1 ORDER BY col2 ROWS BETWEEN 6 PRECEDING AND CURRENT ROW)</code></td><td style="border:1px solid #ddd; padding:4px;">7-day totals</td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:4px;"><strong>Max per group</strong></td><td style="border:1px solid #ddd; padding:4px;"><code>MAX(col2) OVER (PARTITION BY col1)</code></td><td style="border:1px solid #ddd; padding:4px;">Peak value/group</td></tr>
+                    </table>
+                `
+            },
+            'performance-optimization': {
+                title: '🚀 Performance & Data Structures',
+                subtitle: 'Query optimization, data quality checks, Table vs View vs Materialized View',
+                content: `
+                    <p><strong>Performance matters:</strong> Understand how different approaches impact query execution and resource usage.</p>
+                    <div class="hint">Use EXPLAIN to analyze query plans. Index the right columns. Consider materialized views for complex aggregations.</div>
+
+                    <h4 style="margin-top: 2rem; margin-bottom: 1rem; color: #06b6d4;">🔹 Data Quality & Performance Checks</h4>
+                    <table style="width:100%; font-size:0.8rem; border-collapse:collapse; margin-bottom: 2rem;">
+                        <tr style="background:#f0f0f0;">
+                            <th style="border:1px solid #ddd; padding:6px; text-align:left; font-weight:bold;">Scenario</th>
+                            <th style="border:1px solid #ddd; padding:6px; text-align:left; font-weight:bold;">Description</th>
+                            <th style="border:1px solid #ddd; padding:6px; text-align:left; font-weight:bold;">SQL / Approach</th>
+                        </tr>
+                        <tr><td style="border:1px solid #ddd; padding:6px;"><strong>Null check</strong></td><td style="border:1px solid #ddd; padding:6px;">Validate missing values</td><td style="border:1px solid #ddd; padding:6px;"><code>WHERE col IS NULL</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:6px;"><strong>Negative values</strong></td><td style="border:1px solid #ddd; padding:6px;">Invalid data detection</td><td style="border:1px solid #ddd; padding:6px;"><code>WHERE amount < 0</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:6px;"><strong>Duplicate keys</strong></td><td style="border:1px solid #ddd; padding:6px;">Primary key violations</td><td style="border:1px solid #ddd; padding:6px;"><code>GROUP BY id HAVING COUNT(*)>1</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:6px;"><strong>Outlier detection</strong></td><td style="border:1px solid #ddd; padding:6px;">Find extreme values</td><td style="border:1px solid #ddd; padding:6px;">Use percentile logic or 3-sigma rule</td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:6px;"><strong>Slow query tuning</strong></td><td style="border:1px solid #ddd; padding:6px;">Analyze execution plans</td><td style="border:1px solid #ddd; padding:6px;"><code>EXPLAIN SELECT ...</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:6px;"><strong>Partition pruning</strong></td><td style="border:1px solid #ddd; padding:6px;">Optimize large tables</td><td style="border:1px solid #ddd; padding:6px;">Use date filters in WHERE clause</td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:6px;"><strong>Index usage</strong></td><td style="border:1px solid #ddd; padding:6px;">Speed up queries</td><td style="border:1px solid #ddd; padding:6px;"><code>CREATE INDEX idx_name ON table(col)</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:6px;"><strong>Clustering</strong></td><td style="border:1px solid #ddd; padding:6px;">Snowflake performance</td><td style="border:1px solid #ddd; padding:6px;"><code>ALTER TABLE tab CLUSTER BY (col)</code></td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:6px;"><strong>Cost optimization</strong></td><td style="border:1px solid #ddd; padding:6px;">Reduce scan cost</td><td style="border:1px solid #ddd; padding:6px;">Use selective WHERE filters</td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:6px;"><strong>Concurrency scaling</strong></td><td style="border:1px solid #ddd; padding:6px;">Handle peak loads</td><td style="border:1px solid #ddd; padding:6px;">Snowflake auto-scaling feature</td></tr>
+                    </table>
+
+                    <h4 style="margin-top: 2rem; margin-bottom: 1rem; color: #06b6d4;">📊 Table vs View vs Materialized View</h4>
+                    <table style="width:100%; font-size:0.7rem; border-collapse:collapse;">
+                        <tr style="background:#f0f0f0;">
+                            <th style="border:1px solid #ddd; padding:4px; text-align:left; font-weight:bold;">Feature</th>
+                            <th style="border:1px solid #ddd; padding:4px; text-align:left; font-weight:bold;">Table</th>
+                            <th style="border:1px solid #ddd; padding:4px; text-align:left; font-weight:bold;">View</th>
+                            <th style="border:1px solid #ddd; padding:4px; text-align:left; font-weight:bold;">Materialized View</th>
+                        </tr>
+                        <tr><td style="border:1px solid #ddd; padding:4px;"><strong>Definition</strong></td><td style="border:1px solid #ddd; padding:4px;">Physical storage</td><td style="border:1px solid #ddd; padding:4px;">Virtual query wrapper</td><td style="border:1px solid #ddd; padding:4px;">Materialized query result</td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:4px;"><strong>Data stored</strong></td><td style="border:1px solid #ddd; padding:4px;">✅ Yes</td><td style="border:1px solid #ddd; padding:4px;">❌ No</td><td style="border:1px solid #ddd; padding:4px;">✅ Yes</td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:4px;"><strong>Disk usage</strong></td><td style="border:1px solid #ddd; padding:4px;">High</td><td style="border:1px solid #ddd; padding:4px;">None</td><td style="border:1px solid #ddd; padding:4px;">High</td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:4px;"><strong>Data freshness</strong></td><td style="border:1px solid #ddd; padding:4px;">Always current</td><td style="border:1px solid #ddd; padding:4px;">Always current</td><td style="border:1px solid #ddd; padding:4px;">May be stale</td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:4px;"><strong>INSERT/UPDATE/DELETE</strong></td><td style="border:1px solid #ddd; padding:4px;">✅ Full support</td><td style="border:1px solid #ddd; padding:4px;">⚠️ Limited</td><td style="border:1px solid #ddd; padding:4px;">❌ Not allowed</td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:4px;"><strong>Index support</strong></td><td style="border:1px solid #ddd; padding:4px;">✅ Yes</td><td style="border:1px solid #ddd; padding:4px;">❌ No</td><td style="border:1px solid #ddd; padding:4px;">✅ Yes</td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:4px;"><strong>Query speed</strong></td><td style="border:1px solid #ddd; padding:4px;">Fast</td><td style="border:1px solid #ddd; padding:4px;">Slow for complex logic</td><td style="border:1px solid #ddd; padding:4px;">Very fast</td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:4px;"><strong>Refresh required</strong></td><td style="border:1px solid #ddd; padding:4px;">No</td><td style="border:1px solid #ddd; padding:4px;">No</td><td style="border:1px solid #ddd; padding:4px;">Yes (manual/auto)</td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:4px;"><strong>Best for OLTP</strong></td><td style="border:1px solid #ddd; padding:4px;">✅ Yes</td><td style="border:1px solid #ddd; padding:4px;">❌ No</td><td style="border:1px solid #ddd; padding:4px;">❌ No</td></tr>
+                        <tr><td style="border:1px solid #ddd; padding:4px;"><strong>Best for analytics</strong></td><td style="border:1px solid #ddd; padding:4px;">❌ Medium</td><td style="border:1px solid #ddd; padding:4px;">❌ Poor</td><td style="border:1px solid #ddd; padding:4px;">✅ Excellent</td></tr>
+                    </table>
+
+                    <p style="margin-top: 1.5rem;"><strong>Example comparison:</strong></p>
+                    <div class="code-block" style="font-size:0.8rem;">-- Table (physical)<br>CREATE TABLE employees (id INT, name VARCHAR(50), salary INT);<br><br>-- View (virtual)<br>CREATE VIEW high_salary_employees AS<br>SELECT id, name, salary FROM employees WHERE salary > 50000;<br><br>-- Materialized View (physical copy)<br>CREATE MATERIALIZED VIEW dept_salary_mv AS<br>SELECT dept, SUM(salary) total_salary FROM employees GROUP BY dept;</div>
+
+                    <h4 style="margin-top: 2rem; margin-bottom: 1rem; color: #06b6d4;">🔍 Outlier Detection Methods</h4>
+                    <table style="width:100%; font-size:0.8rem; border-collapse:collapse; margin: 1rem 0;">
+                        <tr style="background:#f0f0f0;">
+                            <th style="border:1px solid #ddd; padding:6px; text-align:left; font-weight:bold;">Method</th>
+                            <th style="border:1px solid #ddd; padding:6px; text-align:left; font-weight:bold;">Description</th>
+                            <th style="border:1px solid #ddd; padding:6px; text-align:left; font-weight:bold;">SQL Query</th>
+                        </tr>
+                        <tr>
+                            <td style="border:1px solid #ddd; padding:6px;"><strong>Z-Score</strong></td>
+                            <td style="border:1px solid #ddd; padding:6px;">Detect outliers using mean & stddev</td>
+                            <td style="border:1px solid #ddd; padding:6px;"><code style="font-size:0.75rem;">SELECT *, (value - AVG(value) OVER ()) / STDDEV(value) OVER () AS z_score FROM your_table;</code></td>
+                        </tr>
+                        <tr>
+                            <td style="border:1px solid #ddd; padding:6px;"><strong>Z-Score Filter</strong></td>
+                            <td style="border:1px solid #ddd; padding:6px;">Filter z_score > 3</td>
+                            <td style="border:1px solid #ddd; padding:6px;"><code style="font-size:0.75rem;">SELECT * FROM (SELECT *, (value - AVG(value) OVER ()) / STDDEV(value) OVER () AS z_score FROM your_table) t WHERE ABS(z_score) > 3;</code></td>
+                        </tr>
+                        <tr>
+                            <td style="border:1px solid #ddd; padding:6px;"><strong>IQR Method</strong></td>
+                            <td style="border:1px solid #ddd; padding:6px;">Use quartiles to detect outliers</td>
+                            <td style="border:1px solid #ddd; padding:6px;"><code style="font-size:0.75rem;">WITH stats AS (SELECT PERCENTILE_CONT(0.25) WITHIN GROUP (ORDER BY value) AS q1, PERCENTILE_CONT(0.75) WITHIN GROUP (ORDER BY value) AS q3 FROM your_table) SELECT t.* FROM your_table t, stats s WHERE t.value < (s.q1 - 1.5*(s.q3-s.q1)) OR t.value > (s.q3 + 1.5*(s.q3-s.q1));</code></td>
+                        </tr>
+                        <tr>
+                            <td style="border:1px solid #ddd; padding:6px;"><strong>Percentile</strong></td>
+                            <td style="border:1px solid #ddd; padding:6px;">Top 1% values</td>
+                            <td style="border:1px solid #ddd; padding:6px;"><code style="font-size:0.75rem;">SELECT * FROM your_table WHERE value > (SELECT PERCENTILE_CONT(0.99) WITHIN GROUP (ORDER BY value) FROM your_table);</code></td>
+                        </tr>
+                        <tr>
+                            <td style="border:1px solid #ddd; padding:6px;"><strong>Partitioned Z-Score</strong></td>
+                            <td style="border:1px solid #ddd; padding:6px;">Outliers per group</td>
+                            <td style="border:1px solid #ddd; padding:6px;"><code style="font-size:0.75rem;">SELECT * FROM (SELECT *, (value - AVG(value) OVER (PARTITION BY category)) / STDDEV(value) OVER (PARTITION BY category) AS z_score FROM your_table) t WHERE ABS(z_score) > 3;</code></td>
+                        </tr>
+                        <tr>
+                            <td style="border:1px solid #ddd; padding:6px;"><strong>Summary Stats</strong></td>
+                            <td style="border:1px solid #ddd; padding:6px;">Basic distribution</td>
+                            <td style="border:1px solid #ddd; padding:6px;"><code style="font-size:0.75rem;">SELECT MIN(value), MAX(value), AVG(value), STDDEV(value) FROM your_table;</code></td>
+                        </tr>
+                    </table>
+                `
+            },
+            'sql-interview-questions': {
+                title: '❓ SQL Interview Questions',
+                subtitle: '15 common SQL interview scenarios with solutions',
+                content: `
+                    <p><strong>Interview preparation:</strong> Master these 15 common scenarios that appear in SQL interviews across Basics, Window Functions, Joins, Aggregation, Cleaning, and Advanced topics.</p>
+                    <div class="hint">Practice these regularly. Understand not just the solution, but WHY that approach is optimal.</div>
+
+                    <h4 style="margin-top: 2rem; margin-bottom: 1rem; color: #06b6d4;">15️⃣ SQL Interview Questions</h4>
+                    <table style="width:100%; font-size:0.75rem; border-collapse:collapse; margin: 1rem 0;">
+                        <tr style="background:#f0f0f0;">
+                            <th style="border:1px solid #ddd; padding:6px; text-align:left; font-weight:bold;">#</th>
+                            <th style="border:1px solid #ddd; padding:6px; text-align:left; font-weight:bold;">Category</th>
+                            <th style="border:1px solid #ddd; padding:6px; text-align:left; font-weight:bold;">Question</th>
+                            <th style="border:1px solid #ddd; padding:6px; text-align:left; font-weight:bold;">Solution</th>
+                        </tr>
+                        <tr>
+                            <td style="border:1px solid #ddd; padding:6px;">1</td>
+                            <td style="border:1px solid #ddd; padding:6px;">Basics</td>
+                            <td style="border:1px solid #ddd; padding:6px;"><strong>Find duplicate records</strong></td>
+                            <td style="border:1px solid #ddd; padding:6px;"><code style="font-size:0.7rem;">SELECT column_name, COUNT(*) FROM table_name GROUP BY column_name HAVING COUNT(*) > 1;</code></td>
+                        </tr>
+                        <tr>
+                            <td style="border:1px solid #ddd; padding:6px;">2</td>
+                            <td style="border:1px solid #ddd; padding:6px;">Basics</td>
+                            <td style="border:1px solid #ddd; padding:6px;"><strong>Second highest salary</strong></td>
+                            <td style="border:1px solid #ddd; padding:6px;"><code style="font-size:0.7rem;">SELECT MAX(salary) FROM employees WHERE salary < (SELECT MAX(salary) FROM employees);</code></td>
+                        </tr>
+                        <tr>
+                            <td style="border:1px solid #ddd; padding:6px;">3</td>
+                            <td style="border:1px solid #ddd; padding:6px;">Window</td>
+                            <td style="border:1px solid #ddd; padding:6px;"><strong>Nth highest salary</strong></td>
+                            <td style="border:1px solid #ddd; padding:6px;"><code style="font-size:0.7rem;">SELECT salary FROM (SELECT salary, DENSE_RANK() OVER (ORDER BY salary DESC) rnk FROM employees) t WHERE rnk = N;</code></td>
+                        </tr>
+                        <tr>
+                            <td style="border:1px solid #ddd; padding:6px;">4</td>
+                            <td style="border:1px solid #ddd; padding:6px;">Window</td>
+                            <td style="border:1px solid #ddd; padding:6px;"><strong>Highest salary by department</strong></td>
+                            <td style="border:1px solid #ddd; padding:6px;"><code style="font-size:0.7rem;">SELECT * FROM (SELECT *, DENSE_RANK() OVER (PARTITION BY dept_id ORDER BY salary DESC) rnk FROM employees) t WHERE rnk = 1;</code></td>
+                        </tr>
+                        <tr>
+                            <td style="border:1px solid #ddd; padding:6px;">5</td>
+                            <td style="border:1px solid #ddd; padding:6px;">Joins</td>
+                            <td style="border:1px solid #ddd; padding:6px;"><strong>Customers with no orders</strong></td>
+                            <td style="border:1px solid #ddd; padding:6px;"><code style="font-size:0.7rem;">SELECT c.* FROM customers c LEFT JOIN orders o ON c.id = o.customer_id WHERE o.id IS NULL;</code></td>
+                        </tr>
+                        <tr>
+                            <td style="border:1px solid #ddd; padding:6px;">6</td>
+                            <td style="border:1px solid #ddd; padding:6px;">Joins</td>
+                            <td style="border:1px solid #ddd; padding:6px;"><strong>Self join (employee-manager)</strong></td>
+                            <td style="border:1px solid #ddd; padding:6px;"><code style="font-size:0.7rem;">SELECT e.name, m.name FROM employees e LEFT JOIN employees m ON e.manager_id = m.id;</code></td>
+                        </tr>
+                        <tr>
+                            <td style="border:1px solid #ddd; padding:6px;">7</td>
+                            <td style="border:1px solid #ddd; padding:6px;">Aggregation</td>
+                            <td style="border:1px solid #ddd; padding:6px;"><strong>Running total</strong></td>
+                            <td style="border:1px solid #ddd; padding:6px;"><code style="font-size:0.7rem;">SELECT date, SUM(sales) OVER (ORDER BY date) AS running_total FROM sales;</code></td>
+                        </tr>
+                        <tr>
+                            <td style="border:1px solid #ddd; padding:6px;">8</td>
+                            <td style="border:1px solid #ddd; padding:6px;">Aggregation</td>
+                            <td style="border:1px solid #ddd; padding:6px;"><strong>Top 3 products by sales</strong></td>
+                            <td style="border:1px solid #ddd; padding:6px;"><code style="font-size:0.7rem;">SELECT * FROM (SELECT product_id, SUM(sales) total_sales, RANK() OVER (ORDER BY SUM(sales) DESC) rnk FROM sales GROUP BY product_id) t WHERE rnk <= 3;</code></td>
+                        </tr>
+                        <tr>
+                            <td style="border:1px solid #ddd; padding:6px;">9</td>
+                            <td style="border:1px solid #ddd; padding:6px;">Aggregation</td>
+                            <td style="border:1px solid #ddd; padding:6px;"><strong>Monthly revenue</strong></td>
+                            <td style="border:1px solid #ddd; padding:6px;"><code style="font-size:0.7rem;">SELECT DATE_TRUNC('month', order_date) AS month, SUM(amount) FROM orders GROUP BY month;</code></td>
+                        </tr>
+                        <tr>
+                            <td style="border:1px solid #ddd; padding:6px;">10</td>
+                            <td style="border:1px solid #ddd; padding:6px;">Cleaning</td>
+                            <td style="border:1px solid #ddd; padding:6px;"><strong>Remove duplicates</strong></td>
+                            <td style="border:1px solid #ddd; padding:6px;"><code style="font-size:0.7rem;">DELETE FROM employees WHERE id IN (SELECT id FROM (SELECT id, ROW_NUMBER() OVER (PARTITION BY email ORDER BY created_at DESC) rn FROM employees) t WHERE rn > 1);</code></td>
+                        </tr>
+                        <tr>
+                            <td style="border:1px solid #ddd; padding:6px;">11</td>
+                            <td style="border:1px solid #ddd; padding:6px;">Cleaning</td>
+                            <td style="border:1px solid #ddd; padding:6px;"><strong>Handle NULL values</strong></td>
+                            <td style="border:1px solid #ddd; padding:6px;"><code style="font-size:0.7rem;">SELECT COALESCE(phone, 'N/A') FROM customers;</code></td>
+                        </tr>
+                        <tr>
+                            <td style="border:1px solid #ddd; padding:6px;">12</td>
+                            <td style="border:1px solid #ddd; padding:6px;">Advanced</td>
+                            <td style="border:1px solid #ddd; padding:6px;"><strong>Detect outliers</strong></td>
+                            <td style="border:1px solid #ddd; padding:6px;"><code style="font-size:0.7rem;">SELECT * FROM (SELECT value, (value - AVG(value) OVER ()) / STDDEV(value) OVER () AS z_score FROM table_name) t WHERE ABS(z_score) > 3;</code></td>
+                        </tr>
+                        <tr>
+                            <td style="border:1px solid #ddd; padding:6px;">13</td>
+                            <td style="border:1px solid #ddd; padding:6px;">Advanced</td>
+                            <td style="border:1px solid #ddd; padding:6px;"><strong>Rolling average (7-day)</strong></td>
+                            <td style="border:1px solid #ddd; padding:6px;"><code style="font-size:0.7rem;">SELECT date, AVG(sales) OVER (ORDER BY date ROWS BETWEEN 6 PRECEDING AND CURRENT ROW) FROM sales;</code></td>
+                        </tr>
+                        <tr>
+                            <td style="border:1px solid #ddd; padding:6px;">14</td>
+                            <td style="border:1px solid #ddd; padding:6px;">Advanced</td>
+                            <td style="border:1px solid #ddd; padding:6px;"><strong>Gap & Island</strong></td>
+                            <td style="border:1px solid #ddd; padding:6px;"><code style="font-size:0.7rem;">SELECT date, date - ROW_NUMBER() OVER (ORDER BY date) AS grp FROM table_name;</code></td>
+                        </tr>
+                        <tr>
+                            <td style="border:1px solid #ddd; padding:6px;">15</td>
+                            <td style="border:1px solid #ddd; padding:6px;">Advanced</td>
+                            <td style="border:1px solid #ddd; padding:6px;"><strong>Month-over-month growth</strong></td>
+                            <td style="border:1px solid #ddd; padding:6px;"><code style="font-size:0.7rem;">SELECT customer_id, month, total_spent, LAG(total_spent) OVER (PARTITION BY customer_id ORDER BY month) prev_spent FROM monthly_spend;</code></td>
+                        </tr>
+                    </table>
+                `
             }
         };
 
@@ -4613,3 +5334,4 @@
     </script>
 </body>
 </html>
+                    
